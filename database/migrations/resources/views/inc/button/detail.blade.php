@@ -1,0 +1,1 @@
+<a href="#" class="btn btn-sm btn-success btn-detail" style="color:white;width:100%"><span class="fa fa-eye fa-xs"></span>&nbsp;&nbsp;View</a>

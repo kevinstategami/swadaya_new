@@ -1,0 +1,1 @@
+<a href="#" class="btn btn-sm btn-danger float-right btn-remove-record" style="color:white;">Delete</a>

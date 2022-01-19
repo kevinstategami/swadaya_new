@@ -1,0 +1,1 @@
+<div class="btn-group" role="group" aria-label="Basic example">@include('inc.button.edit')</div>
