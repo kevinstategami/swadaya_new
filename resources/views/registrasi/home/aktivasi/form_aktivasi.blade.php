@@ -5,7 +5,7 @@
       <meta name="apple-mobile-web-app-capable" content="yes">
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
       <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
       <title>Swadaya Utama</title>
       <link rel="stylesheet" type="text/css" href="{{asset('registrasi/styles/bootstrap.css')}}" />
       <link rel="stylesheet" type="text/css" href="{{asset('registrasi/fonts/bootstrap-icons.css')}}" />
@@ -170,7 +170,7 @@
                         <label for="c6" class="color-theme">Select an Option</label>
                         <div class="valid-feedback">Jenis Kelamin tidak boleh kosong!</div>
                      </div>
-                     <div class="form-custom form-label form-icon mb-3" id="pilihan" style="display:none">
+                     <div class="form-custom form-label form-icon mb-3" id="pilihan" style="display:block">
 
                         <div class="row">
                           <div class="col-6">
