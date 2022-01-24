@@ -33,7 +33,7 @@
                 </li>
                 @if(Auth::guest())
                 <li class="megamenu-fw">
-                    <a href="{{route('indexMembership')}}" class="color-gray">Masuk / Daftar</a>
+                    <a href="https://anggota.songgomas.id/membership/auth/index" class="color-gray">Masuk / Daftar</a>
                 </li>
                 @else
                 <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle color-light">{{Auth::user()->name}} </a>
