@@ -3,7 +3,7 @@
     
 <!-- Mirrored from myboodesign.com/pasific/mp-index-new-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 21 Nov 2021 11:22:36 GMT -->
 <head>
-    <title>Swadaya Utama</title>
+    <title>Songgomas</title>
     @include('layouts.comp.meta')
     <?php
         $cmsLogo = (new App\Http\Controllers\CMS\LogoController)->index();

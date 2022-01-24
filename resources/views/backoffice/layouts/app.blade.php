@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  <title>Swadaya Utama | Backoffice</title>
+  <title>Songgomas | Backoffice</title>
   <?php
       $cmsLogo = (new App\Http\Controllers\CMS\LogoController)->index();
   ?>
