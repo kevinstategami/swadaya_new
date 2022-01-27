@@ -16,53 +16,56 @@
       <meta id="theme-check" name="theme-color" content="#FFFFFF">
       <link rel="apple-touch-icon" sizes="180x180" href="{{asset('registrasi/app/icons/icon-192x192.png')}}">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+      <link rel="stylesheet" type="text/css" href="{{asset('registrasi/mobView/css/style.css')}}">
    </head>
    <body class="theme-light">
       <div id="preloader">
          <div class="spinner-border color-highlight" role="status"></div>
       </div>
+      <div class="header">
+        <div class="subhead">
+          <img src="{{asset('registrasi/mobView/images/logo-white.png')}}" class="logo-left" alt="">
+        </div>
+      </div>
       <div id="page">
          <div class="page-content my-0 py-0">
-            <div class="card card-fixed">
-               <div class="card-center mx-3 px-4 py-4 bg-white rounded-m">
-                 <div class="col-md-12 text-center">
-                   <h1 for="c1" class="color-theme" style="color:#2196f3">Login</h1>
-                 </div>
-                 <form action="{{url('membership/auth/login/store')}}" id="fLogin" method="POST" enctype="multipart/form-data">
-                   {{csrf_field()}}
-                  <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">
-                     <i class="fas fa-at font-13"></i>
-                     <input type="text" class="form-control rounded-xs" id="username" name="username" autocomplete="off" placeholder="Username" />
-                     <label for="c1" class="color-theme">Username</label>
-                  </div>
-                  <div class="form-custom form-label form-border form-icon mb-4 bg-transparent">
-                     <i class="fas fa-key font-13"></i>
-                     <input type="password" class="form-control rounded-xs" id="password" name="password" autocomplete="off" placeholder="Password" />
-                     <!-- <i class="far fa-eye font-13" style="cursor:pointer" id="mata"></i> -->
-                     <label for="c2" class="color-theme">Password</label>
-                  </div>
-                  <div class="form-check form-check-custom">
-                     <input class="form-check-input" type="checkbox" name="type" value="" id="c2a">
-                     <label class="form-check-label font-12" for="c2a" onclick="showPwd()">Lihat Sandi</label>
-                     <i class="is-checked color-highlight font-13 fas fa-circle"></i>
-                     <i class="is-unchecked color-highlight font-13 far fa-circle"></i>
-                  </div>
-                </form>
-                  <a href="#" id="btnLogin" class="btn btn-full gradient-highlight shadow-bg shadow-bg-s mt-4">Login Akun</a>
-                  <div class="row">
-                     <div class="col-6 text-left">
-                        <a href="{{url('membership/auth/forgot-password')}}" class="font-11 color-theme opacity-40 pt-4 d-block">Lupa Password ?</a>
-                     </div>
-                     <!-- <div class="col-4 text-start">
-                        <a href="{{route('login')}}" class="font-11 color-theme opacity-40 pt-4 d-block">Masuk sebagai Admin?</a>
-                     </div> -->
-                     <div class="col-6 text-end">
-                        <a href="{{url('membership/auth/registrasi')}}" class="font-11 color-theme opacity-40 pt-4 d-block">Registrasi</a>
-                     </div>
-                  </div>
+             <div class="card-center mx-3 px-4 py-4 bg-white rounded-m">
+               <div class="col-md-12 text-center">
+                 <h1 for="c1" class="color-theme" style="color:#2196f3">Login</h1>
                </div>
-               <div class="card-overlay rounded-0 m-0 bg-black opacity-70"></div>
-            </div>
+               <form action="{{url('membership/auth/login/store')}}" id="fLogin" method="POST" enctype="multipart/form-data">
+                 {{csrf_field()}}
+                <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">
+                   <i class="fas fa-at font-13"></i>
+                   <input type="text" class="form-control rounded-xs" id="username" name="username" autocomplete="off" placeholder="Username" />
+                   <label for="c1" class="color-theme">Username</label>
+                </div>
+                <div class="form-custom form-label form-border form-icon mb-4 bg-transparent">
+                   <i class="fas fa-key font-13"></i>
+                   <input type="password" class="form-control rounded-xs" id="password" name="password" autocomplete="off" placeholder="Password" />
+                   <!-- <i class="far fa-eye font-13" style="cursor:pointer" id="mata"></i> -->
+                   <label for="c2" class="color-theme">Password</label>
+                </div>
+                <div class="form-check form-check-custom">
+                   <input class="form-check-input" type="checkbox" name="type" value="" id="c2a">
+                   <label class="form-check-label font-12 mr-cengli" for="c2a" onclick="showPwd()">Lihat Sandi</label>
+                   <i class="is-checked color-highlight font-13 fas fa-circle"></i>
+                   <i class="is-unchecked color-highlight font-13 far fa-circle"></i>
+                </div>
+              </form>
+                <a href="#" id="btnLogin" class="btn btn-full gradient-highlight shadow-bg shadow-bg-s mt-4">Login Akun</a>
+                <div class="row">
+                   <div class="col-6 text-left">
+                      <a href="{{url('membership/auth/forgot-password')}}" class="font-11 color-theme opacity-40 pt-4 d-block">Lupa Password ?</a>
+                   </div>
+                   <!-- <div class="col-4 text-start">
+                      <a href="{{route('login')}}" class="font-11 color-theme opacity-40 pt-4 d-block">Masuk sebagai Admin?</a>
+                   </div> -->
+                   <div class="col-6 text-end">
+                      <a href="{{url('membership/auth/registrasi')}}" class="font-11 color-theme opacity-40 pt-4 d-block">Registrasi</a>
+                   </div>
+                </div>
+             </div>
          </div>
       </div>
       <script src="{{asset('registrasi/scripts/bootstrap.min.js')}}"></script>
