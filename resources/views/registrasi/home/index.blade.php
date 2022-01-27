@@ -1,5 +1,5 @@
 @extends('registrasi.layout.app_home')
-@section('content')
+@section('content')>
     <div class="pt-3">
         <div class="page-title d-flex">
             <div class="align-self-center me-auto">
@@ -51,7 +51,7 @@
             <div class="splide__list">
                 @foreach(\App\Models\MasterData\Advertisement::where('status',1)->get() as $key => $value)
                 <div class="splide__slide">
-                    <div class="card card-style m-0 shadow-card shadow-card-m" style="height: 200px; background-image:url('{{url('ads', $value->dokumen_repo->path)}}')">
+                    <div class="card card-style m-0 shadow-card shadow-card-m" style="height: 200px;background-image:url('{{url('ads', $value->dokumen_repo->path)}}')">
                         <!-- <div class="card-overlay bg-black opacity-50"></div> -->
                     </div>
                 </div>

@@ -46,7 +46,8 @@ class MembershipRegistrasi extends Controller
     // }
 
     public function index(){
-      return view('registrasi.mobile');
+      return view('registrasi.auth.signup');
+      // return view('registrasi.mobile');
     }
     public function registrasi(){
       return view('registrasi.auth.signup');
