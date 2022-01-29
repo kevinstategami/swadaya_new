@@ -17,7 +17,7 @@ use DB;
 class InvoiceController extends Controller
 {
 	public function index(Request $request){
-		$data = Query::PagingResponse($request, new Invoice, 'backoffice.transaction.invoice.index', 'invoices');
+		$data = Query::PagingResponseInvoice($request, new Invoice, 'backoffice.transaction.invoice.index', 'invoices');
 		return $data;
 	}
 
@@ -32,7 +32,7 @@ class InvoiceController extends Controller
 		$walletHistory->wallet_id = $wallet->id;
 		$walletHistory->amount = $data->total_amount;
 		$walletHistory->description = $data->invoice_type . ' Saldo';
-		$walletHistory->mutation_type = 'DB'.$data->invoice_type;
+		$walletHistory->mutation_type = $data->invoice_type;
 		$walletHistory->invoice_id = $data->id;
 		$wallet->amount = $wallet->amount + $walletHistory->amount;
 		$walletHistory->save();
