@@ -208,6 +208,8 @@
                                 }
                             }
                         });
+                      }else{
+                        $('#fRegistrasi').submit();
                       }
                     }
                   }

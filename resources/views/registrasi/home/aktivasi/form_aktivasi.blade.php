@@ -91,7 +91,7 @@
                      <div class="form-custom form-label form-icon mb-3">
                         <i class="bi bi-person-badge font-13"></i>
                         <select class="form-select rounded-xs" id="jenisKelamin" name="jenisKelamin" autocomplete="off" aria-label="Jenis Kelamin" placeholder="Kota Tinggal">
-                           <option value="" selected>Jenis Kelamin</option>
+                           <option value="" selected disabled>Jenis Kelamin</option>
                            <option value="L">Laki - Laki</option>
                            <option value="P">Perempuan</option>
                         </select>
@@ -163,7 +163,7 @@
                      <div class="form-custom form-label form-icon mb-3">
                         <i class="bi bi-bookmark-dash font-13"></i>
                         <select class="form-select rounded-xs" id="jenisSimpanan" name="jenisSimpanan" autocomplete="off" aria-label="Kota Tinggal" placeholder="Kota Tinggal">
-                           <option value="" selected>Jenis Simpanan</option>
+                           <option value="" selected disabled>Jenis Simpanan</option>
                            <!-- <option value="BI">Simpanan Bulan Ini</option> -->
                            <option value="SK">Sekaligus (Multi Bulan)</option>
                            <option value="SMT">Sampai Akhir Tahun</option>
@@ -171,7 +171,7 @@
                         <label for="c6" class="color-theme">Select an Option</label>
                         <div class="valid-feedback">Jenis Kelamin tidak boleh kosong!</div>
                      </div>
-                     <div class="form-custom form-label form-icon mb-3" id="pilihan" style="display:block">
+                     <div class="form-custom form-label form-icon mb-3" id="pilihan" style="display:none">
 
                         <div class="row">
                           <div class="col-6">
