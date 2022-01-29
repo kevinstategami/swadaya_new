@@ -91,7 +91,7 @@
                      <div class="form-custom form-label form-icon mb-3">
                         <i class="bi bi-person-badge font-13"></i>
                         <select class="form-select rounded-xs" id="jenisKelamin" name="jenisKelamin" autocomplete="off" aria-label="Jenis Kelamin" placeholder="Kota Tinggal">
-                           <option value="" selected>Jenis Kelamin</option>
+                           <option value="" selected disabled>Jenis Kelamin</option>
                            <option value="L">Laki - Laki</option>
                            <option value="P">Perempuan</option>
                         </select>

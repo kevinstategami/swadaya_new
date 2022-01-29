@@ -56,7 +56,8 @@ class MembershipRegistrasi extends Controller
       return view('registrasi.auth.forgot');
     }
 
-    public function postForgot(Request $request){      
+    public function postForgot(Request $request){
+      
       $pwd = $this->quickRandom(10);
       $user = User::where('username', $request->username)->orWhere('email', $request->username)->first();
       if($user){
@@ -64,8 +65,8 @@ class MembershipRegistrasi extends Controller
         $user->save();
 
         Mail::send('registrasi.email.forgotPassword', ['pwd' => $pwd, 'user' => $user], function ($m) use ($pwd, $user) {
-          $m->from('no-reply@cakra-tech.co.id', 'Reset Password');
-          $m->to($user->email,'Reset Password');
+          $m->from('no-reply@cakra-tech.co.id', 'Songgomas - Reset Password');
+          $m->to($user->email,'Reset Password','Songgomas - Reset Password');
         });
 
         $info = "Berhasil";
