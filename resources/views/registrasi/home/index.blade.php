@@ -127,7 +127,7 @@
                 <div class="align-self-center">
                     <h5 class="color-white font-700 mb-0 mt-0 pt-1">
                         Selangkah lagi kamu akan menjadi anggota premium. <br />
-                        Upload bukti transaksi kamu dan silahkan menunggu dalam pengecekan.
+                        Upload bukti transaksi kamu dan mohon menunggu dalam proses verifikasi.
                     </h5>
                 </div>
                 <div class="align-self-center ms-auto">
