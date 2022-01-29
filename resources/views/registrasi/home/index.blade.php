@@ -98,8 +98,8 @@
                 </div>
                 <div class="align-self-center">
                     <h5 class="color-white font-700 mb-0 mt-0 pt-1">
-                        Akun kamu belum aktif <br />
-                        Silakan aktivasi akun kamu sekarang juga.
+                        Kamu belum terdaftar sebagai member <br />
+                        Aktivasi akun kamu untuk menjadi member.
                     </h5>
                 </div>
                 <div class="align-self-center ms-auto">
