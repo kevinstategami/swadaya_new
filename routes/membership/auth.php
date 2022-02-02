@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('membership/auth')->group(function () {
-  Route::get('index', 'MembershipRegistrasi@index')->name('indexMembership');
+  Route::get('index', 'MembershipRegistrasi@login')->name('indexMembership');
   Route::get('logouts', 'MembershipRegistrasi@logouts')->name('logoutsMembership');
   Route::get('registrasi', 'MembershipRegistrasi@registrasi')->name('registrasiMembership');
   Route::get('login', 'MembershipRegistrasi@login')->name('loginMembership');
