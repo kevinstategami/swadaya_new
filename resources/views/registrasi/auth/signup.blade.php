@@ -57,7 +57,7 @@
                 </div>
                 <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">
                    <i class="far fa-id-badge font-13"></i>
-                   <input type="text" class="form-control rounded-xs" id="referalCode" autocomplete="off" name="referalCode" placeholder="Kode Referal" value="" />
+                   <input type="text" class="form-control rounded-xs" id="referalCode" autocomplete="off" name="referalCode" placeholder="Kode Referal" value="{{$referalCode}}" />
                    <label for="username" class="color-theme">Kode Referal</label>
                 </div>
                 </form>
@@ -132,16 +132,15 @@
       }
 
       $(document).ready(function() {
-        const togglePassword = document.querySelector('#togglePassword');
-        const password = document.querySelector('#password');
 
-        togglePassword.addEventListener('click', function (e) {
-          // toggle the type attribute
-          const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-          password.setAttribute('type', type);
-          // toggle the eye slash icon
-          this.classList.toggle('fa-eye-slash');
-        });
+
+        if($('#referalCode').val() ==""){
+          $('#referalCode').removeAttr('readonly')
+        }else{
+          $('#referalCode').attr('readonly', 'readonly')
+        }
+
+
         });
 
         $('#btnSimpan').on('click', function(){

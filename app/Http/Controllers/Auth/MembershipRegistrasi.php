@@ -49,15 +49,25 @@ class MembershipRegistrasi extends Controller
       return view('registrasi.auth.signup');
       // return view('registrasi.mobile');
     }
-    public function registrasi(){
-      return view('registrasi.auth.signup');
+    public function registrasi(Request $request){
+
+      if($request->referalCode == null){
+        $referalCode = '';
+
+      }else{
+        $referalCode = $request->referalCode;
+
+      }
+
+      return view('registrasi.auth.signup')
+      ->with('referalCode', $referalCode);
     }
     public function vForgotPassword(){
       return view('registrasi.auth.forgot');
     }
 
     public function postForgot(Request $request){
-      
+
       $pwd = $this->quickRandom(10);
       $user = User::where('username', $request->username)->orWhere('email', $request->username)->first();
       if($user){
@@ -138,9 +148,7 @@ class MembershipRegistrasi extends Controller
     }
 
     public function login(){
-
       return view('registrasi.auth.login');
-
     }
 
     public function postLogin(Request $r){
@@ -148,7 +156,7 @@ class MembershipRegistrasi extends Controller
       $password = $r->input('password');
       $remember = ($r->input('remember')) ? true : false;
       if (Auth::attempt(['username' => $username, 'password' => $password],$remember)) {
-
+        // dd(Auth::user()->type);
         if(Auth::user()->type == "MEMBER"){
 
           if (Auth::viaRemember()) {
@@ -190,6 +198,7 @@ class MembershipRegistrasi extends Controller
       $user->name = $request->fullName;
       $user->username = $request->username;
       $user->email = $request->email;
+      $user->type = "MEMBER";
       $user->password = bcrypt($request->password);
       $user->save();
 
@@ -231,4 +240,11 @@ class MembershipRegistrasi extends Controller
       return substr(str_shuffle(str_repeat($pool, 5)), 0, $length);
     }
 
+    public function indexProfil(){
+
+      $member = Member::where('user_id', Auth::user()->id)->first();
+
+      return view('registrasi.akun.index_profil')
+      ->with('member', $member);
+    }
   }
