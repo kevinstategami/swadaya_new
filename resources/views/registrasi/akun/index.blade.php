@@ -35,9 +35,15 @@
 
       <div class="content mt-0 mb-2">
          <div class="list-group list-custom list-group-flush list-group-m rounded-xs">
+           <a href="{{url('membership/index/profil')}}" class="list-group-item">
+              <i class="bi bi-person-badge"></i>
+              <div>Profil Anggota</div>
+              <i class="bi bi-chevron-right"></i>
+           </a>
             <a href="{{url('membership/index/activity#tab-6')}}" class="list-group-item">
                <i class="bi bi-bell-fill"></i>
                <div>Riwayat Tagihan</div>
+               <i class="bi bi-chevron-right"></i>
             </a>
             <a href="{{url('membership/index/history-wallet')}}" class="list-group-item">
                <i class="bi bi-clock-history"></i>

@@ -82,7 +82,7 @@ class RegistrasiController extends Controller
     $invoiceHistory->created_at = date('Y-m-d').date(' h:i:s');
     $invoiceHistory->save();
 
-    $alert = "Tim kamu akan memproses pengajuan anda";
+    $alert = "Tim kami akan memproses pengajuan anda";
     $info = "Pengajuan Berhasil";
     $colors = "green";
     $icons = "fas fa-check-circle";
