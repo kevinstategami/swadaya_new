@@ -35,6 +35,14 @@
 
       <div class="content mt-0 mb-2">
          <div class="list-group list-custom list-group-flush list-group-m rounded-xs">
+           @if($referalCode!='')
+           <a href="" onclick="copy()" class="list-group-item" style="cursor:context-menu">
+              <i class="bi bi-upc-scan"></i>
+              <div>{{$referalCode}}</div>
+              <input type="text" style="display:none" value="{{$referalCode}}" id="textMemberNo">
+              <i class="bi bi-files" style="font-size:14px"></i>
+           </a>
+           @endif
            <a href="{{url('membership/index/profil')}}" class="list-group-item">
               <i class="bi bi-person-badge"></i>
               <div>Profil Anggota</div>
@@ -57,6 +65,19 @@
 @endsection
 @section('script')
 <script>
+        function copy() {
+        /* Get the text field */
+        var copyText = document.getElementById("textMemberNo");
 
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+        /* Copy the text inside the text field */
+        navigator.clipboard.writeText(copyText.value);
+
+        /* Alert the copied text */
+        alert("Tersalin: " + copyText.value);
+        }
 </script>
 @endsection

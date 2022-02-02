@@ -18,10 +18,19 @@ use Session;
 use App\Models\Transaction\Wallet;
 use App\Models\Transaction\WalletHistory;
 
+
 class HomeController extends Controller
 {
     public function indexAkun(){
-      return view('registrasi.akun.index');
+
+      $member = Member::where('user_id', Auth::user()->id)->first();
+      if($member != null){
+        $referalCode = $member->member_no;
+      }else{
+        $referalCode = '';
+      }
+      return view('registrasi.akun.index')
+      ->with('referalCode', $referalCode);
     }
     public function historyWallet(){
 
