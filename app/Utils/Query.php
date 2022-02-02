@@ -39,6 +39,38 @@ class Query {
 		return view($viewReturn);
 	}
 
+	public static function PagingResponseInvoice($request, $table, $viewReturn, $table_name = ''){
+		if ($request->filled('type') && $request->type == true) {
+			$columns = DB::getSchemaBuilder()->getColumnListing($table_name);
+			if ($request->filled('search')) {
+				if (!is_null($request->search['value'])) {
+					foreach ($columns as $key => $value) {
+						if ($key == 0) {
+							$table = $table->where($value, 'ilike', '%'.strtolower($request->search['value']).'%');
+						}
+						else {
+							$table = $table->orWhere($value, 'ilike', '%'.strtolower($request->search['value']).'%');
+						}
+					}
+				}
+			}
+			$count = $table->count();
+			if($request->filled('start') || $request->filled('length'))
+			{
+				$table = $table->offset($request->start)->limit($request->length);
+			}
+			$data = $table->orderBy('status','ASC')->get();
+			$response = [
+				'draw' => $request->draw,
+				'recordsTotal' => $count,
+				'recordsFiltered' => $count,
+				'data' => $data,
+			];
+			return response()->json($response, 200);
+		}
+		return view($viewReturn);
+	}
+
 	public static function GetResponse($table, $query = ""){
 		if($query){
 			$where = 'WHERE description = '.$query.'';

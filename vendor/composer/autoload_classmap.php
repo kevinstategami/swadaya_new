@@ -213,6 +213,10 @@ return array(
     'Complex\\Exception' => $vendorDir . '/markbaker/complex/classes/src/Exception.php',
     'Complex\\Functions' => $vendorDir . '/markbaker/complex/classes/src/Functions.php',
     'Complex\\Operations' => $vendorDir . '/markbaker/complex/classes/src/Operations.php',
+<<<<<<< HEAD
+=======
+    'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+>>>>>>> 772348bd767be7bf3eceb807b0e272754a9fb48e
     'Compro' => $baseDir . '/database/seeds/Compro/VisiSeeder.php',
     'Cron\\AbstractField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
     'Cron\\CronExpression' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
