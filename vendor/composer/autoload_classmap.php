@@ -43,6 +43,7 @@ return array(
     'App\\Http\\Controllers\\Backoffice\\Transaction\\WalletController' => $baseDir . '/app/Http/Controllers/Backoffice/Transaction/WalletController.php',
     'App\\Http\\Controllers\\Backoffice\\UserPengguna\\UserPenggunaController' => $baseDir . '/app/Http/Controllers/Backoffice/UserPengguna/UserPenggunaController.php',
     'App\\Http\\Controllers\\CMS\\AboutUsController' => $baseDir . '/app/Http/Controllers/CMS/AboutUsController.php',
+    'App\\Http\\Controllers\\CMS\\BlockController' => $baseDir . '/app/Http/Controllers/CMS/BlockController.php',
     'App\\Http\\Controllers\\CMS\\FungsiPeranController' => $baseDir . '/app/Http/Controllers/CMS/FungsiPeranController.php',
     'App\\Http\\Controllers\\CMS\\IntroductionAUController' => $baseDir . '/app/Http/Controllers/CMS/IntroductionAUController.php',
     'App\\Http\\Controllers\\CMS\\IntroductionHMController' => $baseDir . '/app/Http/Controllers/CMS/IntroductionHMController.php',

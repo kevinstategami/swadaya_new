@@ -7,6 +7,7 @@ use App\Utils\Query;
 use Auth;
 use App\User;
 use App\Models\Compro\JenisKoperasi;
+use App\Models\MasterData\CMS;
 use App\Http\Controllers\CMS\ProgressController;
 use App\Http\Controllers\CMS\JenisKoperasiController;
 use App\Http\Controllers\CMS\FungsiPeranController;
@@ -26,8 +27,8 @@ class HomeController extends Controller
         $aboutUs = (new AboutUsController)->index();
         $struktur = Query::GetResponse('struktur_anggotas');
         $jenis_koperasi = JenisKoperasi::all();
-
-        return view('homepage.index', compact('visi', 'misi', 'aboutUs', 'struktur', 'jenis_koperasi', 'progress', 'judul_jenis_koperasi', 'introduction_homepage'));
+        $cms = CMS::where('code', 'homepage')->orderby('order','asc')->get();
+        return view('homepage.index', compact('visi', 'misi', 'aboutUs', 'struktur', 'jenis_koperasi', 'progress', 'judul_jenis_koperasi', 'introduction_homepage', 'cms'));
     }
 
     public function aboutUs()
