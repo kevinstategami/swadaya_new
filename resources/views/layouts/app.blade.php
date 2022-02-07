@@ -21,8 +21,10 @@
         @yield('content')
     @include('layouts.comp.footer')
     @include('layouts.comp.modal.logo')
+    @include('block.modal.block-modal')
     @include('layouts.comp.script')
         @yield('script')
+    @include('block.script')
 </body>
 
 <!-- Mirrored from myboodesign.com/pasific/mp-index-new-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 21 Nov 2021 11:22:41 GMT -->

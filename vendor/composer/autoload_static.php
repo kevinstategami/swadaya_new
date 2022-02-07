@@ -585,6 +585,7 @@ class ComposerStaticInitdd605f1b9e27370a130005fd2df81350
         'App\\Http\\Controllers\\Backoffice\\Transaction\\WalletController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backoffice/Transaction/WalletController.php',
         'App\\Http\\Controllers\\Backoffice\\UserPengguna\\UserPenggunaController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backoffice/UserPengguna/UserPenggunaController.php',
         'App\\Http\\Controllers\\CMS\\AboutUsController' => __DIR__ . '/../..' . '/app/Http/Controllers/CMS/AboutUsController.php',
+        'App\\Http\\Controllers\\CMS\\BlockController' => __DIR__ . '/../..' . '/app/Http/Controllers/CMS/BlockController.php',
         'App\\Http\\Controllers\\CMS\\FungsiPeranController' => __DIR__ . '/../..' . '/app/Http/Controllers/CMS/FungsiPeranController.php',
         'App\\Http\\Controllers\\CMS\\IntroductionAUController' => __DIR__ . '/../..' . '/app/Http/Controllers/CMS/IntroductionAUController.php',
         'App\\Http\\Controllers\\CMS\\IntroductionHMController' => __DIR__ . '/../..' . '/app/Http/Controllers/CMS/IntroductionHMController.php',

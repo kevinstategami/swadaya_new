@@ -257,6 +257,10 @@ class RouteServiceProvider extends ServiceProvider
         ->namespace($this->namespace_cms)
         ->group(base_path('routes/cms/sk.php'));
 
+        Route::middleware('web')
+        ->namespace($this->namespace_cms)
+        ->group(base_path('routes/cms/block.php'));
+
     }
     /**
      * Define the "api" routes for the application.
