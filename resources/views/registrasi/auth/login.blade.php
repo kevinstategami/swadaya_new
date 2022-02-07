@@ -48,7 +48,7 @@
                 </div>
                 <div class="form-check form-check-custom">
                    <input class="form-check-input" type="checkbox" name="type" value="" id="c2a">
-                   <label class="form-check-label font-12 mr-cengli" for="c2a" onclick="showPwd()">Lihat Sandi</label>
+                   <label class="form-check-label font-12" style="margin-right: 11.5rem !important;" for="c2a" onclick="showPwd()">Lihat Sandi</label>
                    <i class="is-checked color-highlight font-13 fas fa-circle"></i>
                    <i class="is-unchecked color-highlight font-13 far fa-circle"></i>
                 </div>
