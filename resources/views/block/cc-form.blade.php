@@ -6,7 +6,7 @@
         <div class="row mt50 mb25">
             <div class="col-md-12 text-center">
                 <h1 class="font-size-normal">
-                    Form Card Content Block
+                    Form Block Content Block
                     <small class="heading heading-solid center-block"></small>
                 </h1>
             </div>

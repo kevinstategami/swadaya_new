@@ -23,7 +23,10 @@
 <script src="{{asset('template/pasific/assets/js/main/isotope.pkgd.min.js')}}"></script>
 <script src="{{asset('template/pasific/assets/js/main/parallax.min.js')}}"></script>
 <script src="{{asset('template/pasific/assets/js/main/jquery.countTo.js')}}"></script>
+
+<!-- CAROUSEL -->
 <script src="{{asset('template/pasific/assets/js/main/owl.carousel.min.js')}}"></script>
+
 <script src="{{asset('template/pasific/assets/js/main/jquery.sticky.js')}}"></script>
 <script src="{{asset('template/pasific/assets/js/main/ion.rangeSlider.min.js')}}"></script>
 <script src="{{asset('template/pasific/assets/js/main/imagesloaded.pkgd.min.js')}}"></script>

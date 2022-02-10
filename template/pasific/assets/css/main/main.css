@@ -2177,10 +2177,10 @@ table th.bg-pasific {
     letter-spacing: 1px;
 }
 .navbar-pasific .navbar-nav > li > a {
-    color: rgba(255,255,255,.7);
+    /*color: rgba(255,255,255,.7);*/
 }
 .navbar-pasific .navbar-nav > li > a:hover {
-    color: rgba(255,255,255,1);
+    /*color: rgba(255,255,255,1);*/
 }
 .navbar-pasific .navbar-nav > li > a:hover,
 .navbar-pasific .navbar-nav > li > a:focus {
@@ -2341,10 +2341,10 @@ table th.bg-pasific {
         color: #fff !important;
     }
     .navbar-mp .navbar-nav > li > a {
-        color: rgba(255,255,255,.7) !important;
+        /*color: rgba(255,255,255,.7) !important;*/
     }
     .navbar-mp .navbar-nav > li > a:hover {
-        color: rgba(255,255,255,1) !important;
+        /*color: rgba(255,255,255,1) !important;*/
     }
 }
 @media (max-width: 766px) {
