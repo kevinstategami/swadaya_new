@@ -23,6 +23,9 @@
 	text-align: center;
 }
 
+.fw-600 {
+	font-weight: 600 !important;
+}
 .p-0 {
 	padding: 0 !important;
 }

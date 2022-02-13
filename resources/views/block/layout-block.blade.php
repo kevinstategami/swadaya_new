@@ -33,13 +33,12 @@
 @if($value->block_type == 'MC')
 <header class="pt100 pb100 bg-grad-stellar" style="background-image: url({{$value->background_path ? url('get-block-image/'. $value->background_path) : ''}}); background-repeat: no-repeat; background-color: #fff; background-size: cover;">
         <div class="container mt100 mb70">
-            
             <div class="row">
                 <div class="col-md-12 text-center">
                     @if($value->path)
                     <img src="{{url('get-block-image/'.$value->path)}}" width="10%" />
                     @endif
-                    <h1 class="font-source-sans-pro {{$value->background_path ? 'font-size-light color-light' : 'text-orange'}} animated" data-animation="fadeInUp" data-animation-delay="100">
+                    <h1 class="font-source-sans-pro {{$value->background_path ? 'font-size-light color-light' : 'text-orange'}} animated color-primary fw-600" data-animation="fadeInUp" data-animation-delay="100">
                         {{$value ? $value->title : ''}}
                     </h1>
 
@@ -59,7 +58,6 @@
                 
             </div>
         </div>
-        
 </header>
 @endif
 
@@ -76,10 +74,10 @@
             @endif
 
              <div class="col-md-12 text-center">
-                 <h1 class="font-size-normal">
+                 <h3 class="color-primary fw-600">
                      {{$value->title}}
                      <small class="heading heading-solid center-block"></small>
-                 </h1>
+                 </h3>
              </div>
          </div>
          <!-- title and short description end -->
@@ -111,7 +109,7 @@
 <div class="container-fluid bg-gray">
     <div class="container">
         <div class="row pt50 pb40">                        
-            <h4 class="text-center">{{$value->title}}</h4>
+            <h3 class="text-center color-primary">{{$value->title}}</h3>
             
             @if(!Auth::guest() && Auth::user()->edit_mode) 
                 <div class="col-md-12 mb35">
@@ -157,7 +155,7 @@
                 </div>
             @endif
             <div class="col-md-12 text-center">
-                <h1 class="font-size-normal">
+                <h1 class="font-size-normal color-primary fw-600">
                     <!-- <small>JENIS KOPERASI</small> -->
                     {{$value->title}}
                     <small class="heading heading-solid center-block"></small>
@@ -229,7 +227,7 @@
         <!-- title and short description start -->
         <div class="row mt50 mb25">
             <div class="col-md-12 text-center">
-                <h1 class="font-size-normal">
+                <h1 class="font-size-normal color-primary fw-600">
                     {{$value->title}}
                     <small class="heading heading-solid center-block"></small>
                 </h1>
@@ -249,7 +247,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-10 col-md-offset-1 text-center">
-                <img src="{{url('get-block-image/'.$value->path)}}" alt="image" class="">
+                <img src="{{url('get-block-image/'.$value->path)}}" alt="image" class="" width="100%">
             </div>
         </div>
     </div>
@@ -267,7 +265,7 @@
                 </div>
             @endif
             <div class="col-md-12 pt50 text-center">
-                <h1 class="brand-heading font-montserrat text-uppercase color-light" data-in-effect="fadeInDown">{{$value->title}}</h1>                            
+                <h1 class="brand-heading font-montserrat text-uppercase color-primary fw-600" data-in-effect="fadeInDown">{{$value->title}}</h1>                            
             </div>
             <div class="col-md-8 col-md-offset-2 text-center">
                 <form class="form-horizontal">
@@ -372,10 +370,10 @@
     <div class="col-md-6">
         @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
         <h3 class="font-size-normal">
-            <small class="color-primary">{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</small>
+            <small class="color-primary fw-600">{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</small>
         </h3>
         
-        <p class="mt20 deskripsi-jenis-koperasi">
+        <p class="deskripsi-jenis-koperasi">
             {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : '' }}
             @if(explode(',', $value->path)[$i] != null)
             <img src="{{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'.explode(',', $value->path)[$i]) : ''}}" width="100%" class="img-responsive" />
@@ -395,7 +393,7 @@
             </div>
         @endif
         <div class="col-md-12">
-            <h3 class="color-primary mb0">{{$value->title}}</h3>
+            <h3 class="color-primary mb0 fw-600">{{$value->title}}</h3>
             <h4 class="mt0 mb0">{{$value->title2}}</h4>
         </div>
         <div class="col-md-6">
