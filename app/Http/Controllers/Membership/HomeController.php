@@ -22,6 +22,9 @@ use App\Models\Transaction\WalletHistory;
 
 class HomeController extends Controller
 {
+    public function changePassword(){
+      return view('registrasi.akun.change_password');
+    }
     public function indexAkun(){
 
       $member = Member::where('user_id', Auth::user()->id)->first();

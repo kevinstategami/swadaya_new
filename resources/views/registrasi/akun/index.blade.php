@@ -39,7 +39,7 @@
            <a href="" onclick="copy()" class="list-group-item" style="cursor:context-menu">
               <i class="bi bi-upc-scan"></i>
               <div>{{$referalCode}}</div>
-              <input type="text" style="display:none" value="{{$referalCode}}" id="textMemberNo">
+              <input type="text" style="display:none" value="{{url('membership/auth/registrasi')}}?referalCode={{$referalCode}}" id="textMemberNo">
               <i class="bi bi-files" style="font-size:14px"></i>
            </a>
            @endif
@@ -56,6 +56,11 @@
             <a href="{{url('membership/index/history-wallet')}}" class="list-group-item">
                <i class="bi bi-clock-history"></i>
                <div>Riwayat Transaksi</div>
+               <i class="bi bi-chevron-right"></i>
+            </a>
+            <a href="{{url('membership/index/change-password')}}" class="list-group-item">
+               <i class="bi bi-key"></i>
+               <div>Ubah Password</div>
                <i class="bi bi-chevron-right"></i>
             </a>
          </div>
@@ -77,6 +82,7 @@
         navigator.clipboard.writeText(copyText.value);
 
         /* Alert the copied text */
+
         alert("Tersalin: " + copyText.value);
         }
 </script>

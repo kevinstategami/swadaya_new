@@ -23,6 +23,8 @@ Route::group(['middleware' => ['auth'] ], function () {
 
 		Route::get('akun', 'HomeController@indexAkun')->name('indexAkun');
 
+		Route::get('change-password', 'HomeController@changePassword')->name('changePassword');
+
 
 	});
 });

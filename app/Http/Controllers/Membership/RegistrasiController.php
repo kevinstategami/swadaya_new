@@ -188,6 +188,22 @@ class RegistrasiController extends Controller
 }
 public function formAktivasi($userId){
 
+    $cekUser = Auth::user()->status_aktivasi;
+
+    if($cekUser == 2){
+      $info = "Informasi";
+      $colors = "red";
+      $icons = "fas fa-ban";
+      $alert = "Akun anda sedang menunggu diverifikasi!";
+
+      Session::flash('info', $info);
+      Session::flash('alert', $alert);
+      Session::flash('colors', $colors);
+      Session::flash('icons', $icons);
+
+        return redirect(url('membership/index/home'));
+    }
+
     $checkMember = Member::where('user_id', $userId)->count();
 
     if($checkMember > 0){

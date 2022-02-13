@@ -30,7 +30,7 @@
         <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
             <a href="{{route('activity')}}"><i class="bi bi-graph-up"></i><span>Tagihan</span></a>
             <a href="{{route('index')}}" class="circle-nav-2"><i class="fas fa-home"></i><span>Beranda</span></a>
-            <a href="#"><i class="bi bi-person-circle"></i><span>Akun</span></a>
+            <a href="{{route('indexAkun')}}"><i class="bi bi-person-circle"></i><span>Akun</span></a>
         </div>
          <div class="header-bar header-fixed header-app header-auto-show">
             <a href="{{route('index')}}" data-back-button><i class="bi bi-chevron-left font-13"></i></a>

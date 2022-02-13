@@ -40,7 +40,7 @@
                   <h5 class="pt-3 mb-n1">{{$pendings->invoice_code}} - <span class="text-danger" style="font-size:12px">Belum Bayar</span></h5>
 
                      <p class="mb-1 font-13 opacity-70">Tagihan : Rp. {{number_format($pendings->total_amount, 0, '.', '.')}}<br>
-                        Bulan : {{ $pendings->created_at->format('F') }}<br>
+
                         Terbit Pada : {{ $pendings->created_at->format('d/F/Y') }}</p>
                      </div>
 
@@ -67,7 +67,7 @@
                    <div class="align-self-center ps-1">
                       <h5 class="pt-3 mb-n1">{{$waitings->invoice_code}} - <span class="text-info" style="font-size:12px">Menunggu Verifikasi</span></h5>
                       <p class="mb-1 font-13 opacity-70">Tagihan : Rp. {{number_format($waitings->total_amount, 0, '.', '.')}}<br>
-                        Bulan : {{ $waitings->created_at->format('F') }}<br>
+
                         Tanggal Terbit : {{ $waitings->created_at->format('d/F/Y') }}</p>
                      </div>
                      <div class="align-self-center ms-auto text-end">
@@ -88,7 +88,6 @@
                      <div class="align-self-center ps-1">
                         <h5 class="pt-3 mb-n1">{{$historys->invoice_code}} - <span class="text-success" style="font-size:12px">Terverifikasi</span></h5>
                         <p class="mb-1 font-13 opacity-70">Tagihan : Rp. {{number_format($historys->total_amount, 0, '.', '.')}}<br>
-                        Bulan : {{ $historys->created_at->format('F') }}<br>
                         Tanggal Terbit : {{ $historys->created_at->format('d/F/Y') }}</p>
                      </div>
 
