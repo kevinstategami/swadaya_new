@@ -1,3 +1,6 @@
+.mheight-150{
+	min-height: 150px !important;
+}
 /* CARD */
 .card{
 	border: 2px solid lightgray;
@@ -20,6 +23,9 @@
 	text-align: center;
 }
 
+.fw-600 {
+	font-weight: 600 !important;
+}
 .p-0 {
 	padding: 0 !important;
 }
@@ -73,9 +79,9 @@
 	background-color: #ff4530 !important;
 }
 
-.about-us-content > h5 ,ul{
+/*.about-us-content > h5 ,ul{
 	color: white !important;
-}
+}*/
 
 .modal-dialog{
 	max-width: 1000px !important;

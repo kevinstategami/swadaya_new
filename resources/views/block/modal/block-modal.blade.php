@@ -41,13 +41,13 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4 mb-3" onclick="createBlock('ZC')">
+          <div class="col-md-4 mb-3" onclick="createBlock('CMC')">
             <div class="card">
               <div class="card-body">
-                <img class="w-100" src="{{asset('img/block_layout/zigzag_content.png')}}">
+                <img class="w-100" src="{{asset('img/block_layout/card_media_content.png')}}">
               </div>
               <div class="card-footer text-center">
-                <h5>Zigzag Content</h5>
+                <h5>Card Media Content</h5>
               </div>
             </div>
           </div>
@@ -74,10 +74,50 @@
           <div class="col-md-4 mb-3" onclick="createBlock('SSC')">
             <div class="card">
               <div class="card-body">
-                <img class="w-100" src="{{asset('img/block_layout/accordion_content.png')}}">
+                <img class="w-100" src="{{asset('img/block_layout/slideshow_content.png')}}">
               </div>
               <div class="card-footer text-center">
                 <h5>Slideshow Content</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3" onclick="createBlock('LFC')">
+            <div class="card">
+              <div class="card-body">
+                <img class="w-100" src="{{asset('img/block_layout/left_freetext_content.png')}}">
+              </div>
+              <div class="card-footer text-center">
+                <h5>Left Free Text Content</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3" onclick="createBlock('ZC')">
+            <div class="card">
+              <div class="card-body">
+                <img class="w-100" src="{{asset('img/block_layout/zigzag_content.png')}}">
+              </div>
+              <div class="card-footer text-center">
+                <h5>Zigzag Content</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3" onclick="createBlock('LSC')">
+            <div class="card">
+              <div class="card-body">
+                <img class="w-100" src="{{asset('img/block_layout/left_side_content.png')}}">
+              </div>
+              <div class="card-footer text-center">
+                <h5>Left Side Content</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3" onclick="createBlock('RSC')">
+            <div class="card">
+              <div class="card-body">
+                <img class="w-100" src="{{asset('img/block_layout/right_side_content.png')}}">
+              </div>
+              <div class="card-footer text-center">
+                <h5>Right Side Content</h5>
               </div>
             </div>
           </div>

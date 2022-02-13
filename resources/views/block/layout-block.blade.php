@@ -10,12 +10,12 @@
     </ol>
     <div class="carousel-inner">
         @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
-        <div class="item carousel-img {{$i == 1 ? 'active' : ''}}" style="background-image: url({{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'. rawurlencode(explode(',', $value->path)[$i])) : '' }})">
+        <div class="item carousel-img {{$i == 0 ? 'active' : ''}}" style="background-image: url({{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'. rawurlencode(explode(',', $value->path)[$i])) : '' }})">
             <div class="container">
                 <div class="carousel-caption animated" data-animation="bounceInDown" data-animation-delay="100">
                     <h1 class="font-pacifico text-capitalize color-light">{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</h1>
                     <p class="color-light mt25">{{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : '' }}<br>
-                         @if(!Auth::guest() && Auth::user()->edit_mode) 
+                        @if(!Auth::guest() && Auth::user()->edit_mode)
                             <a href="{{url('cms/block/edit-lc/'.$value->id)}}" class="button button-md button-pasific hover-ripple-out mt25">Ubah <span class="fa fa-cog"></span></a>
                         @endif
                     </p>
@@ -33,13 +33,12 @@
 @if($value->block_type == 'MC')
 <header class="pt100 pb100 bg-grad-stellar" style="background-image: url({{$value->background_path ? url('get-block-image/'. $value->background_path) : ''}}); background-repeat: no-repeat; background-color: #fff; background-size: cover;">
         <div class="container mt100 mb70">
-            
             <div class="row">
                 <div class="col-md-12 text-center">
                     @if($value->path)
                     <img src="{{url('get-block-image/'.$value->path)}}" width="10%" />
                     @endif
-                    <h1 class="font-source-sans-pro {{$value->background_path ? 'font-size-light color-light' : 'text-orange'}} animated" data-animation="fadeInUp" data-animation-delay="100">
+                    <h1 class="font-source-sans-pro {{$value->background_path ? 'font-size-light color-light' : 'text-orange'}} animated color-primary fw-600" data-animation="fadeInUp" data-animation-delay="100">
                         {{$value ? $value->title : ''}}
                     </h1>
 
@@ -59,7 +58,6 @@
                 
             </div>
         </div>
-        
 </header>
 @endif
 
@@ -76,10 +74,10 @@
             @endif
 
              <div class="col-md-12 text-center">
-                 <h1 class="font-size-normal">
+                 <h3 class="color-primary fw-600">
                      {{$value->title}}
                      <small class="heading heading-solid center-block"></small>
-                 </h1>
+                 </h3>
              </div>
          </div>
          <!-- title and short description end -->
@@ -111,7 +109,7 @@
 <div class="container-fluid bg-gray">
     <div class="container">
         <div class="row pt50 pb40">                        
-            <h4 class="text-center mb35">{{$value->title}}</h4>
+            <h3 class="text-center color-primary">{{$value->title}}</h3>
             
             @if(!Auth::guest() && Auth::user()->edit_mode) 
                 <div class="col-md-12 mb35">
@@ -121,14 +119,14 @@
 
             <!-- Content Box Align Left -->
             @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="content-box content-box-left-icon">
-                    @if(isset(explode(',', $value->path)[$i]))
+            <div class="col-md-4 col-sm-6 col-xs-12 mheight-150 m-3">
+                <div class="content-box content-box-icon content-box-left-icon">
+                    @if(explode(',', $value->path)[$i] != "")
                         <img class="img-lc" src="{{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'.explode(',', $value->path)[$i]) : ''}}" width="50%"/>
                     @else
                         <span class="icon-desktop color-orange"></span>
                     @endif
-                    <h5 class="pl-1">{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</h5><br/>         
+                    <h5>{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</h5>     
                     <p>
                         {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : ''}}
                     </p>
@@ -157,8 +155,8 @@
                 </div>
             @endif
             <div class="col-md-12 text-center">
-                <h1 class="font-size-normal">
-                    <small>JENIS KOPERASI</small>
+                <h1 class="font-size-normal color-primary fw-600">
+                    <!-- <small>JENIS KOPERASI</small> -->
                     {{$value->title}}
                     <small class="heading heading-solid center-block"></small>
                 </h1>
@@ -220,7 +218,7 @@
 @if($value->block_type == 'MMC')
 <!-- New Block Area
 ===================================== -->
-<div id="service">
+<div id="service" class="mb35">
     <div class="container">
         
         @if(!Auth::guest() && Auth::user()->edit_mode)
@@ -229,7 +227,7 @@
         <!-- title and short description start -->
         <div class="row mt50 mb25">
             <div class="col-md-12 text-center">
-                <h1 class="font-size-normal">
+                <h1 class="font-size-normal color-primary fw-600">
                     {{$value->title}}
                     <small class="heading heading-solid center-block"></small>
                 </h1>
@@ -249,7 +247,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-10 col-md-offset-1 text-center">
-                <img src="{{url('get-block-image/'.$value->path)}}" alt="image" class="">
+                <img src="{{url('get-block-image/'.$value->path)}}" alt="image" class="" width="100%">
             </div>
         </div>
     </div>
@@ -267,7 +265,7 @@
                 </div>
             @endif
             <div class="col-md-12 pt50 text-center">
-                <h1 class="brand-heading font-montserrat text-uppercase color-light" data-in-effect="fadeInDown">{{$value->title}}</h1>                            
+                <h1 class="brand-heading font-montserrat text-uppercase color-primary fw-600" data-in-effect="fadeInDown">{{$value->title}}</h1>                            
             </div>
             <div class="col-md-8 col-md-offset-2 text-center">
                 <form class="form-horizontal">
@@ -328,8 +326,91 @@
     </div>
 </div>
 @endif
+
+@if($value->block_type == 'CMC')
+<div class="container">
+    <div class="row">
+        @if(!Auth::guest() && Auth::user()->edit_mode)
+            <div class="col-md-12 mb35">
+                <a href="{{url('cms/block/edit-lc/'.$value->id)}}" class="button button-md button-pasific hover-ripple-out mt25">Ubah <span class="fa fa-cog"></span></a>
+            </div>
+        @endif
+        <!-- team member one start -->
+        @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
+            <div class="col-md-4 col-sm-4 col-xs-6 mt30">
+                <div class="team team-two">
+                    <img src="{{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'.explode(',', $value->path)[$i]) : ''}}" alt=""
+                        class="img-responsive">
+                    <!-- <div class="team-social">
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-github"></i></a>
+                    </div> -->
+                    <h5>
+                        {{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}
+                        <small class="color-pasific">{{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : '' }}</small>
+                    </h5>
+                </div>
+            </div>
+        @endfor
+        <!-- team member one end -->
+    </div><!-- row end -->
+</div><!-- container end -->
+@endif
+@if($value->block_type == 'RSC')
+<div class="container mt35 mb35">
+    @if(!Auth::guest() && Auth::user()->edit_mode)
+        <div class="col-md-12 mb35">
+            <a href="{{url('cms/block/edit-lc/'.$value->id)}}" class="button button-md button-pasific hover-ripple-out mt25">Ubah <span class="fa fa-cog"></span></a>
+        </div>
+    @endif
+    <div class="col-md-6 align-items-center justify-content-center text-center">
+        <img src="{{$value->background_path ? url('get-block-image/'.$value->background_path) : asset('template\pasific\assets\img\shop\img-shop-1.png')}}" width="100%" />
+    </div>
+    <div class="col-md-6">
+        @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
+        <h3 class="font-size-normal">
+            <small class="color-primary fw-600">{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</small>
+        </h3>
+        
+        <p class="deskripsi-jenis-koperasi">
+            {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : '' }}
+            @if(explode(',', $value->path)[$i] != null)
+            <img src="{{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'.explode(',', $value->path)[$i]) : ''}}" width="100%" class="img-responsive" />
+            @endif
+        </p>
+        @endfor
+    </div>
+</div>
+@endif
+
+@if($value->block_type == 'LFC')
+<div class="container mt35 mb35">
+    <div class="row">
+        @if(!Auth::guest() && Auth::user()->edit_mode)
+            <div class="col-md-12">
+                <a href="javascript:void(0)" onclick="editCmsBlock('{{$value->id}}')" class="button button-pasific button-lg hover-ripple-out animated">Ubah <span class="fa fa-cog"></span></a>
+            </div>
+        @endif
+        <div class="col-md-12">
+            <h3 class="color-primary mb0 fw-600">{{$value->title}}</h3>
+            <h4 class="mt0 mb0">{{$value->title2}}</h4>
+        </div>
+        <div class="col-md-6">
+            <hr style="border-top: 1px solid #337ab7 !important" />
+        </div>
+        <div class="col-md-12">
+            {!! $value->description !!}
+        </div>
+        @if($value->path)
+        <div class="col-md-12">
+            <img src="{{url('get-block-image/'.$value->path)}}" alt="image" class="img-responsive">
+        </div>
+        @endif
+    </div>
+</div>
+@endif
 @endforeach
 
-
 @include('block.modal.mc-modal')
-@include('block.modal.cc-modal')
+@include('block.modal.ft-modal')
