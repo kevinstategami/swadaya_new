@@ -6,7 +6,7 @@
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
       <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
       <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-      <title>Swadaya Utama</title>
+      <title>Songgo Mas</title>
       <link rel="stylesheet" type="text/css" href="{{asset('registrasi/styles/bootstrap.css')}}">
       <link rel="stylesheet" type="text/css" href="{{asset('registrasi/fonts/bootstrap-icons.css')}}">
       <link rel="stylesheet" type="text/css" href="{{asset('registrasi/styles/jquery-confirm.min.css')}}">
@@ -69,7 +69,8 @@
                 </div>
                 <div class="form-check form-check-custom" id="fCheck">
                    <input class="form-check-input" type="checkbox" name="terms" value="" id="c2a">
-                   <label class="form-check-label font-12" for="c2a">Saya setuju dengan <a href="{{url('membership/term-and-condition')}}">Ketentuan dan Kebijakan</a>.</label>
+                   <label class="form-check-label font-12" for="c2a">Saya setuju dengan 
+                    <a href="{{route('registrasiTermCondition')}}" target="_blank">Ketentuan dan Kebijakan</a>.</label>
                    <i class="is-checked color-highlight font-13 fas fa-circle"></i>
                    <i class="is-unchecked color-highlight font-13 far fa-circle"></i>
                 </div>
@@ -113,6 +114,7 @@
             }
           });
       @endif
+
 
       $('#c2a').on('change', function(){
         if($('#tCheck').val() == "0"){

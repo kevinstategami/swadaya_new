@@ -6,6 +6,7 @@ Route::prefix('membership/auth')->group(function () {
   Route::get('index', 'MembershipRegistrasi@login')->name('indexMembership');
   Route::get('logouts', 'MembershipRegistrasi@logouts')->name('logoutsMembership');
   Route::get('registrasi', 'MembershipRegistrasi@registrasi')->name('registrasiMembership');
+  Route::get('term-condition', 'MembershipRegistrasi@termCondition')->name('registrasiTermCondition');
   Route::get('login', 'MembershipRegistrasi@login')->name('loginMembership');
   Route::post('login/store', 'MembershipRegistrasi@postLogin')->name('postLoginMembership');
   Route::post('store', 'MembershipRegistrasi@postRegistrasi')->name('postRegistrasiMembership');

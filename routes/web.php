@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index');
 Route::get('/about-us', 'HomeController@aboutUs');
-Route::get('/syarat-keanggotaan', 'HomeController@sk');
+Route::get('/syarat-keanggotaan', 'HomeController@sk')->name('syaratKeanggotaanFront');
 Route::get('/set-edit-mode/{editMode}', 'HomeController@setEditMode')->name('setEditMode');
 
 Route::get('/administrator/auth/login', 'Auth\LoginController@login')->name('login');
@@ -35,6 +35,15 @@ Route::get('/profile/{filename}', function ($filename) {
 
 Route::get('/images/{filename}', function ($filename) {
     $path = storage_path('picture_file') . '/' . $filename;
+    $file = File::get($path);
+    $type = File::mimeType($path);
+    $response = Response::make($file);
+    $response->header("Content-Type", $type);
+    return $response;
+});
+
+Route::get('/term-condition/{filename}', function ($filename) {
+    $path = storage_path('syarat-ketentuan') . '/' . $filename;
     $file = File::get($path);
     $type = File::mimeType($path);
     $response = Response::make($file);

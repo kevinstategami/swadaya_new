@@ -1,17 +1,10 @@
 @extends('layouts.app')
 @section('content')
-	@include('homepage.comp.introduction')
-    @include('homepage.comp.progress')
-    @include('homepage.comp.jenis')
-    @include('homepage.comp.about-us')
-    @include('homepage.comp.visi-misi')
-    @include('homepage.comp.teams')
+    @if(!Auth::guest() && Auth::user()->edit_mode)
+        <a href="javascript:void(0)" class="button button-pasific button-lg hover-ripple-out animated btn-add-block" style="z-index: 999" onclick="addBlock('homepage')">Add Block</a>
+    @endif
 
-    <!-- MODAL -->
-    @include('homepage.comp.modal.cms.secara-umum')
-    @include('homepage.comp.modal.cms.jenis-koperasi')
-    @include('homepage.comp.modal.cms.introduction')
-    @include('homepage.comp.modal.cms.about-us')
+    @include('block.layout-block')
 @endsection
 @section('script')
 	@include('homepage.comp.script.script-introduction')

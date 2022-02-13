@@ -1,3 +1,18 @@
+/* CARD */
+.card{
+	border: 2px solid lightgray;
+    border-radius: 13px;
+    padding: 10px;
+    /*height: 35vh;*/
+}
+
+.card-form-cms {
+	border: 1px solid lightgray;
+    border-radius: 13px;
+    padding: 10px;
+    display: -webkit-box;
+    margin: 1rem 0 1rem 1rem;
+}
 .secara-umum {
 	display: flex;
 	align-items: center;
@@ -8,6 +23,13 @@
 .p-0 {
 	padding: 0 !important;
 }
+
+.pl-1 {
+	padding-left: 1rem !important;
+}
+.pl-2 {
+	padding-left: 2rem !important;
+}
 .mt-5{
 	margin-top: 3rem;
 }
@@ -17,6 +39,9 @@
 }
 .w-50 {
 	width: 50% !important;
+}
+.w-100 {
+	width: 100% !important;
 }
 
 .text-white{
@@ -37,6 +62,7 @@
 
 .content-box-o {
 	min-height: 35vh;
+	height: 300px;
 }
 
 .about-content .lead > font {
@@ -68,6 +94,39 @@
 	background-color: white;
 	padding: 3px 3px 0 5px;
 	border-radius: 10px;
+}
+.btn-add-block{
+    position: absolute;
+    right: 50px;
+    top: 70px;
+}
+
+
+.d-flex{
+	display: flex !important;
+}
+
+.flex-row{
+	flex-direction: row !important;
+}
+.flex-column{
+	flex-direction: column !important;
+}
+
+.align-items-center{
+	align-items: center !important;
+}
+
+.justify-content-center{
+	justify-content: center !important;
+}
+
+.img-lc{
+	width: 70px;
+	height: 70px;
+	object-fit: cover;
+	float: left;
+    margin: 0 15px 0 0;
 }
 @media only screen and (max-width: 991px) {
 	.jenis-koperasi {

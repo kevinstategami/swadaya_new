@@ -1,4 +1,3 @@
-<!-- Favicons -->
 <link rel="shortcut icon" href="{{ !$cmsLogo['llg'] || !$cmsLogo['llg']['dokumen']  ? asset('img/logo.png') : url('images/'.$cmsLogo['llg']->dokumen->path) }}">
 <link rel="apple-touch-icon" href="{{asset('template/pasific/assets/img/apple-touch-icon.png')}}">
 <link rel="apple-touch-icon" sizes="72x72" href="{{asset('template/pasific/assets/img/apple-touch-icon-72x72.png')}}">
@@ -53,6 +52,7 @@
 <link rel="stylesheet" href="{{asset('template/pasific/assets/css/icon/linea-weather-10.css')}}"> 
 <link rel="stylesheet" href="{{asset('template/pasific/assets/css/icon/font-awesome.css')}}">
 <link rel="stylesheet" href="{{asset('template/pasific/assets/css/icon/et-line-font.css')}}">
+
 <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
 <!-- Load JS
@@ -63,4 +63,4 @@ WARNING: Respond.js doesn't work if you view the page via file://
 <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<![endif]

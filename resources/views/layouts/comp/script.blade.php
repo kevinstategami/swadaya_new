@@ -23,7 +23,10 @@
 <script src="{{asset('template/pasific/assets/js/main/isotope.pkgd.min.js')}}"></script>
 <script src="{{asset('template/pasific/assets/js/main/parallax.min.js')}}"></script>
 <script src="{{asset('template/pasific/assets/js/main/jquery.countTo.js')}}"></script>
+
+<!-- CAROUSEL -->
 <script src="{{asset('template/pasific/assets/js/main/owl.carousel.min.js')}}"></script>
+
 <script src="{{asset('template/pasific/assets/js/main/jquery.sticky.js')}}"></script>
 <script src="{{asset('template/pasific/assets/js/main/ion.rangeSlider.min.js')}}"></script>
 <script src="{{asset('template/pasific/assets/js/main/imagesloaded.pkgd.min.js')}}"></script>
@@ -32,6 +35,11 @@
 <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
 
 <script>
+$.ajaxSetup({
+	headers: {
+	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	}
+});
 @if(Session::has('title') || Session::has('text') || Session::has('icon'))
       Swal.fire({
         title: '{{Session::get('title')}}',
@@ -55,7 +63,6 @@ function readURL(input, id) {
 function editLogo() {
 	$.get("{{route('cmsLogo')}}", function(data, status){
 		$('#cmsLogoModal').modal('show')
-		console.log(data)
 		if(data){
 			if(data['lg']){
 				if(data['lg'].dokumen){
@@ -78,4 +85,6 @@ function editLogo() {
 function updateCmsLogo(){
 	$('#updateCmsLogo').submit();
 }
+
+
 </script>
