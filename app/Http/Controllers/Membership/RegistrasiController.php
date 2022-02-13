@@ -147,7 +147,7 @@ class RegistrasiController extends Controller
 
      $doc = new DokumenRepo();
      $doc->reff_id = $invoice->id;
-     $doc->reff_type = $invoice->simpananType->id;
+     $doc->reff_type = $invoice->invoice_type;
      $doc->filename = $fileName;
      $doc->mime_type = $fileExt;
      $doc->path = $img;
@@ -303,131 +303,63 @@ public function formAktivasi($userId){
     $wallet->status_wallet = 0;
     $wallet->save();
 
-    // ==================== POKOK ==============================
-    $invoicePokok = new Invoice();
-    $invoicePokok->user_id = $member->user_id;
-    $invoicePokok->member_no = $member->member_no;
-    $invoicePokok->email = $member->email;
-    $invoicePokok->invoice_code = "SWD-INVSP-".date('Ymd').sprintf("%'04d", $invCount);
-    $invoicePokok->amount = $sp->deposit_min;
-    $invoicePokok->admin_fee = 0;
-    $invoicePokok->additional_amount = 0;
-    $invoicePokok->total_amount = $sp->deposit_min;
-    $invoicePokok->payment_method_id = null;
-    $invoicePokok->invoice_type = "SP";
-    $invoicePokok->invoice_type_id = $sp->id;
-    $invoicePokok->status = 0;
-    $invoicePokok->payment_method_id = 1;
-    $invoicePokok->created_at = date('Y-m-d').date(' h:i:s');
-    $invoicePokok->save();
-
-    $countSimpananPokok = Simpanan::where('simpanan_type_id', $sp->id)->count();
-
-    $simpananPokok = new Simpanan();
-    $simpananPokok->user_id = $member->user_id;
-    $simpananPokok->member_no = $member->member_no;
-    $simpananPokok->email = $member->email;
-    $simpananPokok->invoice_id = $invoicePokok->id;
-    $simpananPokok->simpanan_no = "SP".sprintf("%'06d", $countSimpananPokok + 1);
-    $simpananPokok->amount = $sp->deposit_min;
-    $simpananPokok->admin_fee = 0;
-    $simpananPokok->total = $sp->deposit_min;
-    $simpananPokok->simpanan_type_id = $sp->id;
-    $simpananPokok->deposit_date = date('Y-m-d');
-    $simpananPokok->created_at = date('Y-m-d').date(' h:i:s');
-    $simpananPokok->save();
-
-    $invoiceHistoryPokok = new InvoiceHistory();
-    $invoiceHistoryPokok->user_id = $member->user_id;
-    $invoiceHistoryPokok->member_no = $member->member_no;
-    $invoiceHistoryPokok->email = $member->email;
-    $invoiceHistoryPokok->invoice_code = $invoicePokok->invoice_code;
-    $invoiceHistoryPokok->amount = $sp->deposit_min;
-    $invoiceHistoryPokok->admin_fee = 0;
-    $invoiceHistoryPokok->additional_amount = 0;
-    $invoiceHistoryPokok->total_amount = $sp->deposit_min;
-    $invoiceHistoryPokok->payment_method_id = '1';
-    $invoiceHistoryPokok->invoice_type = 'SP';
-    $invoiceHistoryPokok->invoice_type_id = $sp->id;
-    $invoiceHistoryPokok->status = 0;
-    $invoiceHistoryPokok->created_at = date('Y-m-d').date(' h:i:s');
-    $invoiceHistoryPokok->save();
-    // ====================== END POKOK =========================
-
-    // ====================== SUKARELA ==========================
-    // if($req->simpananSukarela != "0" || $req->simpananSukarela != null || $req->simpananSukarela == ""){
-    //
-    //   $invoiceSukarela = new Invoice();
-    //   $invoiceSukarela->user_id = $member->user_id;
-    //   $invoiceSukarela->member_no = $member->member_no;
-    //   $invoiceSukarela->email = $member->email;
-    //   $invoiceSukarela->invoice_code = "SWD-INVSS-".date('Ymd').sprintf("%'04d", $invCount);
-    //   $invoiceSukarela->amount = $req->simpananSukarela;
-    //   $invoiceSukarela->admin_fee = 0;
-    //   $invoiceSukarela->additional_amount = 0;
-    //   $invoiceSukarela->total_amount = $req->simpananSukarela;
-    //   $invoiceSukarela->payment_method_id = null;
-    //   $invoiceSukarela->invoice_type = "SS";
-    //   $invoiceSukarela->invoice_type_id = $ss->id;
-    //   $invoiceSukarela->status = 0;
-    //   $invoiceSukarela->payment_method_id = 1;
-    //   $invoiceSukarela->created_at = date('Y-m-d').date(' h:i:s');
-    //   $invoiceSukarela->save();
-    //
-    //   $countSimpananSukarela = Simpanan::where('simpanan_type_id', $ss->id)->count();
-    //
-    //   $simpananSukarela = new Simpanan();
-    //   $simpananSukarela->user_id = $member->user_id;
-    //   $simpananSukarela->member_no = $member->member_no;
-    //   $simpananSukarela->email = $member->email;
-    //   $simpananSukarela->invoice_id = $invoiceSukarela->id;
-    //   $simpananSukarela->simpanan_no = "SS".sprintf("%'06d", $countSimpananSukarela + 1);
-    //   $simpananSukarela->amount = $req->simpananSukarela;
-    //   $simpananSukarela->admin_fee = 0;
-    //   $simpananSukarela->total = $req->simpananSukarela;
-    //   $simpananSukarela->simpanan_type_id = $ss->id;
-    //   $simpananSukarela->deposit_date = date('Y-m-d');
-    //   $simpananSukarela->created_at = date('Y-m-d').date(' h:i:s');
-    //   $simpananSukarela->save();
-    //
-    //   $invoiceHistorySukarela = new InvoiceHistory();
-    //   $invoiceHistorySukarela->user_id = $member->user_id;
-    //   $invoiceHistorySukarela->member_no = $member->member_no;
-    //   $invoiceHistorySukarela->email = $member->email;
-    //   $invoiceHistorySukarela->invoice_code = $invoiceSukarela->invoice_code;
-    //   $invoiceHistorySukarela->amount = $req->simpananSukarela;
-    //   $invoiceHistorySukarela->admin_fee = 0;
-    //   $invoiceHistorySukarela->additional_amount = 0;
-    //   $invoiceHistorySukarela->total_amount = $req->simpananSukarela;
-    //   $invoiceHistorySukarela->payment_method_id = '1';
-    //   $invoiceHistorySukarela->invoice_type = 'SS';
-    //   $invoiceHistorySukarela->invoice_type_id = $ss->id;
-    //   $invoiceHistorySukarela->status = 0;
-    //   $invoiceHistorySukarela->created_at = date('Y-m-d').date(' h:i:s');
-    //   $invoiceHistorySukarela->save();
-    //
-    // }
-    //========================== END SUKARELA ======================================
 
     // LOOP SW
-    if($req->jenisSimpanan == "BI"){
+    if($req->jenisSimpanan == "PB"){
+
       $invoice = new Invoice();
       $invoice->user_id = $member->user_id;
       $invoice->member_no = $member->member_no;
       $invoice->email = $member->email;
-      $invoice->invoice_code = "SWD-INVSW-".date('Ymd').sprintf("%'04d", $invCount);
-      $invoice->amount = $sw->deposit_min;
+      $invoice->invoice_code = "SGG-".date('Ymd').sprintf("%'04d", $invCount);
+      $invoice->amount = $sw->deposit_min + $sp->deposit_min;
       $invoice->admin_fee = 0;
       $invoice->additional_amount = 0;
-      $invoice->total_amount = $sw->deposit_min;
+      $invoice->total_amount = $sw->deposit_min + $sp->deposit_min;
       $invoice->payment_method_id = null;
-      $invoice->invoice_type = "SW";
-      $invoice->invoice_type_id = $sw->id;
+      $invoice->invoice_type = "PB";
+      $invoice->invoice_type_id = "PB";
       $invoice->status = 0;
       $invoice->payment_method_id = 1;
       $invoice->created_at = date('Y-m-d').date(' h:i:s');
       $invoice->save();
+      //pokok
+      $countSimpananPokok = Simpanan::where('simpanan_type_id', $sp->id)->count();
 
+      $simpananPokok = new Simpanan();
+      $simpananPokok->user_id = $member->user_id;
+      $simpananPokok->member_no = $member->member_no;
+      $simpananPokok->email = $member->email;
+      $simpananPokok->invoice_id = $invoice->id;
+      $simpananPokok->simpanan_no = "SP".sprintf("%'06d", $countSimpananPokok + 1);
+      $simpananPokok->amount = $sp->deposit_min;
+      $simpananPokok->admin_fee = 0;
+      $simpananPokok->total = $sp->deposit_min;
+      $simpananPokok->simpanan_type_id = $sp->id;
+      $simpananPokok->deposit_date = date('Y-m-d');
+      $simpananPokok->created_at = date('Y-m-d').date(' h:i:s');
+      $simpananPokok->save();
+
+      $countHistory = InvoiceHistory::count();
+
+      $invoiceHistoryPokok = new InvoiceHistory();
+      $invoiceHistoryPokok->invoice_id = $invoice->id;
+      $invoiceHistoryPokok->user_id = $member->user_id;
+      $invoiceHistoryPokok->member_no = $member->member_no;
+      $invoiceHistoryPokok->email = $member->email;
+      $invoiceHistoryPokok->invoice_code = "SP-SGG".sprintf("%'06d", $countHistory + 1);
+      $invoiceHistoryPokok->amount = $sp->deposit_min;
+      $invoiceHistoryPokok->admin_fee = 0;
+      $invoiceHistoryPokok->additional_amount = 0;
+      $invoiceHistoryPokok->total_amount = $sp->deposit_min;
+      $invoiceHistoryPokok->payment_method_id = '1';
+      $invoiceHistoryPokok->invoice_type = 'SP';
+      $invoiceHistoryPokok->invoice_type_id = $sp->id;
+      $invoiceHistoryPokok->status = 0;
+      $invoiceHistoryPokok->created_at = date('Y-m-d').date(' h:i:s');
+      $invoiceHistoryPokok->save();
+      // dd("saving pokok");
+      //wajib
       $countSimpananWajib = Simpanan::where('simpanan_type_id', $sw->id)->count();
 
       $simpananWajib = new Simpanan();
@@ -444,95 +376,133 @@ public function formAktivasi($userId){
       $simpananWajib->created_at = date('Y-m-d').date(' h:i:s');
       $simpananWajib->save();
 
+      $countHistoryWjb = InvoiceHistory::count();
+
       $invoiceHistoryWajib = new InvoiceHistory();
+      $invoiceHistoryWajib->invoice_id = $invoice->id;
+      $invoiceHistoryWajib->user_id = $member->user_id;
+      $invoiceHistoryWajib->member_no = $member->member_no;
+      $invoiceHistoryWajib->email = $member->email;
+      $invoiceHistoryWajib->invoice_code = "SW-SGG".sprintf("%'06d", $countHistoryWjb + 1);
+      $invoiceHistoryWajib->amount = $sw->deposit_min;
+      $invoiceHistoryWajib->admin_fee = 0;
+      $invoiceHistoryWajib->additional_amount = 0;
+      $invoiceHistoryWajib->total_amount = $sw->deposit_min;
+      $invoiceHistoryWajib->payment_method_id = '1';
+      $invoiceHistoryWajib->invoice_type = 'SW';
+      $invoiceHistoryWajib->invoice_type_id = $sw->id;
+      $invoiceHistoryWajib->status = 0;
+      $invoiceHistoryWajib->created_at = date('Y-m-d').date(' h:i:s');
+      $invoiceHistoryWajib->save();
+
+    } else if($req->jenisSimpanan == "SK"){
+      // for ($i=$req->pilih1; $i <= $req->pilih2; $i++) {
+      //
+      //   $invoice = new Invoice();
+      //   $invoice->user_id = $member->user_id;
+      //   $invoice->member_no = $member->member_no;
+      //   $invoice->email = $member->email;
+      //   $invoice->invoice_code = "SWD-INVSW-".date('Ymd').sprintf("%'04d", $invCount);
+      //   $invoice->amount = $sw->deposit_min;
+      //   $invoice->admin_fee = 0;
+      //   $invoice->additional_amount = 0;
+      //   $invoice->total_amount = $sw->deposit_min;
+      //   $invoice->payment_method_id = '1';
+      //   $invoice->invoice_type = "SW";
+      //   $invoice->invoice_type_id = $sw->id;
+      //   $invoice->status = 0;
+      //   $invoice->created_at = date('Y-').sprintf("%'02d", $i).date('-d').date(' h:i:s');
+      //   $invoice->save();
+      //
+      //   $countSimpananWajib = Simpanan::where('simpanan_type_id', $sw->id)->count();
+      //
+      //   $simpananWajib = new Simpanan();
+      //   $simpananWajib->user_id = $member->user_id;
+      //   $simpananWajib->member_no = $member->member_no;
+      //   $simpananWajib->email = $member->email;
+      //   $simpananWajib->invoice_id = $invoice->id;
+      //   $simpananWajib->simpanan_no = "SW".sprintf("%'06d", $countSimpananWajib + 1);
+      //   $simpananWajib->amount = $sw->deposit_min;
+      //   $simpananWajib->admin_fee = 0;
+      //   $simpananWajib->total = $sw->deposit_min;
+      //   $simpananWajib->simpanan_type_id = $sw->id;
+      //   $simpananWajib->deposit_date = date('Y-m-d');
+      //   $simpananWajib->created_at = date('Y-').sprintf("%'02d", $i).date('-d').date(' h:i:s');
+      //   $simpananWajib->save();
+      //
+      //   $invoiceHistoryWajib = new InvoiceHistory();
+      //   $invoiceHistoryWajib->user_id = $member->user_id;
+      //   $invoiceHistoryWajib->member_no = $member->member_no;
+      //   $invoiceHistoryWajib->email = $member->email;
+      //   $invoiceHistoryWajib->invoice_code = $invoice->invoice_code;
+      //   $invoiceHistoryWajib->amount = $sw->deposit_min;
+      //   $invoiceHistoryWajib->admin_fee = 0;
+      //   $invoiceHistoryWajib->additional_amount = 0;
+      //   $invoiceHistoryWajib->total_amount = $sw->deposit_min;
+      //   $invoiceHistoryWajib->payment_method_id = '1';
+      //   $invoiceHistoryWajib->invoice_type = 'SW';
+      //   $invoiceHistoryWajib->invoice_type_id = $sw->id;
+      //   $invoiceHistoryWajib->status = 0;
+      //   $invoiceHistoryWajib->created_at = date('Y-').sprintf("%'02d", $i).date('-d').date(' h:i:s');
+      //   $invoiceHistoryWajib->save();
+      // }
+    } else{
+
+      $invoice = new Invoice();
+      $invoice->user_id = $member->user_id;
+      $invoice->member_no = $member->member_no;
+      $invoice->email = $member->email;
+      $invoice->invoice_code = "SGG-".date('Ymd').sprintf("%'04d", $invCount);
+      $invoice->amount = 0;
+      $invoice->admin_fee = 0;
+      $invoice->additional_amount = 0;
+      $invoice->total_amount = 0;
+      $invoice->payment_method_id = null;
+      $invoice->invoice_type = "SMT";
+      $invoice->invoice_type_id = "SMT";
+      $invoice->status = 0;
+      $invoice->payment_method_id = 1;
+      $invoice->created_at = date('Y-m-d').date(' h:i:s');
+      $invoice->save();
+
+      $countSimpananPokok = Simpanan::where('simpanan_type_id', $sp->id)->count();
+
+      $simpananPokok = new Simpanan();
+      $simpananPokok->user_id = $member->user_id;
+      $simpananPokok->member_no = $member->member_no;
+      $simpananPokok->email = $member->email;
+      $simpananPokok->invoice_id = $invoice->id;
+      $simpananPokok->simpanan_no = "SP".sprintf("%'06d", $countSimpananPokok + 1);
+      $simpananPokok->amount = $sp->deposit_min;
+      $simpananPokok->admin_fee = 0;
+      $simpananPokok->total = $sp->deposit_min;
+      $simpananPokok->simpanan_type_id = $sp->id;
+      $simpananPokok->deposit_date = date('Y-m-d');
+      $simpananPokok->created_at = date('Y-m-d').date(' h:i:s');
+      $simpananPokok->save();
+
+      $countHistory = InvoiceHistory::count();
+
+      $invoiceHistoryPokok = new InvoiceHistory();
+      $invoiceHistoryPokok->invoice_id = $invoice->id;
       $invoiceHistoryPokok->user_id = $member->user_id;
       $invoiceHistoryPokok->member_no = $member->member_no;
       $invoiceHistoryPokok->email = $member->email;
-      $invoiceHistoryPokok->invoice_code = $invoice->invoice_code;
-      $invoiceHistoryPokok->amount = $sw->deposit_min;
+      $invoiceHistoryPokok->invoice_code = "SP-SGG".sprintf("%'06d", $countHistory + 1);
+      $invoiceHistoryPokok->amount = $sp->deposit_min;
       $invoiceHistoryPokok->admin_fee = 0;
       $invoiceHistoryPokok->additional_amount = 0;
-      $invoiceHistoryPokok->total_amount = $sw->deposit_min;
+      $invoiceHistoryPokok->total_amount = $sp->deposit_min;
       $invoiceHistoryPokok->payment_method_id = '1';
-      $invoiceHistoryPokok->invoice_type = 'SW';
-      $invoiceHistoryPokok->invoice_type_id = $sw->id;
+      $invoiceHistoryPokok->invoice_type = 'SP';
+      $invoiceHistoryPokok->invoice_type_id = $sp->id;
       $invoiceHistoryPokok->status = 0;
       $invoiceHistoryPokok->created_at = date('Y-m-d').date(' h:i:s');
       $invoiceHistoryPokok->save();
 
-    } else if($req->jenisSimpanan == "SK"){
-      for ($i=$req->pilih1; $i <= $req->pilih2; $i++) {
-
-        $invoice = new Invoice();
-        $invoice->user_id = $member->user_id;
-        $invoice->member_no = $member->member_no;
-        $invoice->email = $member->email;
-        $invoice->invoice_code = "SWD-INVSW-".date('Ymd').sprintf("%'04d", $invCount);
-        $invoice->amount = $sw->deposit_min;
-        $invoice->admin_fee = 0;
-        $invoice->additional_amount = 0;
-        $invoice->total_amount = $sw->deposit_min;
-        $invoice->payment_method_id = '1';
-        $invoice->invoice_type = "SW";
-        $invoice->invoice_type_id = $sw->id;
-        $invoice->status = 0;
-        $invoice->created_at = date('Y-').sprintf("%'02d", $i).date('-d').date(' h:i:s');
-        $invoice->save();
-
-        $countSimpananWajib = Simpanan::where('simpanan_type_id', $sw->id)->count();
-
-        $simpananWajib = new Simpanan();
-        $simpananWajib->user_id = $member->user_id;
-        $simpananWajib->member_no = $member->member_no;
-        $simpananWajib->email = $member->email;
-        $simpananWajib->invoice_id = $invoice->id;
-        $simpananWajib->simpanan_no = "SW".sprintf("%'06d", $countSimpananWajib + 1);
-        $simpananWajib->amount = $sw->deposit_min;
-        $simpananWajib->admin_fee = 0;
-        $simpananWajib->total = $sw->deposit_min;
-        $simpananWajib->simpanan_type_id = $sw->id;
-        $simpananWajib->deposit_date = date('Y-m-d');
-        $simpananWajib->created_at = date('Y-').sprintf("%'02d", $i).date('-d').date(' h:i:s');
-        $simpananWajib->save();
-
-        $invoiceHistoryWajib = new InvoiceHistory();
-        $invoiceHistoryWajib->user_id = $member->user_id;
-        $invoiceHistoryWajib->member_no = $member->member_no;
-        $invoiceHistoryWajib->email = $member->email;
-        $invoiceHistoryWajib->invoice_code = $invoice->invoice_code;
-        $invoiceHistoryWajib->amount = $sw->deposit_min;
-        $invoiceHistoryWajib->admin_fee = 0;
-        $invoiceHistoryWajib->additional_amount = 0;
-        $invoiceHistoryWajib->total_amount = $sw->deposit_min;
-        $invoiceHistoryWajib->payment_method_id = '1';
-        $invoiceHistoryWajib->invoice_type = 'SW';
-        $invoiceHistoryWajib->invoice_type_id = $sw->id;
-        $invoiceHistoryWajib->status = 0;
-        $invoiceHistoryWajib->created_at = date('Y-').sprintf("%'02d", $i).date('-d').date(' h:i:s');
-        $invoiceHistoryWajib->save();
-      }
-    }else{
-
       $currentMonth = date('m');
       for ($i=$currentMonth; $i <= 12; $i++) {
 
-        $invoice = new Invoice();
-        $invoice->user_id = $member->user_id;
-        $invoice->member_no = $member->member_no;
-        $invoice->email = $member->email;
-        $invoice->invoice_code = "SWD-INVSW-".date('Ymd').sprintf("%'04d", $invCount);
-        $invoice->amount = $sw->deposit_min;
-        $invoice->admin_fee = 0;
-        $invoice->additional_amount = 0;
-        $invoice->total_amount = $sw->deposit_min;
-        $invoice->payment_method_id = '1';
-        $invoice->invoice_type = "SW";
-        $invoice->invoice_type_id = $sw->id;
-        $invoice->status = 0;
-        $invoice->payment_method_id = 1;
-        $invoice->created_at = date('Y-').sprintf("%'02d", $i).date('-d').date(' h:i:s');
-        $invoice->save();
-
         $countSimpananWajib = Simpanan::where('simpanan_type_id', $sw->id)->count();
 
         $simpananWajib = new Simpanan();
@@ -549,11 +519,14 @@ public function formAktivasi($userId){
         $simpananWajib->created_at = date('Y-').sprintf("%'02d", $i).date('-d').date(' h:i:s');
         $simpananWajib->save();
 
+        $countHistoryWjb = InvoiceHistory::count();
+
         $invoiceHistoryWajib = new InvoiceHistory();
+        $invoiceHistoryWajib->invoice_id = $invoice->id;
         $invoiceHistoryWajib->user_id = $member->user_id;
         $invoiceHistoryWajib->member_no = $member->member_no;
         $invoiceHistoryWajib->email = $member->email;
-        $invoiceHistoryWajib->invoice_code = $invoice->invoice_code;
+        $invoiceHistoryWajib->invoice_code = "SW-SGG".sprintf("%'06d", $countHistoryWjb + 1);
         $invoiceHistoryWajib->amount = $sw->deposit_min;
         $invoiceHistoryWajib->admin_fee = 0;
         $invoiceHistoryWajib->additional_amount = 0;
@@ -565,6 +538,12 @@ public function formAktivasi($userId){
         $invoiceHistoryWajib->created_at = date('Y-').sprintf("%'02d", $i).date('-d').date(' h:i:s');
         $invoiceHistoryWajib->save();
       }
+
+      $sumNominal = InvoiceHistory::where('invoice_id', $invoice->id)->sum('amount');
+      $changeNominal = Invoice::find($invoice->id);
+      $changeNominal->amount = $sumNominal;
+      $changeNominal->total_amount = $sumNominal;
+      $changeNominal->save();
 
     }
 

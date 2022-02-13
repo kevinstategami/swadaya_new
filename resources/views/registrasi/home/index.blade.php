@@ -76,7 +76,7 @@
             </div> -->
             <div class="ms-auto">
                 <a href="{{url('membership/index/activity')}}" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-brown-dark bi bi-filter-circle"></i></a>
-                <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Tagihan</h6>
+                <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Transaksi</h6>
             </div>
         </div>
     </div>

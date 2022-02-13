@@ -5,7 +5,7 @@
       <meta name="apple-mobile-web-app-capable" content="yes">
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
       <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
       <title>Swadaya Utama</title>
       <link rel="stylesheet" type="text/css" href="{{asset('registrasi/styles/bootstrap.css')}}" />
       <link rel="stylesheet" type="text/css" href="{{asset('registrasi/fonts/bootstrap-icons.css')}}" />
@@ -118,7 +118,18 @@
 
         $('#btnSimpan').on('click', function(){
 
-          if($('#imgBukti').val() == "") {
+          if($('#bankPenerima').val() == "") {
+
+            $.confirm({
+              title: 'Informasi',
+              content: 'Harap Memilih Bank Penerima',
+              buttons: {
+                ok: function() {},
+              }
+            });
+          }
+
+          else if($('#imgBukti').val() == "") {
 
             $.confirm({
               title: 'Informasi',

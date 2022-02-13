@@ -4,7 +4,7 @@
 <div class="pt-3">
    <div class="page-title d-flex">
       <div class="align-self-center me-auto">
-         <h1 class="color-theme">Tagihan</h1>
+         <h1 class="color-theme">Transaksi</h1>
       </div>
       <div class="align-self-center ms-auto">
          <div class="dropdown-menu">
@@ -24,9 +24,9 @@
    <div class="content">
       <div class="tabs tabs-pill" id="tab-group-2">
          <div class="tab-controls rounded-m p-1 overflow-visible">
-            <a class="font-13 rounded-m shadow-bg shadow-bg-s" data-bs-toggle="collapse" href="#tab-4" aria-expanded="true">Pending</a>
-            <a class="font-13 rounded-m shadow-bg shadow-bg-s" data-bs-toggle="collapse" href="#tab-5" aria-expanded="false">Menunggu</a>
-            <a class="font-13 rounded-m shadow-bg shadow-bg-s" data-bs-toggle="collapse" href="#tab-6" aria-expanded="false">Riwayat</a>
+            <a class="font-11 rounded-m shadow-bg shadow-bg-s" data-bs-toggle="collapse" href="#tab-4" aria-expanded="true">Menunggu Pembayaran</a>
+            <a class="font-11 rounded-m shadow-bg shadow-bg-s" data-bs-toggle="collapse" href="#tab-5" aria-expanded="false">Menunggu Verifikasi</a>
+            <a class="font-11 rounded-m shadow-bg shadow-bg-s" data-bs-toggle="collapse" href="#tab-6" aria-expanded="false">Riwayat</a>
          </div>
          <div class="mt-3"></div>
          <div class="collapse show" id="tab-4" data-bs-parent="#tab-group-2">
@@ -37,17 +37,23 @@
                   <span class="icon rounded-s me-2 gradient-blue shadow-bg shadow-bg-xs"><i class="bi bi-cash font-18 color-white"></i></span>
                </div>
                <div class="align-self-center ps-1">
-                  <h5 class="pt-3 mb-n1">{{$pendings->simpananType->type_name}} - <span class="text-danger" style="font-size:12px">Belum Bayar</span></h5>
+                  <h5 class="pt-3 mb-n1">{{$pendings->invoice_code}} - <span class="text-danger" style="font-size:12px">Belum Bayar</span></h5>
 
                      <p class="mb-1 font-13 opacity-70">Tagihan : Rp. {{number_format($pendings->total_amount, 0, '.', '.')}}<br>
                         Bulan : {{ $pendings->created_at->format('F') }}<br>
                         Terbit Pada : {{ $pendings->created_at->format('d/F/Y') }}</p>
                      </div>
-                     <a href="{{url('membership/index/uploadBukti/'.$pendings->id)}}">
+
+
                         <div class="align-self-center ms-auto text-end">
+                          <a href="{{url('membership/index/activity-detail/'.$pendings->id)}}">
+                           <span class="btn btn-xxs gradient-orange shadow-bg-xs">Detail Transaksi</span>
+                           </a>
+                          <a href="{{url('membership/index/uploadBukti/'.$pendings->id)}}">
                            <span class="btn btn-xxs gradient-green shadow-bg-xs">Upload Bukti</span>
+                           </a>
                         </div>
-                     </a>
+
                   </a>
               @endforeach
                </div>
@@ -59,10 +65,15 @@
                       <span class="icon rounded-s me-2 gradient-blue shadow-bg shadow-bg-xs"><i class="bi bi-cash font-18 color-white"></i></span>
                    </div>
                    <div class="align-self-center ps-1">
-                      <h5 class="pt-3 mb-n1">{{$waitings->simpananType->type_name}} - <span class="text-info" style="font-size:12px">Menunggu Verifikasi</span></h5>
+                      <h5 class="pt-3 mb-n1">{{$waitings->invoice_code}} - <span class="text-info" style="font-size:12px">Menunggu Verifikasi</span></h5>
                       <p class="mb-1 font-13 opacity-70">Tagihan : Rp. {{number_format($waitings->total_amount, 0, '.', '.')}}<br>
                         Bulan : {{ $waitings->created_at->format('F') }}<br>
                         Tanggal Terbit : {{ $waitings->created_at->format('d/F/Y') }}</p>
+                     </div>
+                     <div class="align-self-center ms-auto text-end">
+                       <a href="{{url('membership/index/activity-detail/'.$waitings->id)}}">
+                        <span class="btn btn-xxs gradient-orange shadow-bg-xs">Detail Transaksi</span>
+                        </a>
                      </div>
                   </a>
                   @endforeach
@@ -75,10 +86,16 @@
                         <span class="icon rounded-s me-2 gradient-blue shadow-bg shadow-bg-xs"><i class="bi bi-cash font-18 color-white"></i></span>
                      </div>
                      <div class="align-self-center ps-1">
-                        <h5 class="pt-3 mb-n1">{{$historys->simpananType->type_name}} - <span class="text-success" style="font-size:12px">Terverifikasi</span></h5>
+                        <h5 class="pt-3 mb-n1">{{$historys->invoice_code}} - <span class="text-success" style="font-size:12px">Terverifikasi</span></h5>
                         <p class="mb-1 font-13 opacity-70">Tagihan : Rp. {{number_format($historys->total_amount, 0, '.', '.')}}<br>
                         Bulan : {{ $historys->created_at->format('F') }}<br>
                         Tanggal Terbit : {{ $historys->created_at->format('d/F/Y') }}</p>
+                     </div>
+
+                     <div class="align-self-center ms-auto text-end">
+                       <a href="{{url('membership/index/activity-detail/'.$historys->id)}}">
+                        <span class="btn btn-xxs gradient-orange shadow-bg-xs">Detail Transaksi</span>
+                        </a>
                      </div>
                   </a>
                   @endforeach

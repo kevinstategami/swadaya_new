@@ -14,6 +14,7 @@ use App\Models\Membership\ReferalCode;
 use App\Models\Membership\Simpanan;
 use App\Models\Membership\DocumenRepo;
 use App\Models\Transaction\Invoice;
+use App\Models\Transaction\InvoiceHistory;
 use Session;
 use App\Models\Transaction\Wallet;
 use App\Models\Transaction\WalletHistory;
@@ -110,13 +111,13 @@ class HomeController extends Controller
     }
     public function activity(){
 
-      $pending = Invoice::with('simpananType')->whereIn('invoice_type',['SW','SP','SS'])->where('user_id', Auth::user()->id)
+      $pending = Invoice::where('user_id', Auth::user()->id)
       ->where('status',0)->get();
 
-      $waiting = Invoice::with('simpananType')->whereIn('invoice_type',['SW','SP','SS'])->where('user_id', Auth::user()->id)
+      $waiting = Invoice::where('user_id', Auth::user()->id)
       ->where('status',1)->get();
 
-      $history = Invoice::with('simpananType')->whereIn('invoice_type',['SW','SP','SS'])->where('user_id', Auth::user()->id)
+      $history = Invoice::where('user_id', Auth::user()->id)
       ->where('status',2)->get();
 
       return view('registrasi.activity.index')
@@ -124,6 +125,17 @@ class HomeController extends Controller
       ->with('waiting', $waiting)
       ->with('history', $history);
 
+    }
+
+    public function detailActivity($invoiceId){
+
+      $invoice = Invoice::find($invoiceId);
+
+      $invoiceHistory = InvoiceHistory::where('invoice_id', $invoiceId)->get();
+
+      return view('registrasi.activity.detail')
+      ->with('invoice', $invoice)
+      ->with('invoiceHistory', $invoiceHistory);
     }
 
 }

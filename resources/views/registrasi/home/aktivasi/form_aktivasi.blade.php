@@ -139,14 +139,14 @@
                      <br>
                      <div class="form-custom form-label form-icon">
                        <i class="bi bi-wallet2 font-12"></i>
-                        <input type="text" class="form-control rounded-xs" style="text-align:right" id="simpananPokok" autocomplete="off" name="simpananPokok" readonly value="{{number_format($simpananPokok->deposit_min, 0, '.', '.')}}" placeholder="" pattern="[A-Za-z ]{1,32}" required />
+                        <input type="text" class="form-control rounded-xs" style="text-align:left" id="simpananPokok" autocomplete="off" name="simpananPokok" readonly value="1 Kali pembayaran selama menjadi anggota koperasi  : Rp.{{number_format($simpananPokok->deposit_min, 0, '.', '.')}}" placeholder="" pattern="[A-Za-z ]{1,32}" required />
                         <label for="c1" class="color-theme form-label-active">Simpanan Pokok</label>
                         <div class="valid-feedback"></div>
                         <div class="invalid-feedback">Simpanan Pokok tidak boleh kosong!</div>
                      </div>
                      <div class="form-custom form-label form-icon mb-3">
                        <i class="bi bi-wallet2 font-12"></i>
-                        <input type="text" class="form-control rounded-xs" onkeypress="return justnumber(event, false)" style="text-align:right" id="simpananWajib" placeholder="Simpanan Wajib" autocomplete="off" name="simpananWajib" readonly  value="{{number_format($simpananWajib->deposit_min, 0, '.', '.')}}" placeholder="" pattern="[A-Za-z ]{1,32}" required />
+                        <input type="text" class="form-control rounded-xs" onkeypress="return justnumber(event, false)" style="text-align:left" id="simpananWajib" placeholder="Simpanan Wajib" autocomplete="off" name="simpananWajib" readonly  value="Pembayaran setiap bulan selama menjadi anggota koperasi : Rp.{{number_format($simpananWajib->deposit_min, 0, '.', '.')}}" placeholder="" pattern="[A-Za-z ]{1,32}" required />
                         <label for="c1" class="color-theme form-label-active">Simpanan Wajib</label>
                         <div class="valid-feedback"></div>
                         <div class="invalid-feedback">Simpanan Wajib tidak boleh kosong!</div>
@@ -163,10 +163,11 @@
                      <div class="form-custom form-label form-icon mb-3">
                         <i class="bi bi-bookmark-dash font-13"></i>
                         <select class="form-select rounded-xs" id="jenisSimpanan" name="jenisSimpanan" autocomplete="off" aria-label="Kota Tinggal" placeholder="Kota Tinggal">
-                           <option value="" selected disabled>Jenis Simpanan</option>
+                           <option value="" selected disabled>Cara Pembayaran Simpanan Wajib</option>
                            <!-- <option value="BI">Simpanan Bulan Ini</option> -->
-                           <option value="SK">Sekaligus (Multi Bulan)</option>
-                           <option value="SMT">Sampai Akhir Tahun</option>
+                           <!-- <option value="SK">Multi Bulan</option> -->
+                           <option value="PB">Bulanan</option>
+                           <option value="SMT">Pembayaran Penuh 1 Tahun</option>
                         </select>
                         <label for="c6" class="color-theme">Select an Option</label>
                         <div class="valid-feedback">Jenis Kelamin tidak boleh kosong!</div>
@@ -311,12 +312,12 @@
 
           }
 
-          else if($('#pilih2').val() < $('#pilih1').val() ){
-              $.alert({
-                  title: 'Informasi!',
-                  content: 'Jarak Multi Bulan harus lebih dari 1 bulan!',
-              });
-            }
+          // else if($('#pilih2').val() < $('#pilih1').val() ){
+          //     $.alert({
+          //         title: 'Informasi!',
+          //         content: 'Jarak Multi Bulan harus lebih dari 1 bulan!',
+          //     });
+          //   }
             else{
               $('#fAktivasi').submit();
             }

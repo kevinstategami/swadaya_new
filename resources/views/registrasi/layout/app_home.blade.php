@@ -5,7 +5,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
         <title>Swadaya Utama</title>
         <link rel="stylesheet" type="text/css" href="{{asset('registrasi/styles/bootstrap.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{asset('registrasi/fonts/bootstrap-icons.css')}}" />
@@ -30,7 +30,7 @@
 
             <div class="jajal-footer">
                 <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
-                    <a href="{{route('activity')}}"><i class="bi bi-graph-up"></i><span>Tagihan</span></a>
+                    <a href="{{route('activity')}}"><i class="bi bi-graph-up"></i><span>Transaksi</span></a>
                     <a href="{{route('index')}}" class="circle-nav-2"><i class="fas fa-home"></i><span>Beranda</span></a>
                     <a href="{{route('indexAkun')}}"><i class="bi bi-person-circle"></i><span>Akun</span></a>
                 </div>

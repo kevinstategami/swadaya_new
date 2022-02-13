@@ -12,6 +12,7 @@ Route::group(['middleware' => ['auth'] ], function () {
 		Route::post('storeAktivasi', 'RegistrasiController@storeAktivasi')->name('storeAktivasi');
 
 		Route::get('activity', 'HomeController@activity')->name('activity');
+		Route::get('activity-detail/{invoiceId}', 'HomeController@detailActivity')->name('detailActivity');
 
 		Route::get('history-wallet', 'HomeController@historyWallet')->name('historyWallet');
 
