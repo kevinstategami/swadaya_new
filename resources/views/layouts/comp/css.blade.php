@@ -1,4 +1,3 @@
- Favicons -->
 <link rel="shortcut icon" href="{{ !$cmsLogo['llg'] || !$cmsLogo['llg']['dokumen']  ? asset('img/logo.png') : url('images/'.$cmsLogo['llg']->dokumen->path) }}">
 <link rel="apple-touch-icon" href="{{asset('template/pasific/assets/img/apple-touch-icon.png')}}">
 <link rel="apple-touch-icon" sizes="72x72" href="{{asset('template/pasific/assets/img/apple-touch-icon-72x72.png')}}">
