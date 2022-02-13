@@ -30,8 +30,10 @@
       <div id="page">
          <div class="page-content my-0 py-0">
              <div class="card-center mx-3 px-4 py-4 bg-white rounded-m">
-               <div class="col-md-12 text-center">
-                 <h1 for="c1" class="color-theme" style="color:#2196f3">Login</h1>
+               <div class="card-center mx-3 px-4 py-4 bg-white rounded-m">
+                 <div class="col-md-12 text-center">
+                   <h1 for="c1" class="color-theme" style="color:#2196f3">Login</h1>
+                 </div>
                </div>
                <form action="{{url('membership/auth/login/store')}}" id="fLogin" method="POST" enctype="multipart/form-data">
                  {{csrf_field()}}

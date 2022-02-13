@@ -1,4 +1,10 @@
 <script>
+    var descFt = document.getElementById("cmsBlockFtDescription");
+    var editorFt = CKEDITOR.replace(descFt,{
+     language:'en-gb'
+    });
+    CKEDITOR.config.allowedContent = true;
+
     function addBlock(page){
     	$('#addBlockModal').modal('show')
     	$('#page_cms').val(page)
@@ -43,10 +49,24 @@
                     }
                 }
 
-                if(data.block_type == 'CC'){
-                    $('#cmsBlockCcModal').modal('show')
+                if(data.block_type == 'LFC'){
+                    $('#cmsBlockFtModal').modal('show')
 
-                    // $('#cmsBlockCcMultipleValue').append()
+                    CKEDITOR.instances['cmsBlockFtDescription'].setData(data.description)
+
+                    $('#deleteBlockFt').attr('href', "{{url('cms/block/delete/')}}/"+ data.id)
+                    $('.previewImageBlockFt').empty()
+                    $('#cmsBlockFtModal').modal('show')
+                    $('#cmsBlockFtId').val(id)
+                    $('#cmsBlockFtTitle').val(data.title)
+                    $('#cmsBlockFtTitle2').val(data.title2)
+                    // $('#cmsBlockFtDescription').val(data.description)
+                    $('#cmsBlockFtOrder').val(data.order)
+
+                    if(data.path){
+                        $('.previewImageBlockFt').append('<img src="{{url('get-block-image')}}/'+ data.path +'" style="margin-top: 2rem;" width="50%"/>')
+                        $('#cmsBlockFtPath').val(data.path)
+                    }
                 }
             }
         });
@@ -63,6 +83,23 @@
                 "path" : $('#cmsBlockMcPath').val(),
                 "background_path" : $('#cmsBlockMcPathBg').val(),
                 "order": $('#cmsBlockMcOrder').val()
+            }
+        }).done(function( msg ) {
+            window.location.reload();
+        });
+    }
+
+    function updateCmsBlockFt(){
+        $.ajax({
+            method: "POST",
+            url: "{{route('updateCmsBlock')}}",
+            data: {
+                "id" : $('#cmsBlockFtId').val(),
+                "title" : $('#cmsBlockFtTitle').val(),
+                "title2" : $('#cmsBlockFtTitle2').val(),
+                "description" : CKEDITOR.instances['cmsBlockFtDescription'].getData(),
+                "path" : $('#cmsBlockFtPath').val(),
+                "order": $('#cmsBlockFtOrder').val()
             }
         }).done(function( msg ) {
             window.location.reload();

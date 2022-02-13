@@ -1,3 +1,6 @@
+.mheight-150{
+	min-height: 150px !important;
+}
 /* CARD */
 .card{
 	border: 2px solid lightgray;
@@ -73,9 +76,9 @@
 	background-color: #ff4530 !important;
 }
 
-.about-us-content > h5 ,ul{
+/*.about-us-content > h5 ,ul{
 	color: white !important;
-}
+}*/
 
 .modal-dialog{
 	max-width: 1000px !important;
