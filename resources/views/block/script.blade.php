@@ -84,7 +84,7 @@
             url: "{{route('updateCmsBlock')}}",
             data: {
                 "id" : $('#cmsBlockCcId').val(),
-                "title" : $('#cmsBlockLcTitle').val(),
+                "title" : $('#cmsBlockCcTitle').val(),
                 "title2" : title2.substring(1),
                 "description" : description.substring(1),
                 "path" : "",

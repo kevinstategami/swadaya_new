@@ -17,26 +17,26 @@
         <div class="navbar-collapse collapse navbar-main-collapse">
             <ul class="nav navbar-nav">
                 <li class="megamenu-fw">
-                    <a href="{{url('/')}}" class="color-gray">Beranda </a>
+                    <a href="{{url('/')}}">Beranda </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="{{url('/about-us')}}" class="color-gray">Tentang Kami </a>
+                    <a href="{{url('/about-us')}}">Tentang Kami </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="#service" class="color-gray">Jenis Koperasi </a>
+                    <a href="#service">Jenis Koperasi </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="#visimisi" class="color-gray">Visi &amp; Misi </a>
+                    <a href="#visimisi">Visi &amp; Misi </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="#team" class="color-gray">Struktur Organisasi </a>
+                    <a href="#team">Struktur Organisasi </a>
                 </li>
                 @if(Auth::guest())
                 <li class="megamenu-fw">
-                    <a href="https://anggota.songgomas.id/membership/auth/index" class="color-gray">Masuk / Daftar</a>
+                    <a href="https://anggota.songgomas.id/membership/auth/index">Masuk / Daftar</a>
                 </li>
                 @else
-                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle color-light">{{Auth::user()->name}} </a>
+                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">{{Auth::user()->name}} </a>
                     <ul class="dropdown-menu has-submenu" role="menu">
                         <li><a href="{{route('index')}}">Dashboard</a></li>
                         @if(Auth::user()->type == 'ADMIN')
@@ -48,8 +48,6 @@
                     </ul>
                 </li>
                 @endif
-                <li><a href="#" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search fa-fw color-green"></i></a></li>
-
             </ul>
 
         </div>

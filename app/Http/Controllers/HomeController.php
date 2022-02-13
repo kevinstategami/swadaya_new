@@ -37,7 +37,8 @@ class HomeController extends Controller
         $fungsi_peran = (new FungsiPeranController)->index();
         $imgau = (new FungsiPeranController)->indexImgAu();
         $bgau = (new IntroductionAUController)->index();
-        return view('about-us.index', compact('aboutUs', 'fungsi_peran','bgau','imgau'));
+        $cms = CMS::where('code', 'about-us')->orderby('order','asc')->get();
+        return view('about-us.index', compact('aboutUs', 'fungsi_peran','bgau','imgau','cms'));
     }
 
     public function sk()

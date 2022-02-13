@@ -1,7 +1,35 @@
-<!-- MC  -->
-
 @foreach($cms as $key => $value)
 
+<!-- SS -->
+@if($value->block_type == 'SSC')
+<div id="block-carousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#block-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#block-carousel" data-slide-to="1"></li>
+        <li data-target="#block-carousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
+        <div class="item carousel-img {{$i == 1 ? 'active' : ''}}" style="background-image: url({{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'. rawurlencode(explode(',', $value->path)[$i])) : '' }})">
+            <div class="container">
+                <div class="carousel-caption animated" data-animation="bounceInDown" data-animation-delay="100">
+                    <h1 class="font-pacifico text-capitalize color-light">{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</h1>
+                    <p class="color-light mt25">{{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : '' }}<br>
+                         @if(!Auth::guest() && Auth::user()->edit_mode) 
+                            <a href="{{url('cms/block/edit-lc/'.$value->id)}}" class="button button-md button-pasific hover-ripple-out mt25">Ubah <span class="fa fa-cog"></span></a>
+                        @endif
+                    </p>
+                </div>
+            </div>
+        </div>
+        @endfor
+    </div>
+    <a class="left carousel-control" href="#block-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <a class="right carousel-control" href="#block-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+</div>
+@endif
+
+<!-- MC  -->
 @if($value->block_type == 'MC')
 <header class="pt100 pb100 bg-grad-stellar" style="background-image: url({{$value->background_path ? url('get-block-image/'. $value->background_path) : ''}}); background-repeat: no-repeat; background-color: #fff; background-size: cover;">
         <div class="container mt100 mb70">
@@ -189,9 +217,6 @@
     </div><!-- container end -->
 </div><!-- section service end -->
 @endif
-@endforeach
-
-
 @if($value->block_type == 'MMC')
 <!-- New Block Area
 ===================================== -->
@@ -231,5 +256,80 @@
     @endif
 </div><!-- New Block end -->
 @endif
+
+@if($value->block_type == 'ACC')
+<div class="pt100 pb100 bg-grad-mojito">
+    <div class="container">
+        <div class="row">
+            @if(!Auth::guest() && Auth::user()->edit_mode)
+                <div class="col-md-12 mb35">
+                    <a href="{{url('cms/block/edit-cc/'.$value->id)}}" class="button button-md button-pasific hover-ripple-out mt25">Ubah <span class="fa fa-cog"></span></a>
+                </div>
+            @endif
+            <div class="col-md-12 pt50 text-center">
+                <h1 class="brand-heading font-montserrat text-uppercase color-light" data-in-effect="fadeInDown">{{$value->title}}</h1>                            
+            </div>
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <form class="form-horizontal">
+                    <label class="sr-only" for="inputHelpBlock">Input with help text</label>
+                </form>
+
+                <!-- <p class="intro-text color-light text-open-sans text-uppercase mt25" data-in-effect="swing">
+                    {{$value->description}}
+                </p> -->
+            </div>
+        </div>       
+
+        
+        <div class="row mt35">
+            <div class="col-md-6 col-sm-6 col-xs-6">                    
+                <div class="panel-group" id="accordion5">
+                    @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
+                        @if($i % 2 == 0)
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <a href="#collapse{{$i}}" class="collapsed accordian-toggle-chevron-left" data-toggle="collapse" data-parent="#accordion5">
+                                        {{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}
+                                    </a>
+                                </div>
+                                <div id="collapse{{$i}}" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : '' }}
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endfor
+                </div>                        
+            </div>
+            
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="panel-group" id="accordion6">
+                    @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
+                        @if($i % 2 != 0)
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <a href="#collapse{{$i}}" class="collapsed accordian-toggle-chevron-left" data-toggle="collapse" data-parent="#accordion5">
+                                        {{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}
+                                    </a>
+                                </div>
+                                <div id="collapse{{$i}}" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : '' }}
+                                    </div>
+                                </div>                                
+                            </div>
+                        @endif
+                    @endfor
+                </div>                        
+            </div>
+        </div>
+        
+    </div>
+</div>
+@endif
+@endforeach
+
+
 @include('block.modal.mc-modal')
 @include('block.modal.cc-modal')

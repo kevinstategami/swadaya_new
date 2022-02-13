@@ -61,6 +61,26 @@
               </div>
             </div>
           </div>
+          <div class="col-md-4 mb-3" onclick="createBlock('ACC')">
+            <div class="card">
+              <div class="card-body">
+                <img class="w-100" src="{{asset('img/block_layout/accordion_content.png')}}">
+              </div>
+              <div class="card-footer text-center">
+                <h5>Accordion Content</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3" onclick="createBlock('SSC')">
+            <div class="card">
+              <div class="card-body">
+                <img class="w-100" src="{{asset('img/block_layout/accordion_content.png')}}">
+              </div>
+              <div class="card-footer text-center">
+                <h5>Slideshow Content</h5>
+              </div>
+            </div>
+          </div>
         </form>
       </div>
       <div class="modal-footer">
