@@ -247,4 +247,8 @@ class MembershipRegistrasi extends Controller
       return view('registrasi.akun.index_profil')
       ->with('member', $member);
     }
+
+    public function termCondition(){
+      return view('registrasi.auth.term-condition');
+    }
   }
