@@ -29,7 +29,7 @@
       @else
       <img src="{{url($member->path_foto)}}" id="foto" alt="img" width="180" class="mx-auto rounded-circle mb-3 shadow-l">
       @endif
-      <h1 class="color-theme text-center font-30 pt-3 mb-0">{{Auth::user()->name}}</h1>
+      <h1 class="color-theme text-center font-30 pt-3 mb-0">{{$member->fullname}}</h1>
       @if(Auth::user()->status_aktivasi == 4)
 
       <p class="text-center font-11"><i class="bi bi-check-circle-fill color-green-dark pe-1"></i>Terverifikasi</p>
