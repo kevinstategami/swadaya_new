@@ -24,7 +24,7 @@
                   <th>Tipe Invoice</th>
                   <th>Tanggal Terbit</th>
                   <th>Status</th>
-                  <th>Deskripsi</th>
+                  <th>Keterangan</th>
                   <th>Tindakan</th>
                 </tr>
               </thead>

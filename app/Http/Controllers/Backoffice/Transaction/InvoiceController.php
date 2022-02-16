@@ -23,7 +23,9 @@ class InvoiceController extends Controller
 
 	public function approvedInvoice($id){
 		$data = Invoice::find($id);
-		$data->status = 2;
+		if($data->status != 2){
+			$data->status = 2;
+		}
 		$wallet = Wallet::where('user_id', $data->user_id)->first();
 		$walletHistory = new WalletHistory;
 		$walletHistory->user_id = $data->user_id;
@@ -43,8 +45,10 @@ class InvoiceController extends Controller
 
 	public function declineInvoice($id, Request $request){
 		$data = Invoice::find($id);
-		$data->description = $request->description;
-		$data->status = 3;
+		if($data->status != 3){
+			$data->description = $request->description;
+			$data->status = 3;
+		}
 		$wallet = Wallet::where('user_id', $data->user_id)->first();
 		$walletHistory = new WalletHistory;
 		$walletHistory->user_id = $data->user_id;
@@ -69,12 +73,12 @@ class InvoiceController extends Controller
 		$wallet = Wallet::where('user_id', $invoice->user_id)->first();
 		$wallet->amount = $wallet->amount - $invoice->amount;
 		$wallet->save();
-        $data = Query::DeleteRow('invoices', $id);
-        $walletHistory = WalletHistory::where('invoice_id', $id)->delete();
-        return $data;
-    }
+		$data = Query::DeleteRow('invoices', $id);
+		$walletHistory = WalletHistory::where('invoice_id', $id)->delete();
+		return $data;
+	}
 
-    public function getImage($id){
+	public function getImage($id){
 		$dokumen = DokumenRepo::where('reff_id', $id)->first();
 		return response()->json($dokumen, 200);
 	}

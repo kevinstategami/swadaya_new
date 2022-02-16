@@ -39,27 +39,27 @@ class ActivationMember extends Controller
 		$user->status_aktivasi = 4;
 		$user->save();
 
-		$invoice = Invoice::where('user_id', $member)->update(
-			['status' => 2]
-		);
-		$invoiceData = Invoice::where('user_id', $member)->get();
+		// $invoice = Invoice::where('user_id', $member)->update(
+		// 	['status' => 2]
+		// );
+		// $invoiceData = Invoice::where('user_id', $member)->get();
 
-		foreach($invoiceData as $key => $value){
-			$wallet = Wallet::where('user_id', $value->user_id)->first();
-			$walletHistory = new WalletHistory;
-			$walletHistory->user_id = $value->user_id;
-			$walletHistory->member_no = $value->member_no;
-			$walletHistory->email = $value->email;
-			$walletHistory->wallet_id = $wallet->id;
-			$walletHistory->amount = $value->amount;
-			//$walletHistory->description = $value->invoice_type .' '.$value->member_no;
-			$walletHistory->description = $value->invoice_type == "PB" ? "Simpanan Bulanan " : "Simpanan 1 Tahun Buku";
-			$walletHistory->mutation_type = 'DB'.$value->invoice_type;
-			$walletHistory->invoice_id = $value->id;
-			$wallet->amount = $wallet->amount + $walletHistory->amount;
-			$walletHistory->save();
-			$wallet->save();
-		}
+		// foreach($invoiceData as $key => $value){
+		// 	$wallet = Wallet::where('user_id', $value->user_id)->first();
+		// 	$walletHistory = new WalletHistory;
+		// 	$walletHistory->user_id = $value->user_id;
+		// 	$walletHistory->member_no = $value->member_no;
+		// 	$walletHistory->email = $value->email;
+		// 	$walletHistory->wallet_id = $wallet->id;
+		// 	$walletHistory->amount = $value->amount;
+		// 	//$walletHistory->description = $value->invoice_type .' '.$value->member_no;
+		// 	$walletHistory->description = $value->invoice_type == "PB" ? "Simpanan Bulanan " : "Simpanan 1 Tahun Buku";
+		// 	$walletHistory->mutation_type = 'DB'.$value->invoice_type;
+		// 	$walletHistory->invoice_id = $value->id;
+		// 	$wallet->amount = $wallet->amount + $walletHistory->amount;
+		// 	$walletHistory->save();
+		// 	$wallet->save();
+		// }
 
 		$referal = Downline::where('user_id_downline', $member)->first();
 		if($referal){

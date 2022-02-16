@@ -67,10 +67,23 @@
         "render": function ( data, type, row, meta )
         {
           if(row.type != 'ADMIN'){
+            var verifikasi = ''
+            if(row.status != 2){
+              verifikasi = '<a class="mb-1 btn btn-success btn-sm text-white" onclick="approveInvoice(' + data + ');" title="Verifikasi"><i class="fa fa-check"></i></a>&NewLine;'
+            } else {
+              verifikasi = ''
+            }
+            var reject = ''
+            if(row.status != 3){
+              reject = '<a class="mb-1 btn btn-warning btn-sm text-white" onclick="rejectInvoice(' + data +')" data-toggle="modal" data-target="#modal-reject" title="Tolak"><i class="fa fa-times"></i></a>&NewLine;'
+            }else{
+              reject = ''
+            }
             return '<div class="text-center">'+
             '<a class="mb-1 btn btn-info btn-sm text-white" onclick="getImagePayment(' + data + ');"  data-toggle="modal" data-target="#modal-image"><i class="fa fa-eye" title="Bukti Bayar"></i></a>&NewLine;'+
-            '<a class="mb-1 btn btn-success btn-sm text-white" onclick="approveInvoice(' + data + ');" title="Verifikasi"><i class="fa fa-check"></i></a>&NewLine;'+
-            '<a class="mb-1 btn btn-warning btn-sm text-white" onclick="rejectInvoice(' + data +')" data-toggle="modal" data-target="#modal-reject" title="Tolak"><i class="fa fa-times"></i></a>&NewLine;'+
+            verifikasi+
+            reject
+            +
             '<a class="mb-1 btn btn-danger btn-sm text-white" onclick="deleteInvoice(' + data + ');"  title="Hapus"><i class="fa fa-trash"></i></a>'+
             '</div>';
           }else{
