@@ -134,6 +134,19 @@ class HomeController extends Controller
     public function indexAkun(){
 
       $member = Member::where('user_id', Auth::user()->id)->first();
+      if($member == null){
+
+        $info = "Informasi";
+        $colors = "red";
+        $icons = "fas fa-ban";
+        $alert = "Silakan aktivasi akun terlebih dahulu!";
+
+        return redirect(url('/membership/index/aktivasi/'.Auth::user()->id))
+        ->with('info', $info)
+        ->with('alert', $alert)
+        ->with('colors', $colors)
+        ->with('icons', $icons);
+      }
       if($member != null){
         $referalCode = $member->member_no;
       }else{

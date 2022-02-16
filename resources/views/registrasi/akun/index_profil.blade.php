@@ -59,7 +59,7 @@
                     {{csrf_field()}}
                     <div class="divider mb-0"></div><br>
                     @if($member->path_foto == "")
-                    <img src="https://www.enableds.com/products/payapp/v13/images/pictures/31t.jpg" id="foto" alt="img" width="180" class="mx-auto rounded-circle mb-3 shadow-l">
+                    <img src="{{asset('public/user-images/default.png')}}" id="foto" alt="img" width="180" class="mx-auto rounded-circle mb-3 shadow-l">
                     @else
                     <img src="{{url($member->path_foto)}}" id="foto" alt="img" width="180" class="mx-auto rounded-circle mb-3 shadow-l">
                     @endif
