@@ -24,7 +24,7 @@
    <div class="pt-5 mt-4"></div>
    <div class="card card-style overflow-visible mt-5">
       <div class="mt-n5"></div>
-      <img src="https://www.enableds.com/products/payapp/v103/images/pictures/31t.jpg" alt="img" width="180" class="mx-auto rounded-circle mt-n5 shadow-l">
+      <img src="https://www.enableds.com/products/payapp/v13/images/pictures/31t.jpg" alt="img" width="180" class="mx-auto rounded-circle mt-n5 shadow-l">
       <h1 class="color-theme text-center font-30 pt-3 mb-0">{{Auth::user()->name}}</h1>
       @if(Auth::user()->status_aktivasi == 4)
 

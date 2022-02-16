@@ -54,7 +54,7 @@
                   <div class="alert bg-fade2-blue alert-dismissible color-blue-dark rounded-s fade show pe-2" role="alert">
                      <strong>Note:</strong> Pastikan password yang anda masukan sudah benar.
                   </div>
-                  <form class="demo-animation needs-validation m-0" novalidate action="{{url('membership/index/storeAktivasi')}}" method="POST" id="fAktivasi">
+                  <form class="demo-animation needs-validation m-0" novalidate action="{{url('membership/index/storeChangePassword')}}" method="POST" id="fAktivasi">
                     {{csrf_field()}}
                     <div class="divider mb-0"></div><br>
                     <input type="hidden" value="{{Auth::user()->id}}" name="userId" id="userId">
@@ -74,7 +74,7 @@
                     </div>
                     <div class="form-custom form-label form-icon mb-3">
                        <i class="bi bi-key font-12"></i>
-                       <input type="text" class="form-control rounded-xs" id="pwdSekarang" autocomplete="off" name="pwdSekarang" placeholder="Konfirmasi Password" pattern="" required />
+                       <input type="text" class="form-control rounded-xs" id="pwdConfirm" autocomplete="off" name="pwdConfirm" placeholder="Konfirmasi Password" pattern="" required />
                        <label for="c3" class="color-theme">Konfirmasi Password</label>
                        <div class="valid-feedback"></div>
                        <div class="invalid-feedback">Password tidak boleh kosong!</div>
@@ -122,80 +122,53 @@
         @endif
 
         $('#btnSimpan').on('click', function(){
-            if($('#noKtp').val() == ""){
+            if($('#pwdSblm').val() == ""){
               $.alert({
                   title: 'Informasi!',
-                  content: 'Nomor KTP tidak boleh kosong!',
+                  content: 'Password Sebelumnya tidak boleh kosong!',
               });
             }
-            else if($('#telepon').val() == ""){
+            else if($('#pwdSekarang').val() == ""){
               $.alert({
                   title: 'Informasi!',
-                  content: 'Telepon tidak boleh kosong!',
+                  content: 'Harap mengisi password baru!',
               });
             }
-            else if($('#jenisKelamin').val() == ""){
+            else if($('#pwdConfirm').val() == ""){
               $.alert({
                   title: 'Informasi!',
-                  content: 'Jenis Kelamin tidak boleh kosong!',
+                  content: 'Harap mengisi konfirmasi password!',
               });
             }
-            else if($('#tempatLahir').val() == ""){
+            else if ($('#pwdSekarang').val() != $('#pwdConfirm').val()){
               $.alert({
                   title: 'Informasi!',
-                  content: 'Tempat Lahir tidak boleh kosong!',
+                  content: 'Password Konfirmasi tidak sama!',
               });
-            }else if($('#kota').val() == ""){
-              $.alert({
-                  title: 'Informasi!',
-                  content: 'Kota Tinggal tidak boleh kosong!',
-              });
-            }else if($('#kodePos').val() == ""){
-              $.alert({
-                  title: 'Informasi!',
-                  content: 'Kode Pos tidak boleh kosong!',
-              });
-            }else if($('#alamat').val() == ""){
-              $.alert({
-                  title: 'Informasi!',
-                  content: 'Alamat tidak boleh kosong!',
-              });
-
-          }
-          else if($('#jenisSimpanan').val() == ""){
-              $.alert({
-                  title: 'Informasi!',
-                  content: 'Jenis Simpanan boleh kosong!',
-              });
-
-          }
-          else if($('#simpananWajib').val() == ""){
-              $.alert({
-                  title: 'Informasi!',
-                  content: 'Simpanan Wajib boleh kosong!',
-              });
-
-          }
-
-          // else if($('#pilih2').val() < $('#pilih1').val() ){
-          //     $.alert({
-          //         title: 'Informasi!',
-          //         content: 'Jarak Multi Bulan harus lebih dari 1 bulan!',
-          //     });
-          //   }
+            }
             else{
-              $('#fAktivasi').submit();
+
+              $.ajax({
+                url: "{!! url('membership/index/change-password/check') !!}/" + $('#pwdSblm').val(),
+                data: {},
+                dataType: "json",
+                type: "get",
+                  success:function(data)
+                    {
+                      if(data[0]["status"]=="not_valid"){
+                        $.alert({
+                            title: 'Informasi!',
+                            content: 'Password tidak cocok dengan sebelumnya!',
+                        });
+                      }else{
+                        $('#fAktivasi').submit();
+                      }
+                    }
+              });
+
+
             }
 
-        });
-
-        $('#jenisSimpanan').on('click', function(){
-
-            if($('#jenisSimpanan').val() == "SMT"){
-              $('#pilihan').css('display','none')
-            }else if($('#jenisSimpanan').val() == "SK"){
-              $('#pilihan').css('display','block')
-            }
         });
       </script>
    </body>

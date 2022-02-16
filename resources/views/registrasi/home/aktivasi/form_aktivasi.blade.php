@@ -167,7 +167,7 @@
                            <!-- <option value="BI">Simpanan Bulan Ini</option> -->
                            <!-- <option value="SK">Multi Bulan</option> -->
                            <option value="PB">Bulanan</option>
-                           <option value="SMT">Pembayaran Penuh 1 Tahun</option>
+                           <option value="SMT">Pembayaran Penuh 1 Tahun Buku</option>
                         </select>
                         <label for="c6" class="color-theme">Select an Option</label>
                         <div class="valid-feedback">Jenis Kelamin tidak boleh kosong!</div>

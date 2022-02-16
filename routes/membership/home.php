@@ -24,6 +24,11 @@ Route::group(['middleware' => ['auth'] ], function () {
 		Route::get('akun', 'HomeController@indexAkun')->name('indexAkun');
 
 		Route::get('change-password', 'HomeController@changePassword')->name('changePassword');
+		Route::post('storeChangePassword', 'HomeController@storeChangePassword')->name('storeChangePassword');
+		Route::get('change-password/check/{password}', 'HomeController@checkChangePassword')->name('checkChangePassword');
+
+		Route::get('profil', 'HomeController@profil')->name('profil');
+		Route::post('storeChangeProfile', 'HomeController@storeChangeProfile')->name('storeChangeProfile');
 
 
 	});

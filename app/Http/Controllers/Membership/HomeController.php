@@ -18,10 +18,92 @@ use App\Models\Transaction\InvoiceHistory;
 use Session;
 use App\Models\Transaction\Wallet;
 use App\Models\Transaction\WalletHistory;
+use File;
 
 
 class HomeController extends Controller
 {
+
+    public function storeChangeProfile(Request $request){
+      // dd($request->file('fotoProfil'));
+          if($request->file('fotoProfil')){
+            $file = $request->file('fotoProfil');
+            if($file->getClientOriginalExtension()=="png"
+              || $file->getClientOriginalExtension()=="jpg"
+              || $file->getClientOriginalExtension()=="PNG"
+              || $file->getClientOriginalExtension()=="JPG"
+            ) {
+
+            $member = Member::where('user_id', $request->userId)->first();
+            $destinationPath = "user-images/".$member->member_no.'-'.$this->quickRandom(4).'-'.date('Y-m-d');
+            if (!is_dir($destinationPath)) {
+             File::makeDirectory(public_path()
+              .
+              '/'.$destinationPath, 0777, true);
+           }
+           $fileName = $file->getClientOriginalName();
+           $fileExt = $file->getClientOriginalExtension();
+           $file->move(public_path($destinationPath), $file->getClientOriginalName());
+
+           $img = $destinationPath."/".$fileName;
+
+           // $user = User::find($member->user_id);
+           // $user->status_aktivasi = 3;
+           // $user->save();
+                    //
+
+           $member->email = $request->emails;
+           $member->fullname = $request->namaLengkap;
+           $member->identity_no = $request->identityNo;
+           $member->phone_no = $request->notelp;
+           $member->path_foto = 'public/'.$img;
+           $member->save();
+
+
+           $alert = "Perubahan data tersimpan";
+           $info = "Informasi";
+           $colors = "green";
+           $icons = "fas fa-check-circle";
+           return redirect(url('membership/index/akun'))
+           ->with('info', $info)
+           ->with('alert', $alert)
+           ->with('colors', $colors)
+           ->with('icons', $icons);
+
+         }else{
+          $alert = "Harap memasukan jenis file yang sesuai";
+          $info = "error";
+          $colors = "red";
+          $icons = "fas fa-ban";
+          return redirect(url('membership/index/profil'))
+          ->with('info', $info)
+          ->with('alert', $alert)
+          ->with('colors', $colors)
+          ->with('icons', $icons);
+        }
+      }else{
+        $alert = "Koneksi tidak stabil, harap memasukan file kembali";
+        $info = "error";
+        $colors = "red";
+        $icons = "fas fa-ban";
+        return redirect(url('membership/index/profil'))
+        ->with('info', $info)
+        ->with('alert', $alert)
+        ->with('colors', $colors)
+        ->with('icons', $icons);
+      }
+  }
+
+    public function profil(){
+      $member = Member::where('user_id', Auth::user()->id)->first();
+      $referalCode = ReferalCode::where('user_id', Auth::user()->id)->first();
+      if($referalCode==null){$code = "";}else{$code = $referalCode->code;}
+
+      // dd($member->path_foto);
+      return view('registrasi.akun.index_profil')
+      ->with('code', $code)
+      ->with('member', $member);
+    }
     public function changePassword(){
       return view('registrasi.akun.change_password');
     }
@@ -49,8 +131,8 @@ class HomeController extends Controller
       // $invoiceFirstCheck = Invoice::with('simpananType')->where('user_id', Auth::user()->id)->where('status', 2)
       // ->whereIn('invoice_type',['SW','SP','SS'])->sum('total_amount');
 
-      $invoiceCheck = Invoice::with('simpananType')->whereIn('invoice_type',['SW','SP','SS'])->where('user_id', Auth::user()->id)->where('status', 2)->sum('total_amount');
-      $invoiceUpdated = Invoice::with('simpananType')->whereIn('invoice_type',['SW','SP','SS'])->where('user_id', Auth::user()->id)->where('status', 2)->orderby('id','desc')->value('updated_at');
+      $invoiceCheck = Invoice::whereIn('invoice_type',['PB','SMT'])->where('user_id', Auth::user()->id)->where('status', 2)->sum('total_amount');
+      $invoiceUpdated = Invoice::whereIn('invoice_type',['PB','SMT'])->where('user_id', Auth::user()->id)->where('status', 2)->orderby('id','desc')->value('updated_at');
 
       $walletBnsTersedia = WalletHistory::where('mutation_type','DBRFBNS')->where('user_id', Auth::user()->id)->sum('amount');
       $walletBnsTersediaUpdated = WalletHistory::where('mutation_type','DBRFBNS')->where('user_id', Auth::user()->id)->orderby('id','desc')->value('updated_at');
@@ -141,4 +223,50 @@ class HomeController extends Controller
       ->with('invoiceHistory', $invoiceHistory);
     }
 
+    public function checkChangePassword($password){
+      //dd($username);
+      $currentPwd = Auth::user()->password;
+
+      $validPwd = Auth::attempt(['username' => Auth::user()->username, 'password' => $password],true);
+
+      if($validPwd){
+        $msg = "valid";
+      }else{
+        $msg = "not_valid";
+      }
+
+      $data[] = array(
+        "status" => $msg
+      );
+
+      return json_encode($data);
+    }
+
+    public function storeChangePassword(Request $request){
+
+      // dd($request->all());
+
+      $user = User::find(Auth::user()->id);
+      $user->password = bcrypt($request->pwdSekarang);
+      $user->save();
+
+      $info = "Informasi";
+      $colors = "green";
+      $icons = "fas fa-check-circle";
+      $alert = "Password berhasil di ganti!";
+
+      Session::flash('info', $info);
+      Session::flash('alert', $alert);
+      Session::flash('colors', $colors);
+      Session::flash('icons', $icons);
+
+      return redirect(url('membership/index/akun'));
+
+    }
+    public static function quickRandom($length = 16)
+    {
+      $pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+      return substr(str_shuffle(str_repeat($pool, 5)), 0, $length);
+    }
 }

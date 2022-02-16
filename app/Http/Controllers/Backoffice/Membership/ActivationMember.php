@@ -52,7 +52,8 @@ class ActivationMember extends Controller
 			$walletHistory->email = $value->email;
 			$walletHistory->wallet_id = $wallet->id;
 			$walletHistory->amount = $value->amount;
-			$walletHistory->description = $value->invoice_type .' '.$value->member_no;
+			//$walletHistory->description = $value->invoice_type .' '.$value->member_no;
+			$walletHistory->description = $value->invoice_type == "PB" ? "Simpanan Bulanan " : "Simpanan 1 Tahun Buku";
 			$walletHistory->mutation_type = 'DB'.$value->invoice_type;
 			$walletHistory->invoice_id = $value->id;
 			$wallet->amount = $wallet->amount + $walletHistory->amount;
@@ -62,7 +63,7 @@ class ActivationMember extends Controller
 
 		$referal = Downline::where('user_id_downline', $member)->first();
 		if($referal){
-			$bonusReferal = ReferralBonus::where('type', 'REFERAL DOWNLINE')->first();
+			$bonusReferal = ReferralBonus::where('type', 'REFERAL BONUS')->first();
 			$wallet = Wallet::where('user_id', $referal->user_id)->first();
 			$walletHistory = new WalletHistory;
 			$walletHistory->user_id = $referal->user_id;
