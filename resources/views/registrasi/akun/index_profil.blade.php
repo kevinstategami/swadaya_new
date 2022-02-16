@@ -79,7 +79,7 @@
                     </div>
                     <div class="form-custom form-label form-icon mb-3">
                        <i class="bi bi-at font-12"></i>
-                       <input type="text" class="form-control rounded-xs" value="{{$member->email}}" id="emails" autocomplete="off" name="emails" placeholder="Email" pattern="" required />
+                       <input type="text" class="form-control rounded-xs" value="{{$member->email}}" readonly id="emails" autocomplete="off" name="emails" placeholder="Email" pattern="" required />
                        <label for="c3" class="color-theme">Email</label>
                        <div class="valid-feedback"></div>
                        <div class="invalid-feedback">Email tidak boleh kosong!</div>

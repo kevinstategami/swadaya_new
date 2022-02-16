@@ -25,64 +25,74 @@ class HomeController extends Controller
 {
 
     public function storeChangeProfile(Request $request){
-      // dd($request->file('fotoProfil'));
-          if($request->file('fotoProfil')){
-            $file = $request->file('fotoProfil');
-            if($file->getClientOriginalExtension()=="png"
-              || $file->getClientOriginalExtension()=="jpg"
-              || $file->getClientOriginalExtension()=="PNG"
-              || $file->getClientOriginalExtension()=="JPG"
-            ) {
-
-            $member = Member::where('user_id', $request->userId)->first();
-            $destinationPath = "user-images/".$member->member_no.'-'.$this->quickRandom(4).'-'.date('Y-m-d');
-            if (!is_dir($destinationPath)) {
-             File::makeDirectory(public_path()
-              .
-              '/'.$destinationPath, 0777, true);
-           }
-           $fileName = $file->getClientOriginalName();
-           $fileExt = $file->getClientOriginalExtension();
-           $file->move(public_path($destinationPath), $file->getClientOriginalName());
-
-           $img = $destinationPath."/".$fileName;
-
-           // $user = User::find($member->user_id);
-           // $user->status_aktivasi = 3;
-           // $user->save();
-                    //
-
-           $member->email = $request->emails;
-           $member->fullname = $request->namaLengkap;
-           $member->identity_no = $request->identityNo;
-           $member->phone_no = $request->notelp;
-           $member->path_foto = 'public/'.$img;
-           $member->save();
 
 
-           $alert = "Perubahan data tersimpan";
-           $info = "Informasi";
-           $colors = "green";
-           $icons = "fas fa-check-circle";
-           return redirect(url('membership/index/akun'))
-           ->with('info', $info)
-           ->with('alert', $alert)
-           ->with('colors', $colors)
-           ->with('icons', $icons);
+      if($request->file('fotoProfil') == null){
 
-         }else{
-          $alert = "Harap memasukan jenis file yang sesuai";
-          $info = "error";
-          $colors = "red";
-          $icons = "fas fa-ban";
-          return redirect(url('membership/index/profil'))
-          ->with('info', $info)
-          ->with('alert', $alert)
-          ->with('colors', $colors)
-          ->with('icons', $icons);
-        }
+
+        $member = Member::where('user_id', $request->userId)->first();
+        $member->fullname = $request->namaLengkap;
+        $member->identity_no = $request->identityNo;
+        $member->phone_no = $request->notelp;
+        $member->save();
+
+        $alert = "Perubahan data tersimpan";
+        $info = "Informasi";
+        $colors = "green";
+        $icons = "fas fa-check-circle";
+        return redirect(url('membership/index/akun'))
+        ->with('info', $info)
+        ->with('alert', $alert)
+        ->with('colors', $colors)
+        ->with('icons', $icons);
+
       }else{
-        $alert = "Koneksi tidak stabil, harap memasukan file kembali";
+
+        if($request->file('fotoProfil')){
+          $file = $request->file('fotoProfil');
+          if($file->getClientOriginalExtension()=="png"
+            || $file->getClientOriginalExtension()=="jpg"
+            || $file->getClientOriginalExtension()=="PNG"
+            || $file->getClientOriginalExtension()=="JPG"
+          ) {
+
+          $member = Member::where('user_id', $request->userId)->first();
+          $destinationPath = "user-images/".$member->member_no.'-'.$this->quickRandom(4).'-'.date('Y-m-d');
+          if (!is_dir($destinationPath)) {
+           File::makeDirectory(public_path()
+            .
+            '/'.$destinationPath, 0777, true);
+         }
+         $fileName = $file->getClientOriginalName();
+         $fileExt = $file->getClientOriginalExtension();
+         $file->move(public_path($destinationPath), $file->getClientOriginalName());
+
+         $img = $destinationPath."/".$fileName;
+
+         // $user = User::find($member->user_id);
+         // $user->status_aktivasi = 3;
+         // $user->save();
+                  //
+
+         $member->fullname = $request->namaLengkap;
+         $member->identity_no = $request->identityNo;
+         $member->phone_no = $request->notelp;
+         $member->path_foto = 'public/'.$img;
+         $member->save();
+
+
+         $alert = "Perubahan data tersimpan";
+         $info = "Informasi";
+         $colors = "green";
+         $icons = "fas fa-check-circle";
+         return redirect(url('membership/index/akun'))
+         ->with('info', $info)
+         ->with('alert', $alert)
+         ->with('colors', $colors)
+         ->with('icons', $icons);
+
+       }else{
+        $alert = "Harap memasukan jenis file yang sesuai";
         $info = "error";
         $colors = "red";
         $icons = "fas fa-ban";
@@ -92,6 +102,20 @@ class HomeController extends Controller
         ->with('colors', $colors)
         ->with('icons', $icons);
       }
+    }else{
+      $alert = "Koneksi tidak stabil, harap memasukan file kembali";
+      $info = "error";
+      $colors = "red";
+      $icons = "fas fa-ban";
+      return redirect(url('membership/index/profil'))
+      ->with('info', $info)
+      ->with('alert', $alert)
+      ->with('colors', $colors)
+      ->with('icons', $icons);
+    }
+
+      }
+
   }
 
     public function profil(){
