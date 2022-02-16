@@ -24,7 +24,11 @@
    <div class="pt-5 mt-4"></div>
    <div class="card card-style overflow-visible mt-5">
       <div class="mt-n5"></div>
-      <img src="https://www.enableds.com/products/payapp/v13/images/pictures/31t.jpg" alt="img" width="180" class="mx-auto rounded-circle mt-n5 shadow-l">
+      @if($member->path_foto == "")
+      <img src="https://www.enableds.com/products/payapp/v13/images/pictures/31t.jpg" id="foto" alt="img" width="180" class="mx-auto rounded-circle mb-3 shadow-l">
+      @else
+      <img src="{{url($member->path_foto)}}" id="foto" alt="img" width="180" class="mx-auto rounded-circle mb-3 shadow-l">
+      @endif
       <h1 class="color-theme text-center font-30 pt-3 mb-0">{{Auth::user()->name}}</h1>
       @if(Auth::user()->status_aktivasi == 4)
 

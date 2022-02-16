@@ -116,7 +116,8 @@ class HomeController extends Controller
         $referalCode = '';
       }
       return view('registrasi.akun.index')
-      ->with('referalCode', $referalCode);
+      ->with('referalCode', $referalCode)
+      ->with('member', $member);
     }
     public function historyWallet(){
 
