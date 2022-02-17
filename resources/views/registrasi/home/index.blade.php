@@ -195,7 +195,7 @@
                     <span class="icon rounded-s me-2 bg-yellow-dark shadow-bg shadow-bg-s"><i class="bi bi-wallet color-white"></i></span>
                 </div>
                 <div class="align-self-center ps-1">
-                    <h5 class="pt-1 mb-n1">Intensive Referal</h5>
+                    <h5 class="pt-1 mb-n1">Intensif Referal</h5>
                     @if($bonusReferalUpdated)
                     <p class="mb-0 font-11 opacity-50">Data Terakhir : {{ $bonusReferalUpdated->format('d/F/Y H:s') }}</p>
                     @else
