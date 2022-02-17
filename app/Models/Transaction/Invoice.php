@@ -36,6 +36,12 @@ class Invoice extends Model
     public function simpananType(){
 
       return $this->belongsTo('App\Models\MasterData\SimpananType', 'invoice_type_id', 'id');
-      
+
+    }
+
+    public function simpanan(){
+
+      return $this->hasMany('App\Models\Membership\Simpanan', 'invoice_id', 'id');
+
     }
 }

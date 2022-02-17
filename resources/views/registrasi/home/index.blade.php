@@ -62,7 +62,7 @@
 
     <div class="content py-2">
         <div class="d-flex text-center">
-            <div class="me-auto">
+            <div class="m-auto">
                 <a href="#" data-bs-toggle="offcanvas" id="krimsaldo" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-green-dark fas fa-arrow-circle-up"></i></a>
                 <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Kirim Saldo</h6>
             </div>
@@ -74,9 +74,14 @@
                 <a href="#" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-blue-dark bi bi-arrow-repeat"></i></a>
                 <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Tukar Saldo</h6>
             </div> -->
-            <div class="ms-auto">
+            <div class="m-auto">
                 <a href="{{url('membership/index/activity')}}" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-brown-dark bi bi-filter-circle"></i></a>
                 <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Transaksi</h6>
+            </div>
+
+            <div class="m-auto">
+                <a href="{{route('historyWallet')}}" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-blue-dark bi bi-clock-history"></i></a>
+                <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Riwayat Transaksi</h6>
             </div>
         </div>
     </div>
@@ -145,7 +150,7 @@
                 <h3 class="font-16 mb-2">Saldo</h3>
             </div>
             <div class="align-self-center ms-auto">
-                <a href="{{route('historyWallet')}}" class="font-12 pt-1">Riwayat Transaksi</a>
+                <a href="{{route('detailSimpanan')}}" class="font-12 pt-1">Detail Simpanan</a>
             </div>
         </div>
     </div>
@@ -167,7 +172,7 @@
                 </div>
                 <div class="align-self-center ms-auto text-end">
                   <h4 class="pt-1 mb-n1 color-green-dark">Rp. {{number_format($invoiceCheck, 0, '.', '.')}}</h4>
-                  <p class="mb-0 font-11"></p>
+
                 </div>
             </a>
             <div class="divider my-2 opacity-50"></div>

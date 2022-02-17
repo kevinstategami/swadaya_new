@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth'] ], function () {
 	Route::prefix('membership/index')->group(function () {
+
 		Route::get('home', 'HomeController@index')->name('index');
 		Route::get('aktivasi/{userId}', 'RegistrasiController@formAktivasi')->name('formAktivasi');
 		Route::get('uploadBukti/{tagihanId}', 'RegistrasiController@uploadBukti')->name('uploadBukti');
@@ -13,6 +14,8 @@ Route::group(['middleware' => ['auth'] ], function () {
 
 		Route::get('activity', 'HomeController@activity')->name('activity');
 		Route::get('activity-detail/{invoiceId}', 'HomeController@detailActivity')->name('detailActivity');
+
+		Route::get('detail-simpanan', 'HomeController@detailSimpanan')->name('detailSimpanan');
 
 		Route::get('history-wallet', 'HomeController@historyWallet')->name('historyWallet');
 

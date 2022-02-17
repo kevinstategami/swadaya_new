@@ -17,13 +17,19 @@ protected $fillable = [
   'amount',
   'admin_fee',
   'total',
-  'simpnana_type_id',
-  'deposit_date'
+  'deposit_date',
+  'simpanan_type_id'
 ];
 
 public function invoice(){
 
   return $this->hasMany('App\Models\Transaction\Invoice', 'invoice_id', 'id');
+
+}
+
+public function simpananType(){
+
+  return $this->belongsTo('App\Models\MasterData\SimpananType', 'simpanan_type_id', 'id');
 
 }
 

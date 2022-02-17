@@ -23,7 +23,15 @@ use File;
 
 class HomeController extends Controller
 {
+    public function detailSimpanan(){
 
+        $simpanan = Simpanan::with('simpananType')->where('user_id', Auth::user()->id)->get();
+
+        return view('registrasi.home.simpanan.detail')
+        ->with('simpanan', $simpanan);
+
+
+    }
     public function storeChangeProfile(Request $request){
 
 
