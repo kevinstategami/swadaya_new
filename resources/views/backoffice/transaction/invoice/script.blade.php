@@ -28,7 +28,7 @@
     {
       data: 'amount',
       render : function (data, type, row, meta) {
-        return 'Rp. ' + data
+        return 'Rp. ' + addCommas(data)
       }},
       {data: 'invoice_type'},
       {
