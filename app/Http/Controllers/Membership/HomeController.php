@@ -47,7 +47,7 @@ class HomeController extends Controller
         $simpanan = Simpanan::with('simpananType')
         ->select('simpanan.*')
         ->join('invoices','invoices.id', '=', 'simpanan.invoice_id')
-        ->where('invoices.status','=',0)
+        ->where('invoices.status','=',2)
         ->where('simpanan.user_id', Auth::user()->id)->get();
 
         return view('registrasi.home.simpanan.detail')
