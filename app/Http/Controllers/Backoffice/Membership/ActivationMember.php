@@ -73,7 +73,7 @@ class ActivationMember extends Controller
 			$walletHistory->amount = $bonusReferal->value;
 			$walletHistory->description = 'Saldo Bonus Referal '.$referal->member_no_downline;
 			$walletHistory->mutation_type = 'DBRFBNS';
-			$walletHistory->invoice_id = $value->id;
+			$walletHistory->invoice_id = $referal->id;
 			$wallet->amount = $wallet->amount + $walletHistory->amount;
 			$walletHistory->save();
 			$wallet->save();
