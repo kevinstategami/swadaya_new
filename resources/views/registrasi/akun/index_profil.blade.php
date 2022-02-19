@@ -189,12 +189,6 @@
                   content: 'Nomor Identitas tidak boleh kosong!',
               });
             }
-            else if ($('#referalCode').val() == ""){
-              $.alert({
-                  title: 'Informasi!',
-                  content: 'ReferalCode tidak boleh kosong!',
-              });
-            }
             else{
 
               $('#fAktivasi').submit();
