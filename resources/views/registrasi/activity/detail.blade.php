@@ -26,10 +26,10 @@
          <div class="mt-3"></div>
          <div class="card overflow-visible card-style">
            <div class="content">
-             <h4>Detail Invoice : {{$invoice->invoice_code}}
-             </h4>
+             <h4>Nomor Invoice : {{$invoice->invoice_code}}</h4>
+             <h4 >Status : <span style="color:{{$invoice->status == "2" ? "green" : "red"}}">{{$invoice->status == 2 ? "Lunas" : "Belum Terbayar"}}</span></h4>
              <p>
-               Berikut adalah rincian untuk tagihan - tagihan yang menjadi satu invoice dengan total tagihan : <b>{{number_format($invoice->total_amount, 0, '.', '.')}}</b>
+               Berikut adalah rincian invoice dengan total tagihan : <b>{{number_format($invoice->total_amount, 0, '.', '.')}}</b>
              </p>
              <div class="border border-blue-dark rounded-s overflow-hidden">
                <table class="table color-theme border-blue-dark mb-0">
