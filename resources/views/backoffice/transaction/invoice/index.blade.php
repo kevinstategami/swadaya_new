@@ -18,13 +18,13 @@
                <thead>
                  <tr>
                   <th>Name</th>
+                  <th>No.  Invoice</th>
                   <th>No Member</th>
                   <th>Email</th>
                   <th>Jumlah</th>
                   <th>Tipe Invoice</th>
                   <th>Tanggal Terbit</th>
                   <th>Status</th>
-                  <th>Keterangan</th>
                   <th>Tindakan</th>
                 </tr>
               </thead>

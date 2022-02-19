@@ -22,6 +22,7 @@
         }
       }
     },
+    {data: 'invoice_code'},
     {data: 'member_no'},
     {data: 'email'},
     {
@@ -52,16 +53,7 @@
           }
         }
       },
-      {
-        data: 'description',
-        render : function (data, type, row, meta) {
-          if(data) {
-            return data;
-          }else{
-            return '-';
-          }
-        }
-      },
+
       {
         data: "id",
         "render": function ( data, type, row, meta )
@@ -160,7 +152,7 @@
 
   function getImagePayment(id){
     $.ajax
-    ({ 
+    ({
       url: '{{URL::current()}}/image/' + id,
       type: 'get',
       success: function(result){

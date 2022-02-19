@@ -29,14 +29,14 @@
              <h4>Detail Simpanan Tahun Buku {{date('Y')}}
              </h4>
              <p>
-               Berikut adalah rincian untuk simpanan yang sudah dibayarkan sampai dengan Akhir tahun buku.</b>
+               Berikut adalah rincian untuk simpanan yang sudah lunas.</b>
              </p>
              <div class="border border-blue-dark rounded-s overflow-hidden">
                <table class="table color-theme border-blue-dark mb-0">
                  <thead class="rounded-s bg-blue-dark border-l">
                    <tr class="color-white">
                      <th scope="col">
-                       <h5 class="color-white font-15 mb-0">Bulan
+                       <h5 class="color-white font-15 mb-0">Bulan Transaksi
                        </h5>
                      </th>
                      <th scope="col">
@@ -54,7 +54,7 @@
                    @foreach($simpanan as $simpanans)
                    <tr>
                      <td><strong>{{date("F",strtotime($simpanans->deposit_date))}}</strong></td>
-                     <td>{{ $simpanans->simpananType->type_code == "SP" ? "Pokok" : "Wajib" }}</td>
+                     <td>{{ $simpanans->simpananType->type_code == "SP" ? "Simpanan Pokok - ".date("F",strtotime($simpanans->deposit_date)) : "Simpanan Wajib - ".date("F",strtotime($simpanans->deposit_date)) }}</td>
                      <td>{{number_format($simpanans->amount, 0, '.', '.')}}</td>
                    </tr>
                    @endforeach
