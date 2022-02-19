@@ -191,6 +191,7 @@ class HomeController extends Controller
 
       $history = WalletHistory::with('invoice')->where('user_id', Auth::user()->id)->get();
 
+      // return $history;
       return view('registrasi.home.history.index')
       ->with('history', $history);
 

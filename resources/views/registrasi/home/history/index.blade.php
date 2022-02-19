@@ -30,7 +30,15 @@
                   <span class="icon rounded-s me-2 gradient-green shadow-bg shadow-bg-xs"><i class="bi bi-clock-history font-18 color-white"></i></span>
                </div>
                <div class="align-self-center ps-1">
-                  <h6 class="pt-3 mb-n1 font-13">{{$historys->description}}&nbsp;&nbsp; {{ $historys->invoice->created_at->format('F') }}</h6>
+                 @if($historys->invoice !=null)
+                 <h6 class="pt-3 mb-n1 font-13">{{$historys->mutation_type == "PB" ? "Simpanan Bulanan transaksi " : "Transaksi simpanan akhir tahun buku "}}
+                   &nbsp;&nbsp;{{$historys->mutation_type == "PB" ? $historys->created_at->format('F') : $historys->created_at->format('y')}}
+                 </h6>
+                 @else
+                 <h6 class="pt-3 mb-n1 font-13">{{$historys->description}}
+                 </h6>
+                 @endif
+
                      <p class="mb-1 font-13 opacity-70">Nominal : Rp. {{number_format($historys->amount, 0, '.', '.')}}</p>
                         <p>Tanggal : {{ $historys->created_at->format('d/F/Y H:s') }}</p>
                      </div>
