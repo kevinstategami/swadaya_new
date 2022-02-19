@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     use Notifiable;
     protected $table = 'users';
-    protected $with = array('membershipAccount');
+    protected $with = array('membershipAccount', 'invoiceAccount');
 
     /**
      * The attributes that are mass assignable.
@@ -45,5 +45,9 @@ class User extends Authenticatable
 
     public function membershipAccount(){
         return $this->belongsTo('App\Models\Membership\Member', 'id', 'user_id');
+    }
+
+    public function invoiceAccount(){
+        return $this->belongsTo('App\Models\Transaction\Invoice', 'id', 'user_id');
     }
 }

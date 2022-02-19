@@ -26,6 +26,7 @@
                   <th>No. Telp</th>
                   <th>Jenis Kelamin</th>
                   <th>Bergabung Sejak</th>
+                  <th>Status Pembayaran</th>
                   <th>Tindakan</th>
                 </tr>
                 </thead>

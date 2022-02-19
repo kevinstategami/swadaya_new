@@ -66,17 +66,22 @@
               verifikasi = ''
             }
             var reject = ''
-            if(row.status != 3){
+            if(row.status != 3 && row.status != 2){
               reject = '<a class="mb-1 btn btn-warning btn-sm text-white" onclick="rejectInvoice(' + data +')" data-toggle="modal" data-target="#modal-reject" title="Tolak"><i class="fa fa-times"></i></a>&NewLine;'
             }else{
               reject = ''
+            }
+            var deleteButton = ''
+            if(row.status != 2){
+              deleteButton = '<a class="mb-1 btn btn-danger btn-sm text-white" onclick="deleteInvoice(' + data + ');"  title="Hapus"><i class="fa fa-trash"></i></a>';
             }
             return '<div class="text-center">'+
             '<a class="mb-1 btn btn-info btn-sm text-white" onclick="getImagePayment(' + data + ');"  data-toggle="modal" data-target="#modal-image"><i class="fa fa-eye" title="Bukti Bayar"></i></a>&NewLine;'+
             verifikasi+
             reject
             +
-            '<a class="mb-1 btn btn-danger btn-sm text-white" onclick="deleteInvoice(' + data + ');"  title="Hapus"><i class="fa fa-trash"></i></a>'+
+            deleteButton
+            +
             '</div>';
           }else{
             return '';

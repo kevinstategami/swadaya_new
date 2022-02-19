@@ -73,9 +73,11 @@ class InvoiceController extends Controller
 		$wallet = Wallet::where('user_id', $invoice->user_id)->first();
 		$wallet->amount = $wallet->amount - $invoice->amount;
 		$wallet->save();
-		$data = Query::DeleteRow('invoices', $id);
+		// $data = Query::DeleteRow('invoices', $id);
+		$invoice->status = 9999;
+		$invoice->save();
 		$walletHistory = WalletHistory::where('invoice_id', $id)->delete();
-		return $data;
+		return $invoice;
 	}
 
 	public function getImage($id){
