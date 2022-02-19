@@ -61,7 +61,7 @@ class RegistrasiController extends Controller
     $invoice->payment_method_id = null;
     $invoice->invoice_type = "CRRFBNS";
     $invoice->invoice_type_id = $sw->id;
-    $invoice->status = 2;
+    $invoice->status = 1;
     $invoice->payment_method_id = 1;
     $invoice->created_at = date('Y-m-d').date(' h:i:s');
     $invoice->save();
@@ -78,7 +78,7 @@ class RegistrasiController extends Controller
     $invoiceHistory->payment_method_id = '1';
     $invoiceHistory->invoice_type = "CRRFBNS";
     $invoiceHistory->invoice_type_id = $sw->id;
-    $invoiceHistory->status = 2;
+    $invoiceHistory->status = 1;
     $invoiceHistory->created_at = date('Y-m-d').date(' h:i:s');
     $invoiceHistory->save();
 
