@@ -72,7 +72,7 @@
 
                         Tanggal Terbit : {{ $waitings->created_at->format('d/F/Y') }}</p>
                      </div>
-                     @if($pendings->invoice_type != "CRRFBNS")
+                     @if($waitings->invoice_type != "CRRFBNS")
                      <div class="align-self-center ms-auto text-end">
                        <a href="{{url('membership/index/activity-detail/'.$waitings->id)}}">
                         <span class="btn btn-xxs gradient-orange shadow-bg-xs">Detail Transaksi</span>
@@ -94,7 +94,7 @@
                         <p class="mb-1 font-13 opacity-70">Tagihan : Rp. {{number_format($historys->total_amount, 0, '.', '.')}}<br>
                         Tanggal Terbit : {{ $historys->created_at->format('d/F/Y') }}</p>
                      </div>
-                     @if($pendings->invoice_type != "CRRFBNS")
+                     @if($pendings->historys != "CRRFBNS")
                      <div class="align-self-center ms-auto text-end">
                        <a href="{{url('membership/index/activity-detail/'.$historys->id)}}">
                         <span class="btn btn-xxs gradient-orange shadow-bg-xs">Detail Transaksi</span>
