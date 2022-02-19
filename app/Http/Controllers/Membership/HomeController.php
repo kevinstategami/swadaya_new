@@ -19,13 +19,36 @@ use Session;
 use App\Models\Transaction\Wallet;
 use App\Models\Transaction\WalletHistory;
 use File;
-
+use DB;
 
 class HomeController extends Controller
 {
     public function detailSimpanan(){
 
-        $simpanan = Simpanan::with('simpananType')->where('user_id', Auth::user()->id)->get();
+      $countSimpanan = Simpanan::with('simpananType')
+      ->select('simpanan.*')
+      ->join('invoices','invoices.id', '=', 'simpanan.invoice_id')
+      ->where('invoices.status','=',2)
+      ->where('simpanan.user_id', Auth::user()->id)->count();
+
+      if($countSimpanan == 0){
+
+          $alert = "Simpanan belum tersedia/anda belum upload bukti pembayaran";
+          $info = "Informasi";
+          $colors = "red";
+          $icons = "fas fa-ban";
+          return redirect(url('membership/index/home'))
+          ->with('info', $info)
+          ->with('alert', $alert)
+          ->with('colors', $colors)
+          ->with('icons', $icons);
+      }
+
+        $simpanan = Simpanan::with('simpananType')
+        ->select('simpanan.*')
+        ->join('invoices','invoices.id', '=', 'simpanan.invoice_id')
+        ->where('invoices.status','=',0)
+        ->where('simpanan.user_id', Auth::user()->id)->get();
 
         return view('registrasi.home.simpanan.detail')
         ->with('simpanan', $simpanan);

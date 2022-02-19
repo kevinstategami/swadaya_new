@@ -23,7 +23,7 @@ protected $fillable = [
 
 public function invoice(){
 
-  return $this->hasMany('App\Models\Transaction\Invoice', 'invoice_id', 'id');
+  return $this->hasMany('App\Models\Transaction\Invoice', 'id', 'invoice_id');
 
 }
 
