@@ -17,7 +17,7 @@
              <table id="table-tagihan-history" class="table table-bordered" width="100%" cellspacing="0">
                <thead>
                  <tr>
-                  <th>Name</th>
+                  <th>Nama</th>
                   <th>No Member</th>
                   <th>Email</th>
                   <th>Jumlah</th>

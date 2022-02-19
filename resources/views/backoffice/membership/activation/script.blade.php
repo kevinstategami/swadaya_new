@@ -29,11 +29,32 @@
 			}
 		},
 		{
+			data: 'invoice_account.status',
+			render : function (data, type, row, meta) {
+				if(data == 0) {
+					return '<a class="badge badge-pill badge-secondary">Belum Bayar</a>';
+				}else if(data == 3){
+					return '<a class="badge badge-pill badge-danger">Ditolak</a>';
+				}else if(data == 1){
+					return '<a class="badge badge-pill badge-info">Menunggu Verifikasi</a>';
+				}else if(data == 2){
+					return '<a class="badge badge-pill badge-success">Disetujui</a>';
+				}else {
+					return '<a class="badge badge-pill badge-warning text-white">Tidak ada Status</a>';
+				}
+			}
+		},
+		{
 			data: "membership_account.id",
 			"render": function ( data, type, row, meta )
 			{
+				var buttonActivation = '';
+				if(row.invoice_account.status == 2){
+					buttonActivation = '<a class="mb-1 btn btn-success btn-sm text-white" onclick="activateMember(' + data + ');"><i class="fa fa-check" title="Aktivasi"></i></a>&NewLine;';
+				}
 				return '<div class="text-center">'+
-				'<a class="mb-1 btn btn-success btn-sm text-white" onclick="activateMember(' + data + ');"><i class="fa fa-check" title="Aktivasi"></i></a>&NewLine;'+
+				buttonActivation
+				+
 				'<a class="mb-1 btn btn-danger btn-sm text-white" onclick="deleteRecord(' + data + ');" title="Hapus"><i class="fa fa-ban"></i></a>'+
 				'</div>';
 			}

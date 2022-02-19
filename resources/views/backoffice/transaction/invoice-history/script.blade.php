@@ -13,7 +13,7 @@
     },
     columns: [
     {
-      data: 'user.fullname',
+      data: 'invoice.user.fullname',
       render : function (data, type, row, meta) {
         if(data) {
           return data;
@@ -53,12 +53,12 @@
         }
       },
       {
-        data: "invoice.id",
+        data: "id",
         "render": function ( data, type, row, meta )
         {
           if(row.type != 'ADMIN'){
             return '<div class="text-center">'+
-            '<a class="mb-1 btn btn-info btn-sm text-white" onclick="getImagePayment(' + data + ');"  data-toggle="modal" data-target="#modal-image"><i class="fa fa-eye" title="Bukti Bayar"></i></a>&NewLine;'+
+            '<a class="mb-1 btn btn-info btn-sm text-white" onclick="getImagePayment(' + row.invoice_id + ');"  data-toggle="modal" data-target="#modal-image"><i class="fa fa-eye" title="Bukti Bayar"></i></a>&NewLine;'+
             '<a class="mb-1 btn btn-danger btn-sm text-white" onclick="deleteInvoice(' + row.id + ');"  title="Hapus"><i class="fa fa-trash"></i></a>'+
             '</div>';
           }else{
@@ -137,7 +137,7 @@
       type: 'get',
       success: function(result){
         if(result.path){
-          $('#image-payment').html('<img width="100%" src="{{URL::to('/')}}/'+ result.path +'">');
+          $('#image-payment').html('<img width="100%" src="{{URL::to('/')}}/'+ 'public/'+ result.path +'">');
         }else{
           $('#image-payment').html('<p>Belum Mengirimkan Bukti Transfer</p>');
 

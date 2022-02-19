@@ -46,17 +46,24 @@
       data: "id",
       "render": function ( data, type, row, meta )
       {
-        return '<div class="text-center">'+
-        '<a class="mb-1 btn btn-info btn-sm text-white" onclick="getHistory('+ row.user_id +')"  data-toggle="modal" data-target="#modal-history"><i class="fa fa-history" title="History"></i></a>&NewLine;'+
-        '<a class="mb-1 btn btn-success btn-sm text-white" onclick="activateWallet('+ row.id +')"><i class="fa fa-check" title="Aktif"></i></a>&NewLine;'+
-        '<a class="mb-1 btn btn-warning btn-sm text-white" onclick="deactiveWallet('+ row.id +')"><i class="fa fa-ban" title="Tidak Aktif"></i></a>&NewLine;'+
-        '<a class="mb-1 btn btn-danger btn-sm text-white" onclick="deleteWallet('+ row.id +')"  title="Hapus"><i class="fa fa-trash"></i></a>'+
-        '</div>';
-      }
-    }
-    ],
-    colReorder: true,
-  });
+        var buttonActivation = ''
+        var buttonDeactive = ''
+        if(row.status_wallet != 1){
+          buttonActivation = '<a class="mb-1 btn btn-success btn-sm text-white" onclick="activateWallet('+ row.id +')"><i class="fa fa-check" title="Aktifkan"></i></a>&NewLine;';
+        }else{
+         buttonDeactive = '<a class="mb-1 btn btn-warning btn-sm text-white" onclick="deactiveWallet('+ row.id +')"><i class="fa fa-ban" title="Non-Aktif"></i></a>&NewLine;'; 
+       }
+       return '<div class="text-center">'+
+       '<a class="mb-1 btn btn-info btn-sm text-white" onclick="getHistory('+ row.user_id +')"  data-toggle="modal" data-target="#modal-history"><i class="fa fa-history" title="History"></i></a>&NewLine;'+
+       buttonActivation+
+       buttonDeactive+
+       '<a class="mb-1 btn btn-danger btn-sm text-white" onclick="deleteWallet('+ row.id +')"  title="Hapus"><i class="fa fa-trash"></i></a>'+
+       '</div>';
+     }
+   }
+   ],
+   colReorder: true,
+ });
 
   function getHistory(id){
     $('#table-wallet-history').DataTable().destroy();
