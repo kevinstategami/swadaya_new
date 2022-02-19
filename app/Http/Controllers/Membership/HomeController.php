@@ -275,7 +275,7 @@ class HomeController extends Controller
     public function activity(){
 
       $pending = Invoice::where('user_id', Auth::user()->id)
-      ->where('status', 0)->where('invoice_type', '!=', 'CRRFBNS')->get();
+      ->where('status', 0)->get();
 
       $waiting = Invoice::where('user_id', Auth::user()->id)
       ->where('status',1)->get();
