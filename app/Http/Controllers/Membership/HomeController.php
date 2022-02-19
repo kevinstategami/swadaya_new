@@ -200,11 +200,19 @@ class HomeController extends Controller
       // $invoiceFirstCheck = Invoice::with('simpananType')->where('user_id', Auth::user()->id)->where('status', 2)
       // ->whereIn('invoice_type',['SW','SP','SS'])->sum('total_amount');
 
+      $countSimpanan = Simpanan::with('simpananType')
+      ->select('simpanan.*')
+      ->join('invoices','invoices.id', '=', 'simpanan.invoice_id')
+      ->where('invoices.status','=',2)
+      ->where('simpanan.user_id', Auth::user()->id)->count();
+
       $invoiceCheck = Invoice::whereIn('invoice_type',['PB','SMT'])->where('user_id', Auth::user()->id)->where('status', 2)->sum('total_amount');
       $invoiceUpdated = Invoice::whereIn('invoice_type',['PB','SMT'])->where('user_id', Auth::user()->id)->where('status', 2)->orderby('id','desc')->value('updated_at');
 
-      $walletBnsTersedia = WalletHistory::where('mutation_type','DBRFBNS')->where('user_id', Auth::user()->id)->sum('amount');
-      $walletBnsTersediaUpdated = WalletHistory::where('mutation_type','DBRFBNS')->where('user_id', Auth::user()->id)->orderby('id','desc')->value('updated_at');
+      $walletBnsTersedia = WalletHistory::select('wallet_histories.*')->join('users','users.id','=','wallet_histories.user_id')->where('users.status_aktivasi','=', 4)
+      ->where('mutation_type','DBRFBNS')->where('user_id', Auth::user()->id)->sum('amount');
+      $walletBnsTersediaUpdated = WalletHistory::select('wallet_histories.*')->join('users','users.id','=','wallet_histories.user_id')->where('users.status_aktivasi','=', 4)
+      ->where('mutation_type','DBRFBNS')->where('user_id', Auth::user()->id)->orderby('id','desc')->value('updated_at');
 
       $walletBnsSudahDitarik = WalletHistory::where('mutation_type','CRRFBNS')->where('user_id', Auth::user()->id)->sum('amount');
       $walletBnsSudahDitarikUpdated = WalletHistory::where('mutation_type','CRRFBNS')->where('user_id', Auth::user()->id)->orderby('id','desc')->value('updated_at');
