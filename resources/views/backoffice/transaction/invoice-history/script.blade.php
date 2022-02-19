@@ -13,7 +13,7 @@
     },
     columns: [
     {
-      data: 'user.fullname',
+      data: 'invoice.user.fullname',
       render : function (data, type, row, meta) {
         if(data) {
           return data;
