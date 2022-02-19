@@ -53,7 +53,7 @@
                    @foreach($simpanan as $simpanans)
                    <tr>
                      <td><strong>{{date("F",strtotime($simpanans->deposit_date))}}</strong></td>
-                     <td>{{ $simpanans->simpananType->type_code == "SP" ? "Simpanan Pokok - ".date("F",strtotime($simpanans->deposit_date)) : "Simpanan Wajib - ".date("F",strtotime($simpanans->deposit_date)) }}</td>
+                     <td>{{ $simpanans->simpananType->type_code == "SP" ? "Simpanan Pokok - ".date("F",strtotime($simpanans->created_at)) : "Simpanan Wajib - ".date("F",strtotime($simpanans->created_at)) }}</td>
                      <td>{{number_format($simpanans->amount, 0, '.', '.')}}</td>
                    </tr>
                    @endforeach
