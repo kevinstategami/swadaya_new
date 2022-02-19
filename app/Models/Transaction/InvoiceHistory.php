@@ -12,6 +12,11 @@ class InvoiceHistory extends Model
 
     public function invoice(){
       return $this->belongsTo('App\Models\Transaction\Invoice', 'invoice_code','invoice_code');
-      
+
   }
+
+  public function simpanan(){
+    return $this->belongsTo('App\Models\Membership\Simpanan', 'invoice_id','invoice_id');
+
+}
 }

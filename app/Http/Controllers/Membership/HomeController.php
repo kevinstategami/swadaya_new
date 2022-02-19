@@ -285,7 +285,9 @@ class HomeController extends Controller
 
       $invoice = Invoice::find($invoiceId);
 
-      $invoiceHistory = InvoiceHistory::where('invoice_id', $invoiceId)->get();
+      $invoiceHistory = InvoiceHistory::with('simpanan')->where('invoice_id', $invoiceId)->get();
+
+      // return $invoiceHistory;
 
       return view('registrasi.activity.detail')
       ->with('invoice', $invoice)

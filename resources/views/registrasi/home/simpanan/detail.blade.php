@@ -26,8 +26,7 @@
          <div class="mt-3"></div>
          <div class="card overflow-visible card-style">
            <div class="content">
-             <h4>Detail Simpanan Tahun Buku {{date('Y')}}
-             </h4>
+             <h4>Detail Simpanan Tahun Buku {{date('Y')}}</h4>
              <p>
                Berikut adalah rincian untuk simpanan yang sudah <strong style="color:green">lunas</strong>.</b>
              </p>
@@ -40,7 +39,7 @@
                        </h5>
                      </th>
                      <th scope="col">
-                       <h5 class="color-white font-15 mb-0">Tipe Simpanan
+                       <h5 class="color-white text-center font-15 mb-0">Jenis Simpanan
                        </h5>
                      </th>
                      <th scope="col">

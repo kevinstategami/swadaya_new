@@ -29,18 +29,18 @@
              <h4>Nomor Invoice : {{$invoice->invoice_code}}</h4>
              <h4 >Status : <span style="color:{{$invoice->status == "2" ? "green" : "red"}}">{{$invoice->status == 2 ? "Lunas" : "Belum Terbayar"}}</span></h4>
              <p>
-               Berikut adalah rincian invoice dengan total tagihan : <b>{{number_format($invoice->total_amount, 0, '.', '.')}}</b>
+               Berikut adalah rincian invoice dengan total tagihan : <b>Rp. {{number_format($invoice->total_amount, 0, '.', '.')}}</b>
              </p>
              <div class="border border-blue-dark rounded-s overflow-hidden">
                <table class="table color-theme border-blue-dark mb-0">
                  <thead class="rounded-s bg-blue-dark border-l">
                    <tr class="color-white">
                      <th scope="col">
-                       <h5 class="color-white font-15 mb-0">Kode Simpanan
+                       <h5 class="color-white font-15 mb-0">Bulan Transaksi
                        </h5>
                      </th>
                      <th scope="col">
-                       <h5 class="color-white font-15 mb-0">Tipe Simpanan
+                       <h5 class="color-white text-center font-15 mb-0">Jenis Simpanan
                        </h5>
                      </th>
                      <th scope="col">
@@ -52,8 +52,8 @@
                  <tbody>
                    @foreach($invoiceHistory as $history)
                    <tr>
-                     <td><strong>{{$history->invoice_code}}</strong></td>
-                     <td>{{$history->invoice_type === "SP" ? "Pokok" : "Wajib" }}</td>
+                     <td><strong>{{date("F",strtotime($history->simpanan->deposit_date))}}</strong></td>
+                     <td>{{$history->invoice_type === "SP" ? "Simpanan Pokok - ".date("F",strtotime($history->created_at)) : "Simpanan Wajib - ".date("F",strtotime($history->created_at)) }}</td>
                      <td>{{number_format($history->amount, 0, '.', '.')}}</td>
                    </tr>
                    @endforeach
