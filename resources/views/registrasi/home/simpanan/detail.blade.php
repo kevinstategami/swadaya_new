@@ -29,7 +29,7 @@
              <h4>Detail Simpanan Tahun Buku {{date('Y')}}
              </h4>
              <p>
-               Berikut adalah rincian untuk simpanan yang sudah lunas.</b>
+               Berikut adalah rincian untuk simpanan yang sudah <strong style="color:green">lunas</strong>.</b>
              </p>
              <div class="border border-blue-dark rounded-s overflow-hidden">
                <table class="table color-theme border-blue-dark mb-0">
