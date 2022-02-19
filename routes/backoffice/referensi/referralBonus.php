@@ -20,6 +20,8 @@ Route::group(['middleware' => ['auth', 'admin'] ], function () {
 			Route::get('/getIndex', 'ReferralBonusController@getIndex');
 			Route::post('/store', 'ReferralBonusController@store');
 			Route::post('/update/{id}', 'ReferralBonusController@update');
+			Route::get('/activate/{id}', 'ReferralBonusController@activate');
+			Route::get('/deactivate/{id}', 'ReferralBonusController@deactivate');
 		});
 	});
 });

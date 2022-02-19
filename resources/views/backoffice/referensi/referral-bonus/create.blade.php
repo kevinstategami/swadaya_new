@@ -26,6 +26,7 @@
               <option value="NOMINAL">NOMINAL</option>
             </select>
           </div>
+          <input type="hidden" name="sort" value="0">
           <div class="form-group">
             <label class="form-label">Nilai</label>
             <input class="form-control" type="number" name="value" placeholder="Nilai">

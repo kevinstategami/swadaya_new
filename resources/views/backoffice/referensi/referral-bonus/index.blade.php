@@ -22,6 +22,7 @@
 	                <th>Nama</th>
                   <th>Tipe</th>
                   <th>Nilai</th>
+                  <th>Status</th>
                   <th>Aksi</th>
 	              </tr>
 	              </thead>

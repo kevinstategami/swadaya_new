@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\MasterData\ReferralBonus;
 use App\Utils\Query;
 use Session;
+use DB;
 
 class ReferralBonusController extends Controller
 {
@@ -28,6 +29,21 @@ class ReferralBonusController extends Controller
     public function store(Request $request){
         $data = Query::InsertRow('referral_bonuses', $request->all(), 'referralBonus');
         return $data;
+    }
+
+    public function activate($id){
+        $e = DB::table('referral_bonuses')->where('sort',1)->update(['sort' => 0]);
+        $d = ReferralBonus::find($id);
+        $d->sort = 1;
+        $d->save();
+        return $d;
+    }
+
+    public function deactivate($id){
+        $d = ReferralBonus::find($id);
+        $d->sort = 0;
+        $d->save();
+        return $d;
     }
 
     public function update(Request $request, $id){
