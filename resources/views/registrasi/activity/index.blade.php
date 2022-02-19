@@ -90,7 +90,7 @@
                         <span class="icon rounded-s me-2 gradient-blue shadow-bg shadow-bg-xs"><i class="bi bi-cash font-18 color-white"></i></span>
                      </div>
                      <div class="align-self-center ps-1">
-                        <h5 class="pt-3 mb-n1">{{$historys->invoice_code}} - <span class="text-success" style="font-size:12px">{{$historys->status == "2" ? "Terverifikasi" : "Ditolak"}}</span></h5>
+                        <h5 class="pt-3 mb-n1">{{$historys->invoice_code}} - <span class="{{$historys->status == "2" ? "text-success" : "text-danger"}}" style="font-size:12px">{{$historys->status == "2" ? "Terverifikasi" : "Ditolak"}}</span></h5>
                         <p class="mb-1 font-13 opacity-70">Tagihan : Rp. {{number_format($historys->total_amount, 0, '.', '.')}}<br>
                         Tanggal Terbit : {{ $historys->created_at->format('d/F/Y') }}</p>
                      </div>
