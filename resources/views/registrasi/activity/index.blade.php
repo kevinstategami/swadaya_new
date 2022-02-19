@@ -44,6 +44,7 @@
                         Terbit Pada : {{ $pendings->created_at->format('d/F/Y') }}</p>
                      </div>
 
+                        @if($pendings->invoice_type != "CRRFBNS")
 
                         <div class="align-self-center ms-auto text-end">
                           <a href="{{url('membership/index/activity-detail/'.$pendings->id)}}">
@@ -53,6 +54,7 @@
                            <span class="btn btn-xxs gradient-green shadow-bg-xs">Upload Bukti</span>
                            </a>
                         </div>
+                        @endif
 
                   </a>
               @endforeach
@@ -70,11 +72,13 @@
 
                         Tanggal Terbit : {{ $waitings->created_at->format('d/F/Y') }}</p>
                      </div>
+                     @if($pendings->invoice_type != "CRRFBNS")
                      <div class="align-self-center ms-auto text-end">
                        <a href="{{url('membership/index/activity-detail/'.$waitings->id)}}">
                         <span class="btn btn-xxs gradient-orange shadow-bg-xs">Detail Transaksi</span>
                         </a>
                      </div>
+                     @endif
                   </a>
                   @endforeach
                </div>
@@ -90,12 +94,13 @@
                         <p class="mb-1 font-13 opacity-70">Tagihan : Rp. {{number_format($historys->total_amount, 0, '.', '.')}}<br>
                         Tanggal Terbit : {{ $historys->created_at->format('d/F/Y') }}</p>
                      </div>
-
+                     @if($pendings->invoice_type != "CRRFBNS")
                      <div class="align-self-center ms-auto text-end">
                        <a href="{{url('membership/index/activity-detail/'.$historys->id)}}">
                         <span class="btn btn-xxs gradient-orange shadow-bg-xs">Detail Transaksi</span>
                         </a>
                      </div>
+                     @endif
                   </a>
                   @endforeach
                </div>
