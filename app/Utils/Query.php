@@ -27,7 +27,7 @@ class Query {
 			{
 				$table = $table->offset($request->start)->limit($request->length);
 			}
-			$data = $table->get();
+			$data = $table->orderBy('id','DESC')->get();
 			$response = [
 				'draw' => $request->draw,
 				'recordsTotal' => $count,

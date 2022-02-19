@@ -11,7 +11,7 @@ class InvoiceHistory extends Model
     protected $with = array('invoice');
 
     public function invoice(){
-      return $this->belongsTo('App\Models\Transaction\Invoice', 'invoice_code','invoice_code');
+      return $this->belongsTo('App\Models\Transaction\Invoice', 'invoice_id','id');
 
   }
 
