@@ -63,7 +63,7 @@ class ActivationMember extends Controller
 
 		$referal = Downline::where('user_id_downline', $member)->first();
 		if($referal){
-			$bonusReferal = ReferralBonus::where('type', 'REFERAL BONUS')->first();
+			$bonusReferal = ReferralBonus::where('name', 'REFERAL BONUS')->first();
 			$wallet = Wallet::where('user_id', $referal->user_id)->first();
 			$walletHistory = new WalletHistory;
 			$walletHistory->user_id = $referal->user_id;
