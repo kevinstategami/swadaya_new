@@ -281,7 +281,7 @@ class HomeController extends Controller
       ->where('status',1)->get();
 
       $history = Invoice::where('user_id', Auth::user()->id)
-      ->where('status',2)->get();
+      ->whereIn('status',[2,3])->get();
 
       return view('registrasi.activity.index')
       ->with('pending', $pending)
