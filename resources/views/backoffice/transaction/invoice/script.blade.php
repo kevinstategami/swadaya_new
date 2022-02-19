@@ -75,11 +75,14 @@
             if(row.status != 2){
               deleteButton = '<a class="mb-1 btn btn-danger btn-sm text-white" onclick="deleteInvoice(' + data + ');"  title="Hapus"><i class="fa fa-trash"></i></a>';
             }
+            var lihatBukti = ''
+            if(row.invoice_type != 'CRRFBNS'){
+              lihatBukti = '<a class="mb-1 btn btn-info btn-sm text-white" onclick="getImagePayment(' + data + ');"  data-toggle="modal" data-target="#modal-image"><i class="fa fa-eye" title="Bukti Bayar"></i></a>&NewLine;';
+            }
             return '<div class="text-center">'+
-            '<a class="mb-1 btn btn-info btn-sm text-white" onclick="getImagePayment(' + data + ');"  data-toggle="modal" data-target="#modal-image"><i class="fa fa-eye" title="Bukti Bayar"></i></a>&NewLine;'+
+            lihatBukti+
             verifikasi+
-            reject
-            +
+            reject+
             deleteButton
             +
             '</div>';
