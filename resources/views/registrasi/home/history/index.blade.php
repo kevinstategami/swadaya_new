@@ -31,8 +31,8 @@
                </div>
                <div class="align-self-center ps-1">
                  @if($historys->invoice !=null)
-                 <h6 class="pt-3 mb-n1 font-13">{{$historys->mutation_type == "PB" ? "Simpanan Bulanan transaksi " : "Transaksi simpanan akhir tahun buku "}}
-                   &nbsp;&nbsp;{{$historys->mutation_type == "PB" ? $historys->created_at->format('F') : $historys->created_at->format('y')}}
+                 <h6 class="pt-3 mb-n1 font-13">{{$historys->mutation_type == "PB" ? "Simpanan Bulanan transaksi " : $historys->mutation_type == "SMT" ? "Transaksi simpanan akhir tahun buku " : "Peranikan Referal Bonus "}}
+                   &nbsp;&nbsp;{{$historys->mutation_type == "PB" ? $historys->created_at->format('F') : $historys->mutation_type == "SMT" ? $historys->created_at->format('y') : ""}}
                  </h6>
                  @else
                  <h6 class="pt-3 mb-n1 font-13">{{$historys->description}}
