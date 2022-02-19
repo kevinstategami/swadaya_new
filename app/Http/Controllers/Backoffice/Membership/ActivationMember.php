@@ -39,6 +39,10 @@ class ActivationMember extends Controller
 		$user->status_aktivasi = 4;
 		$user->save();
 
+		$walletUser = Wallet::where('user_id', $member)->first();
+		$walletUser->status_wallet = 1;
+		$walletUser->save();
+
 		// $invoice = Invoice::where('user_id', $member)->update(
 		// 	['status' => 2]
 		// );
