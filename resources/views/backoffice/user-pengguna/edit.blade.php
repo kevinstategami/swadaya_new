@@ -31,6 +31,13 @@
              <input class="form-control" type="password" name="password" id="password" placeholder="Biarkan jika tidak ingin dirubah!">
            </div>
            <div class="form-group">
+            <label class="form-label">Level</label>
+            <select class="form-control" name="type">
+             <option value="CMS">CMS</option>
+             <option value="ADMIN">ADMIN</option>
+           </select>
+           </div>
+           <div class="form-group">
              <label class="form-label">Status</label>
              <select class="form-control" name="status_aktivasi">
               <option value="1" {{$value->status_aktivasi == 1 ? 'selected' : ''}}>Aktif</option>
@@ -38,7 +45,7 @@
             </select>
           </div>
         </div>
-        <input type="hidden" name="type" value="ADMIN"/>
+        {{-- <input type="hidden" name="type" value="ADMIN"/> --}}
         <div class="card-footer text-right">
          <button type="submit" class="btn btn-primary">Simpan</button>
        </div>

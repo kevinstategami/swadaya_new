@@ -35,6 +35,13 @@
              <input class="form-control" type="password" name="konfirmasi_password" id="konfirmasi_password" placeholder="Konfirmasi Password">
            </div>
            <div class="form-group">
+             <label class="form-label">Level</label>
+             <select class="form-control" name="type">
+              <option value="CMS">CMS</option>
+              <option value="ADMIN">ADMIN</option>
+            </select>
+          </div>
+           <div class="form-group">
              <label class="form-label">Status</label>
              <select class="form-control" name="status_aktivasi">
               <option value="1">Aktif</option>
@@ -42,7 +49,6 @@
             </select>
           </div>
         </div>
-        <input type="hidden" name="type" value="ADMIN"/>
         <div class="card-footer text-right">
          <button type="button" class="btn btn-primary" onclick="checkPassword()">Simpan</button>
        </div>
