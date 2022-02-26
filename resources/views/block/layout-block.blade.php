@@ -15,7 +15,7 @@
                 <div class="carousel-caption animated" data-animation="bounceInDown" data-animation-delay="100">
                     <h1 class="font-pacifico text-capitalize color-light">{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</h1>
                     <p class="color-light mt25">{{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : '' }}<br>
-                        @if(!Auth::guest() && Auth::user()->edit_mode)
+                        @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
                             <a href="{{url('cms/block/edit-lc/'.$value->id)}}" class="button button-md button-pasific hover-ripple-out mt25">Ubah <span class="fa fa-cog"></span></a>
                         @endif
                     </p>
@@ -51,7 +51,7 @@
                         untuk mensejahterakan anggotanya. -->
                         <!-- <a class="button button-circle button-grad-blood-mary button-lg mt20">Purchase Now</a> -->
                     </h4>
-                    @if(!Auth::guest() && Auth::user()->edit_mode)
+                    @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
                         <a href="javascript:void(0)" onclick="editCmsBlock('{{$value->id}}')" class="button button-pasific button-lg hover-ripple-out animated">Ubah <span class="fa fa-cog"></span></a>
                     @endif
                 </div>
@@ -67,7 +67,7 @@
     <div class="container">
          <!-- title and short description start -->
          <div class="row mt50 mb25">
-            @if(!Auth::guest() && Auth::user()->edit_mode) 
+            @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS') 
                 <div class="col-md-12">
                     <a href="{{url('cms/block/edit-cc/'.$value->id)}}" class="button button-md button-pasific hover-ripple-out mt25">Ubah <span class="fa fa-cog"></span></a>
                 </div>
@@ -111,7 +111,7 @@
         <div class="row pt50 pb40">                        
             <h3 class="text-center color-primary">{{$value->title}}</h3>
             
-            @if(!Auth::guest() && Auth::user()->edit_mode) 
+            @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS') 
                 <div class="col-md-12 mb35">
                     <a href="{{url('cms/block/edit-lc/'.$value->id)}}" class="button button-md button-pasific hover-ripple-out mt25">Ubah <span class="fa fa-cog"></span></a>
                 </div>
@@ -149,7 +149,7 @@
         
         <!-- title and short description start -->
         <div class="row">
-            @if(!Auth::guest() && Auth::user()->edit_mode)
+            @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
                 <div class="col-md-12 mb35">
                     <a href="{{url('cms/block/edit-lc/'.$value->id)}}" class="button button-md button-pasific hover-ripple-out mt25">Ubah <span class="fa fa-cog"></span></a>
                 </div>
@@ -221,7 +221,7 @@
 <div id="service" class="mb35">
     <div class="container">
         
-        @if(!Auth::guest() && Auth::user()->edit_mode)
+        @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
             <a href="javascript:void(0)" onclick="editCmsBlock('{{$value->id}}')" class="button button-pasific button-lg hover-ripple-out animated">Ubah <span class="fa fa-cog"></span></a>
         @endif
         <!-- title and short description start -->
@@ -259,7 +259,7 @@
 <div class="pt100 pb100 bg-grad-mojito">
     <div class="container">
         <div class="row">
-            @if(!Auth::guest() && Auth::user()->edit_mode)
+            @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
                 <div class="col-md-12 mb35">
                     <a href="{{url('cms/block/edit-cc/'.$value->id)}}" class="button button-md button-pasific hover-ripple-out mt25">Ubah <span class="fa fa-cog"></span></a>
                 </div>
@@ -330,7 +330,7 @@
 @if($value->block_type == 'CMC')
 <div class="container">
     <div class="row">
-        @if(!Auth::guest() && Auth::user()->edit_mode)
+        @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
             <div class="col-md-12 mb35">
                 <a href="{{url('cms/block/edit-lc/'.$value->id)}}" class="button button-md button-pasific hover-ripple-out mt25">Ubah <span class="fa fa-cog"></span></a>
             </div>
@@ -359,7 +359,7 @@
 @endif
 @if($value->block_type == 'RSC')
 <div class="container mt35 mb35">
-    @if(!Auth::guest() && Auth::user()->edit_mode)
+    @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
         <div class="col-md-12 mb35">
             <a href="{{url('cms/block/edit-lc/'.$value->id)}}" class="button button-md button-pasific hover-ripple-out mt25">Ubah <span class="fa fa-cog"></span></a>
         </div>
@@ -387,7 +387,7 @@
 @if($value->block_type == 'LFC')
 <div class="container mt35 mb35">
     <div class="row">
-        @if(!Auth::guest() && Auth::user()->edit_mode)
+        @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
             <div class="col-md-12">
                 <a href="javascript:void(0)" onclick="editCmsBlock('{{$value->id}}')" class="button button-pasific button-lg hover-ripple-out animated">Ubah <span class="fa fa-cog"></span></a>
             </div>

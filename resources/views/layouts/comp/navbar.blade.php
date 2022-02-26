@@ -8,7 +8,7 @@
             </button>
             <a class="navbar-brand navbar-brand-img page-scroll p-0" href="{{url('/')}}" style="position: relative">
                 <img src="{{ !$cmsLogo['lg'] || !$cmsLogo['lg']['dokumen']  ? asset('img/Logo-KJMSU-Rev-02.png') : url('images/'.$cmsLogo['lg']->dokumen->path) }}" class="img-logo-navbar" width="200px" alt="logo">
-                @if(!Auth::guest() && Auth::user()->edit_mode)
+                @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
                     <i class="fa fa-edit edit-logo-icon" onclick="editLogo()"></i>
                 @endif
             </a>
@@ -39,7 +39,7 @@
                 <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">{{Auth::user()->name}} </a>
                     <ul class="dropdown-menu has-submenu" role="menu">
                         <li><a href="{{route('index')}}">Dashboard</a></li>
-                        @if(Auth::user()->type == 'ADMIN')
+                        @if(Auth::user()->type == 'CMS')
                         <li>
                             <a href="{{route('setEditMode', Auth::user()->edit_mode ? 'y' : 'n')}}">Edit Mode ({{Auth::user()->edit_mode ? 'On' : 'Off'}}) </a>
                         </li>

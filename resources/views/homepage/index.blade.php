@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    @if(!Auth::guest() && Auth::user()->edit_mode)
+    @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
         <a href="javascript:void(0)" class="button button-pasific button-lg hover-ripple-out animated btn-add-block" style="z-index: 999" onclick="addBlock('homepage')">Add Block</a>
     @endif
 
