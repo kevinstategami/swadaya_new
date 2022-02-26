@@ -157,7 +157,7 @@
 
     <div class="card card-style">
         <div class="content">
-            <a href="#" class="d-flex py-1">
+            <a href="#" class="d-flex py-1" style="cursor:context-menu">
                 <div class="align-self-center">
                     <span class="icon rounded-s me-2 bg-green-dark shadow-bg shadow-bg-s"><i class="bi bi-archive color-white"></i></span>
                 </div>
@@ -176,7 +176,7 @@
                 </div>
             </a>
             <div class="divider my-2 opacity-50"></div>
-            <a href="#" class="d-flex py-1">
+            <a href="#" class="d-flex py-1" style="cursor:context-menu">
                 <div class="align-self-center">
                     <span class="icon rounded-s me-2 bg-blue-dark shadow-bg shadow-bg-s"><i class="bi bi-wallet color-white"></i></span>
                 </div>
@@ -195,7 +195,7 @@
                 </div>
             </a>
             <div class="divider my-2 opacity-50"></div>
-            <a href="#" class="d-flex py-1">
+            <a href="{{route('detailReferal')}}" class="d-flex py-1" title="Klik untuk melihat detail">
                 <div class="align-self-center">
                     <span class="icon rounded-s me-2 bg-yellow-dark shadow-bg shadow-bg-s"><i class="bi bi-wallet color-white"></i></span>
                 </div>

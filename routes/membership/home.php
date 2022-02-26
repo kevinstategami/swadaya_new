@@ -33,6 +33,8 @@ Route::group(['middleware' => ['auth'] ], function () {
 		Route::get('profil', 'HomeController@profil')->name('profil');
 		Route::post('storeChangeProfile', 'HomeController@storeChangeProfile')->name('storeChangeProfile');
 
+		Route::get('detailReferal', 'HomeController@detailReferal')->name('detailReferal');
+
 
 	});
 });

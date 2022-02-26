@@ -23,6 +23,29 @@ use DB;
 
 class HomeController extends Controller
 {
+    public function detailReferal(){
+
+      $walletHistory = WalletHistory::where('mutation_type','DBRFBNS')->where('user_id', Auth::user()->id)->get();
+
+
+      if(count($walletHistory) < 1){
+        $alert = "Insentif referal tidak tersedia";
+        $info = "Informasi";
+        $colors = "red";
+        $icons = "fas fa-ban";
+
+        return redirect(url('membership/index/home'))
+        ->with('info', $info)
+        ->with('alert', $alert)
+        ->with('colors', $colors)
+        ->with('icons', $icons);
+      }
+
+
+      return view('registrasi.home.insentif.detail')
+      ->with('walletHistory', $walletHistory);
+    }
+
     public function detailSimpanan(){
 
       $countSimpanan = Simpanan::with('simpananType')
