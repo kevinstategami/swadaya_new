@@ -50,6 +50,7 @@
 <link rel="stylesheet" href="{{asset('template/pasific/assets/css/icon/linea-music-10.css')}}">
 <link rel="stylesheet" href="{{asset('template/pasific/assets/css/icon/linea-software-10.css')}}">
 <link rel="stylesheet" href="{{asset('template/pasific/assets/css/icon/linea-weather-10.css')}}"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link rel="stylesheet" href="{{asset('template/pasific/assets/css/icon/font-awesome.css')}}">
 <link rel="stylesheet" href="{{asset('template/pasific/assets/css/icon/et-line-font.css')}}">
 

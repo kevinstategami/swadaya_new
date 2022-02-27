@@ -119,14 +119,18 @@
 
             <!-- Content Box Align Left -->
             @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
-            <div class="col-md-4 col-sm-6 col-xs-12 mheight-150 m-3">
+            <div class="col-md-6 col-sm-6 col-xs-12 mheight-150 m-3">
                 <div class="content-box content-box-icon content-box-left-icon">
                     @if(explode(',', $value->path)[$i] != "")
                         <img class="img-lc" src="{{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'.explode(',', $value->path)[$i]) : ''}}" width="50%"/>
                     @else
                         <span class="icon-desktop color-orange"></span>
                     @endif
+                    @if(isset(explode(',', $value->description)[$i]))
+                    <h5 style="margin-top: 5%">{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</h5>     
+                    @else
                     <h5>{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</h5>     
+                    @endif
                     <p>
                         {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : ''}}
                     </p>
@@ -181,7 +185,7 @@
                     <div class="col-md-5 animated" data-animation="fadeIn" data-animation-delay="100">
                         
                         <h3 class="font-size-normal">
-                            <small class="color-primary">Title</small>
+                            <!-- <small class="color-primary">Title</small> -->
                             {{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}
                         </h3>
                         
@@ -337,7 +341,7 @@
         @endif
         <!-- team member one start -->
         @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
-            <div class="col-md-4 col-sm-4 col-xs-6 mt30">
+            <div class="col-md-3 col-sm-3 col-xs-6 mt30">
                 <div class="team team-two">
                     <img src="{{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'.explode(',', $value->path)[$i]) : ''}}" alt=""
                         class="img-responsive">

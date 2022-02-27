@@ -1,5 +1,3 @@
-<!-- footer Area
-===================================== -->
 <div id="footer" class="footer-two pt50">
     <div class="container-fluid bb-solid-1">
         <div class="container pb35">
@@ -7,10 +5,10 @@
                 
                 <!-- footer about start -->
                 <div class="col-md-3 col-sm-12 col-xs-12">
-                    <h6 class="font-montserrat text-uppercase color-black">Tentang Kami</h6>
+                    <!-- <h6 class="font-montserrat text-uppercase color-black">Tentang Kami</h6>
                     <p>
                         {{App\Models\MasterData\CMS::where('code', 'SU')->value('description')}}
-                    </p>
+                    </p> -->
                 </div>
                 <!-- footer about end -->
                 
@@ -19,10 +17,10 @@
                     <h6 class="font-montserrat text-uppercase color-black">Menu</h6>
                     <ul class="no-icon-list">
                         <li><a href="{{url('/')}}">Beranda</a></li>
-                        <li><a href="{{url('about-us')}}">Tentang Kami</a></li>
-                        <li><a href="#">Jenis Koperasi</a></li>
-                        <li><a href="#">Visi &amp; Visi</a></li>
-                        <li><a href="#">Struktur Organisasi</a></li>
+                        <li><a href="{{url('about-us')}}">Apa Itu Songgomas?</a></li>
+                        <li><a href="#service">Layanan Songgomas</a></li>
+                        <li><a href="#service">Apa Kata Mereka?</a></li>
+                        <li><a href="#team">Our Contact</a></li>
                     </ul>
                 </div>
                 <!-- footer menu one end -->
@@ -55,11 +53,11 @@
                 <div class="col-md-2 col-sm-3 col-xs-12">
                     <h6 class="font-montserrat text-uppercase color-black">Social Media</h6>
                     <div class="social social-two">
-                        <a href="#"><i class="fa fa-twitter color-blue"></i></a>
-                        <a href="#"><i class="fa fa-facebook color-primary"></i></a>
-                        <a href="#"><i class="fa fa-linkedin color-blue"></i></a><br><br>
-                        <a href="#"><i class="fa fa-github color-dark"></i></a>
-                        <a href="#"><i class="fa fa-pinterest color-red"></i></a>
+                        <a href="https://twitter.com/SonggoMas"><i class="fab fa-twitter color-blue"></i></a>
+                        <a href="https://www.facebook.com/songgomasindonesia"><i class="fab fa-facebook color-primary"></i></a>
+                        <a href="https://twitter.com/SonggoMas"><i class="fab fa-twitter color-blue"></i></a><br><br>
+                        <a href="https://www.tiktok.com/@songgomasindonesia"><i class="fab fa-tiktok color-dark"></i></a>
+                        <a href="https://www.youtube.com/channel/UCcMEZ6XqsMU-LzLi5WImfVw"><i class="fab fa-youtube color-red"></i></a>
                     </div>
                 </div>
                 <!-- footer social icons end -->
@@ -89,4 +87,4 @@
             </div><!-- row end -->
         </div><!-- container end -->
     </div><!-- container-fluid end -->
-</div><!-- footer end -->
+</div><!-- footer end

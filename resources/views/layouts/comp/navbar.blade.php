@@ -20,16 +20,16 @@
                     <a href="{{url('/')}}">Beranda </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="{{url('/about-us')}}">Tentang Kami </a>
+                    <a href="{{url('/about-us')}}">Apa Itu Songgomas? </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="#service">Jenis Koperasi </a>
+                    <a href="#service">Layanan Songgomas </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="#visimisi">Visi &amp; Misi </a>
+                    <a href="#service">Apa Kata Mereka? </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="#team">Struktur Organisasi </a>
+                    <a href="#team">Our Contact </a>
                 </li>
                 @if(Auth::guest())
                 <li class="megamenu-fw">
