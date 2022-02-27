@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => ['auth', 'admin'] ], function () {
+Route::group(['middleware' => ['auth'] ], function () {
 	Route::prefix('cms')->group(function () {
 		Route::prefix('block')->group(function () {
 			// Route::get('/get', 'BlockController@index')->name('cmsBlockGet');
