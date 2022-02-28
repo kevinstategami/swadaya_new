@@ -16,11 +16,12 @@
                 <div class="col-md-2 col-md-offset-1 col-sm-3 col-xs-4">
                     <h6 class="font-montserrat text-uppercase color-black">Menu</h6>
                     <ul class="no-icon-list">
-                        <li><a href="{{url('/')}}">Beranda</a></li>
-                        <li><a href="{{url('about-us')}}">Apa Itu Songgomas?</a></li>
-                        <li><a href="#service">Layanan Songgomas</a></li>
-                        <li><a href="#service">Apa Kata Mereka?</a></li>
-                        <li><a href="#team">Our Contact</a></li>
+                        <!-- <li><a href="{{url('/')}}">Beranda</a></li> -->
+                        <li><a href="#mmc-1">Apa Itu Songgomas?</a></li>
+                        <li><a href="#mc-3">Songgomas Spirit</a></li>
+                        <li><a href="#ZC-6">Layanan Songgomas</a></li>
+                        <li><a href="#mmc-5">Apa Kata Mereka?</a></li>
+                        <li><a href="#rsc-7">Our Contact</a></li>
                     </ul>
                 </div>
                 <!-- footer menu one end -->
@@ -79,7 +80,7 @@
                 <!-- footer bottom start -->
                 <div class="col-md-6 col-sm-6 col-xs-6 col-md-offset-6 pull-right">
                     <p class="text-right">
-                        <a href="{{url('syarat-keanggotaan')}}" class="mr20">Syarat Keanggotaan</a>
+                        <a href="https://anggota.songgomas.id/membership/auth/term-condition" class="mr20">Syarat Keanggotaan</a>
                     </p>
                 </div>
                 <!-- footer bottom end -->

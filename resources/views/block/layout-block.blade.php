@@ -2,7 +2,7 @@
 
 <!-- SS -->
 @if($value->block_type == 'SSC')
-<div id="block-carousel" class="carousel slide" data-ride="carousel">
+<div id="block-carousel-{{$key}}" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#block-carousel" data-slide-to="0" class="active"></li>
         <li data-target="#block-carousel" data-slide-to="1"></li>
@@ -31,7 +31,7 @@
 
 <!-- MC  -->
 @if($value->block_type == 'MC')
-<header class="pt100 pb100 bg-grad-stellar" style="background-image: url({{$value->background_path ? url('get-block-image/'. $value->background_path) : ''}}); background-repeat: no-repeat; background-color: #fff; background-size: cover;">
+<header class="pt100 pb100 bg-grad-stellar" style="background-image: url({{$value->background_path ? url('get-block-image/'. $value->background_path) : ''}}); background-repeat: no-repeat; background-color: #fff; background-size: cover;" id="mc-{{$key}}">
         <div class="container mt100 mb70">
             <div class="row">
                 <div class="col-md-12 text-center">
@@ -63,7 +63,7 @@
 
 @if($value->block_type == 'CC')
 <!-- New Block Area -->
-<div style="background-image: url({{$value->background_path ? url('get-block-image/'. $value->background_path) : ''}}); background-repeat: no-repeat; background-color: #fff; background-size: cover;">
+<div style="background-image: url({{$value->background_path ? url('get-block-image/'. $value->background_path) : ''}}); background-repeat: no-repeat; background-color: #fff; background-size: cover;" id="cc-{{$key}}">
     <div class="container">
          <!-- title and short description start -->
          <div class="row mt50 mb25">
@@ -106,7 +106,7 @@
 
 @if($value->block_type == 'LC')
 <!-- Content Box Align Left -->
-<div class="container-fluid bg-gray">
+<div class="container-fluid bg-gray" id="LC-{{$key}}">
     <div class="container">
         <div class="row pt50 pb40">                        
             <h3 class="text-center color-primary">{{$value->title}}</h3>
@@ -148,7 +148,7 @@
 @if($value->block_type == 'ZC')
  <!-- Service Area
 ===================================== -->
-<div id="service" class="pt75 pb25">
+<div id="ZC-{{$key}}" class="pt75 pb25">
     <div class="container">
         
         <!-- title and short description start -->
@@ -204,7 +204,7 @@
                     <div class="col-md-5 col-md-pull-5">
                         
                         <h3 class="font-size-normal">
-                            <small class="color-success">Title</small>
+                            <!-- <small class="color-success">Title</small> -->
                             {{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}
                         </h3>
                         
@@ -222,7 +222,7 @@
 @if($value->block_type == 'MMC')
 <!-- New Block Area
 ===================================== -->
-<div id="service" class="mb35">
+<div id="mmc-{{$key}}" class="mb35">
     <div class="container">
         
         @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
@@ -260,7 +260,7 @@
 @endif
 
 @if($value->block_type == 'ACC')
-<div class="pt100 pb100 bg-grad-mojito">
+<div class="pt100 pb100 bg-grad-mojito" id="acc-{{$key}}">
     <div class="container">
         <div class="row">
             @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
@@ -332,7 +332,7 @@
 @endif
 
 @if($value->block_type == 'CMC')
-<div class="container">
+<div class="container" id="cmc-{{$key}}">
     <div class="row">
         @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
             <div class="col-md-12 mb35">
@@ -362,7 +362,7 @@
 </div><!-- container end -->
 @endif
 @if($value->block_type == 'RSC')
-<div class="container mt35 mb35">
+<div class="container mt35 mb35" id="rsc-{{$key}}">
     @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
         <div class="col-md-12 mb35">
             <a href="{{url('cms/block/edit-lc/'.$value->id)}}" class="button button-md button-pasific hover-ripple-out mt25">Ubah <span class="fa fa-cog"></span></a>
@@ -389,7 +389,7 @@
 @endif
 
 @if($value->block_type == 'LFC')
-<div class="container mt35 mb35">
+<div class="container mt35 mb35" id="lfc-{{$key}}">
     <div class="row">
         @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
             <div class="col-md-12">

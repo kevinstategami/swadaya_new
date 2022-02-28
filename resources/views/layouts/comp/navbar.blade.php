@@ -1,7 +1,7 @@
 <!-- Navigation Area
 ===================================== -->
 <nav class="navbar navbar-pasific navbar-mp megamenu navbar-fixed-top">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                 <i class="fa fa-bars"></i>
@@ -20,16 +20,19 @@
                     <a href="{{url('/')}}">Beranda </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="{{url('/about-us')}}">Apa Itu Songgomas? </a>
+                    <a href="#mmc-1">Apa Itu Songgomas? </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="#service">Layanan Songgomas </a>
+                    <a href="#mc-3">Songgomas Spirit </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="#service">Apa Kata Mereka? </a>
+                    <a href="#ZC-6">Layanan Songgomas </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="#team">Our Contact </a>
+                    <a href="#mmc-5">Apa Kata Mereka? </a>
+                </li>
+                <li class="megamenu-fw">
+                    <a href="#rsc-7">Our Contact </a>
                 </li>
                 @if(Auth::guest())
                 <li class="megamenu-fw">
