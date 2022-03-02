@@ -59,6 +59,7 @@
                         <a href="https://twitter.com/SonggoMas"><i class="fab fa-twitter color-blue"></i></a><br><br>
                         <a href="https://www.tiktok.com/@songgomasindonesia"><i class="fab fa-tiktok color-dark"></i></a>
                         <a href="https://www.youtube.com/channel/UCcMEZ6XqsMU-LzLi5WImfVw"><i class="fab fa-youtube color-red"></i></a>
+                        <a href="https://www.instagram.com/songgomasindonesia"><i class="fab fa-instagram color-red"></i></a>
                     </div>
                 </div>
                 <!-- footer social icons end -->

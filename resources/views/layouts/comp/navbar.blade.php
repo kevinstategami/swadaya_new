@@ -1,6 +1,6 @@
 <!-- Navigation Area
 ===================================== -->
-<nav class="navbar navbar-pasific navbar-mp megamenu navbar-fixed-top">
+<nav class="navbar navbar-pasific navbar-mp megamenu navbar-fixed-top bg-white">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">

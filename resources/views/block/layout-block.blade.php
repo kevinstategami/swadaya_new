@@ -121,18 +121,18 @@
             @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
             <div class="col-md-6 col-sm-6 col-xs-12 mheight-150 m-3">
                 <div class="content-box content-box-icon content-box-left-icon">
-                    @if(explode(',', $value->path)[$i] != "")
-                        <img class="img-lc" src="{{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'.explode(',', $value->path)[$i]) : ''}}" width="50%"/>
+                    @if(explode('||', $value->path)[$i] != "")
+                        <img class="img-lc" src="{{isset(explode('||', $value->path)[$i]) ? url('get-block-image/'.explode('||', $value->path)[$i]) : ''}}" width="50%"/>
                     @else
                         <span class="icon-desktop color-orange"></span>
                     @endif
-                    @if(isset(explode(',', $value->description)[$i]))
-                    <h5 style="margin-top: 5%">{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</h5>     
+                    @if(isset(explode('||', $value->description)[$i]))
+                    <h5 style="margin-top: 5%">{{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}</h5>     
                     @else
-                    <h5>{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</h5>     
+                    <h5>{{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}</h5>     
                     @endif
                     <p>
-                        {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : ''}}
+                        {{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : ''}}
                     </p>
               
                 </div>
@@ -180,17 +180,17 @@
                 <!-- service one start -->
                 <div class="row mt75 jenis-koperasi">
                     <div class="col-md-6 animated" data-animation="fadeInLeft" data-animation-delay="100">
-                        <img src="{{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'.explode(',', $value->path)[$i]) : ''}}" alt="website service" class="img-responsive">
+                        <img src="{{isset(explode('||', $value->path)[$i]) ? url('get-block-image/'.explode('||', $value->path)[$i]) : ''}}" alt="website service" class="img-responsive">
                     </div>
                     <div class="col-md-5 animated" data-animation="fadeIn" data-animation-delay="100">
                         
                         <h3 class="font-size-normal">
                             <!-- <small class="color-primary">Title</small> -->
-                            {{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}
+                            {{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}
                         </h3>
                         
                         <p class="mt20 deskripsi-jenis-koperasi">
-                            {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : ''}}
+                            {{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : ''}}
                         </p>
                     </div>
                 </div>
@@ -199,17 +199,17 @@
                 <!-- service two start -->
                 <div class="row mt100 jenis-koperasi">
                     <div class="col-md-6 col-md-push-6 animated" data-animation="fadeInRight" data-animation-delay="100">
-                        <img src="{{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'.explode(',', $value->path)[$i]) : ''}}" alt="website service" class="img-responsive">
+                        <img src="{{isset(explode('||', $value->path)[$i]) ? url('get-block-image/'.explode('||', $value->path)[$i]) : ''}}" alt="website service" class="img-responsive">
                     </div>
                     <div class="col-md-5 col-md-pull-5">
                         
                         <h3 class="font-size-normal">
                             <!-- <small class="color-success">Title</small> -->
-                            {{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}
+                            {{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}
                         </h3>
                         
                         <p class="mt20 animated deskripsi-jenis-koperasi" data-animation="fadeIn" data-animation-delay="100">
-                            {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : ''}}
+                            {{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : ''}}
                         </p>
                     </div>
                 </div>
@@ -291,12 +291,12 @@
                             <div class="panel">
                                 <div class="panel-heading">
                                     <a href="#collapse{{$i}}" class="collapsed accordian-toggle-chevron-left" data-toggle="collapse" data-parent="#accordion5">
-                                        {{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}
+                                        {{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}
                                     </a>
                                 </div>
                                 <div id="collapse{{$i}}" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : '' }}
+                                        {{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : '' }}
                                     </div>
                                 </div>
                             </div>
@@ -312,12 +312,12 @@
                             <div class="panel">
                                 <div class="panel-heading">
                                     <a href="#collapse{{$i}}" class="collapsed accordian-toggle-chevron-left" data-toggle="collapse" data-parent="#accordion5">
-                                        {{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}
+                                        {{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}
                                     </a>
                                 </div>
                                 <div id="collapse{{$i}}" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : '' }}
+                                        {{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : '' }}
                                     </div>
                                 </div>                                
                             </div>
@@ -343,7 +343,7 @@
         @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
             <div class="col-md-3 col-sm-3 col-xs-6 mt30">
                 <div class="team team-two">
-                    <img src="{{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'.explode(',', $value->path)[$i]) : ''}}" alt=""
+                    <img src="{{isset(explode('||', $value->path)[$i]) ? url('get-block-image/'.explode('||', $value->path)[$i]) : ''}}" alt=""
                         class="img-responsive">
                     <!-- <div class="team-social">
                         <a href="#"><i class="fa fa-twitter"></i></a>
@@ -351,8 +351,8 @@
                         <a href="#"><i class="fa fa-github"></i></a>
                     </div> -->
                     <h5>
-                        {{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}
-                        <small class="color-pasific">{{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : '' }}</small>
+                        {{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}
+                        <small class="color-pasific">{{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : '' }}</small>
                     </h5>
                 </div>
             </div>
@@ -374,13 +374,13 @@
     <div class="col-md-6">
         @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
         <h3 class="font-size-normal">
-            <small class="color-primary fw-600">{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</small>
+            <small class="color-primary fw-600">{{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}</small>
         </h3>
         
         <p class="deskripsi-jenis-koperasi">
-            {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : '' }}
-            @if(explode(',', $value->path)[$i] != null)
-            <img src="{{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'.explode(',', $value->path)[$i]) : ''}}" width="100%" class="img-responsive" />
+            {{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : '' }}
+            @if(explode('||', $value->path)[$i] != null)
+            <img src="{{isset(explode('||', $value->path)[$i]) ? url('get-block-image/'.explode('||', $value->path)[$i]) : ''}}" width="100%" class="img-responsive" />
             @endif
         </p>
         @endfor

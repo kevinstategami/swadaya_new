@@ -2128,7 +2128,7 @@ table th.bg-pasific {
 -------------------------------------------------------- */
 .navbar-pasific {
     background-color: transparent;
-    padding: 20px 0;
+    padding: 10px 0;
     -webkit-border-radius: 0;
        -moz-border-radius: 0;
             border-radius: 0;
@@ -2392,6 +2392,12 @@ table th.bg-pasific {
         -webkit-border-radius: 4px;
            -moz-border-radius: 4px;
                 border-radius: 4px;
+    }
+    .navbar-pasific .navbar-nav > li > a {
+        color: rgba(255,255,255,.7);
+    }
+    .navbar-pasific .navbar-nav > li > a:hover {
+        color: rgba(255,255,255,1);
     }
 }
 

@@ -31,13 +31,13 @@
                   <div class="col-md-5">
                     <div class="form-group">
                       <label class="form-label">Judul</label>
-                      <input type="text" class="form-control" name="title" id="cmsBlockCcTitle2_{{$i}}" value="{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}"/>
+                      <input type="text" class="form-control" name="title" id="cmsBlockCcTitle2_{{$i}}" value="{{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}"/>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label class="form-label">Deskripsi</label>
-                      <textarea id="cmsBlockCcDescription_{{$i}}" class="form-control" name="description" rows="1" cols="1">{{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : ''}}</textarea>
+                      <textarea id="cmsBlockCcDescription_{{$i}}" class="form-control" name="description" rows="1" cols="1">{{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : ''}}</textarea>
                     </div>
                   </div>
                   <div class="col-md-1 d-flex align-items-center">
