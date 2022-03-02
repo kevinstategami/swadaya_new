@@ -23,16 +23,16 @@
                     <a href="#mmc-1">Apa Itu Songgomas? </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="#mc-3">Songgomas Spirit </a>
+                    <a href="#mc-2">Songgomas Spirit </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="#ZC-6">Layanan Songgomas </a>
+                    <a href="#ZC-7">Layanan Songgomas </a>
                 </li>
                 <li class="megamenu-fw">
                     <a href="#mmc-5">Apa Kata Mereka? </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="#rsc-7">Our Contact </a>
+                    <a href="#rsc-8">Our Contact </a>
                 </li>
                 @if(Auth::guest())
                 <li class="megamenu-fw">

@@ -2,15 +2,15 @@
 
 <!-- SS -->
 @if($value->block_type == 'SSC')
-<div id="block-carousel-{{$key}}" class="carousel slide" data-ride="carousel">
+<div id="block-carousel-{{$key}}" class="carousel slide" data-ride="carousel" style="margin-top: 57px;">
     <ol class="carousel-indicators">
-        <li data-target="#block-carousel" data-slide-to="0" class="active"></li>
-        <li data-target="#block-carousel" data-slide-to="1"></li>
-        <li data-target="#block-carousel" data-slide-to="2"></li>
+        <li data-target="#block-carousel-{{$key}}" data-slide-to="0" class="active"></li>
+        <li data-target="#block-carousel-{{$key}}" data-slide-to="1"></li>
+        <li data-target="#block-carousel-{{$key}}" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
         @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
-        <div class="item carousel-img {{$i == 0 ? 'active' : ''}}" style="background-image: url({{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'. rawurlencode(explode(',', $value->path)[$i])) : '' }})">
+        <div class="item carousel-img {{$i == 0 ? 'active' : ''}}" style="background-image: url({{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'. rawurlencode(explode(',', $value->path)[$i])) : '' }});">
             <div class="container">
                 <div class="carousel-caption animated" data-animation="bounceInDown" data-animation-delay="100">
                     <h1 class="font-pacifico text-capitalize color-light">{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</h1>
@@ -24,8 +24,8 @@
         </div>
         @endfor
     </div>
-    <a class="left carousel-control" href="#block-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-    <a class="right carousel-control" href="#block-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    <a class="left carousel-control" href="#block-carousel-{{$key}}" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <a class="right carousel-control" href="#block-carousel-{{$key}}" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 </div>
 @endif
 
@@ -108,8 +108,8 @@
 <!-- Content Box Align Left -->
 <div class="container-fluid bg-gray" id="LC-{{$key}}">
     <div class="container">
-        <div class="row pt50 pb40">                        
-            <h3 class="text-center color-primary">{{$value->title}}</h3>
+        <div class="row pt50 pb40">
+            <h3 class="text-center color-primary" style="margin-bottom: 2rem;">{{$value->title}}</h3>
             
             @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS') 
                 <div class="col-md-12 mb35">
@@ -120,21 +120,22 @@
             <!-- Content Box Align Left -->
             @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
             <div class="col-md-6 col-sm-6 col-xs-12 mheight-150 m-3">
-                <div class="content-box content-box-icon content-box-left-icon">
+                <div class="content-box content-box-icon content-box-left-icon d-flex flex-row align-items-center">
                     @if(explode('||', $value->path)[$i] != "")
                         <img class="img-lc" src="{{isset(explode('||', $value->path)[$i]) ? url('get-block-image/'.explode('||', $value->path)[$i]) : ''}}" width="50%"/>
                     @else
-                        <span class="icon-desktop color-orange"></span>
+                        <img class="img-lc" src="{{asset('img/songgomas/big-check-mark.png')}}" />
                     @endif
-                    @if(isset(explode('||', $value->description)[$i]))
-                    <h5 style="margin-top: 5%">{{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}</h5>     
-                    @else
-                    <h5>{{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}</h5>     
-                    @endif
-                    <p>
-                        {{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : ''}}
-                    </p>
-              
+                    <div>
+                        @if(isset(explode('||', $value->description)[$i]))
+                        <h5 style="margin-top: 5%">{{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}</h5>     
+                        @else
+                        <h5>{{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}</h5>     
+                        @endif
+                        <p>
+                            {{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : ''}}
+                        </p>
+                    </div>
                 </div>
             </div>
             @endfor
@@ -250,7 +251,7 @@
     @if($value->path)
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1 text-center">
+            <div class="col-md-12 col-md-offset-1 text-center">
                 <img src="{{url('get-block-image/'.$value->path)}}" alt="image" class="" width="100%">
             </div>
         </div>

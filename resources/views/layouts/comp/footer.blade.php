@@ -2,18 +2,8 @@
     <div class="container-fluid bb-solid-1">
         <div class="container pb35">
             <div class="row">
-                
-                <!-- footer about start -->
-                <div class="col-md-3 col-sm-12 col-xs-12">
-                    <!-- <h6 class="font-montserrat text-uppercase color-black">Tentang Kami</h6>
-                    <p>
-                        {{App\Models\MasterData\CMS::where('code', 'SU')->value('description')}}
-                    </p> -->
-                </div>
-                <!-- footer about end -->
-                
                 <!-- footer menu one start -->
-                <div class="col-md-2 col-md-offset-1 col-sm-3 col-xs-4">
+                <div class="col-md-6 col-sm-6 col-xs-6">
                     <h6 class="font-montserrat text-uppercase color-black">Menu</h6>
                     <ul class="no-icon-list">
                         <!-- <li><a href="{{url('/')}}">Beranda</a></li> -->
@@ -24,37 +14,10 @@
                         <li><a href="#rsc-7">Our Contact</a></li>
                     </ul>
                 </div>
-                <!-- footer menu one end -->
-                
-                <!-- footer menu two start -->
-                <!-- <div class="col-md-2 col-sm-3 col-xs-4">
-                    <h6 class="font-montserrat text-uppercase color-black">Learn more</h6>
-                    <ul class="no-icon-list">
-                        <li><a href="#">Tour</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">New Features</a></li>
-                        <li><a href="#">Payment</a></li>
-                    </ul>
-                </div> -->
-                <!-- footer menu two end -->
-                
-                <!-- footer menu three start -->
-                <!-- <div class="col-md-2 col-sm-3 col-xs-4">
-                    <h6 class="font-montserrat text-uppercase color-black">Support</h6>
-                    <ul class="no-icon-list">
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Knowledgebase</a></li>
-                        <li><a href="#">Forum</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
-                </div> -->
-                <!-- footer menu three end -->
-                
-                <!-- footer social icons start -->
-                <div class="col-md-2 col-sm-3 col-xs-12">
+                <div class="col-md-6 col-sm-6 col-xs-6">
                     <h6 class="font-montserrat text-uppercase color-black">Social Media</h6>
                     <div class="social social-two">
-                        <a href="https://twitter.com/SonggoMas"><i class="fab fa-twitter color-blue"></i></a>
+                        <a href="https://www.linkedin.com/in/songgomas-indonesia-2173b3233"><i class="fab fa-linkedin color-blue"></i></a>
                         <a href="https://www.facebook.com/songgomasindonesia"><i class="fab fa-facebook color-primary"></i></a>
                         <a href="https://twitter.com/SonggoMas"><i class="fab fa-twitter color-blue"></i></a><br><br>
                         <a href="https://www.tiktok.com/@songgomasindonesia"><i class="fab fa-tiktok color-dark"></i></a>
