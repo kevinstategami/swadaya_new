@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Songgo Mas - S&K</title>
+	<title>Songgomas - S&K</title>
 </head>
 <body style="margin: 0 !important">
 <img src="{{url('term-condition/syarat.png')}}" style="margin-bottom: 10px;width: 100%;">

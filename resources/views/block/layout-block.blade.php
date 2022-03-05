@@ -251,7 +251,7 @@
     @if($value->path)
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 col-md-offset-1 text-center">
+            <div class="col-md-12 text-center">
                 <img src="{{url('get-block-image/'.$value->path)}}" alt="image" class="" width="100%">
             </div>
         </div>
