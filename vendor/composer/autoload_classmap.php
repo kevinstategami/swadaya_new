@@ -7,6 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AboutUsSeeder' => $baseDir . '/database/seeds/Compro/AboutUsSeeder.php',
+    'App\\Console\\Commands\\GenerateTagihanBulanan' => $baseDir . '/app/Console/Commands/GenerateTagihanBulanan.php',
+    'App\\Console\\Commands\\GenerateTagihanTahunan' => $baseDir . '/app/Console/Commands/GenerateTagihanTahunan.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Helper\\Constant' => $baseDir . '/app/Helper/Constant.php',
@@ -97,6 +99,7 @@ return array(
     'App\\Models\\Membership\\Simpanan' => $baseDir . '/app/Models/Membership/Simpanan.php',
     'App\\Models\\Transaction\\Invoice' => $baseDir . '/app/Models/Transaction/Invoice.php',
     'App\\Models\\Transaction\\InvoiceHistory' => $baseDir . '/app/Models/Transaction/InvoiceHistory.php',
+    'App\\Models\\Transaction\\Tagihan' => $baseDir . '/app/Models/Transaction/Tagihan.php',
     'App\\Models\\Transaction\\Wallet' => $baseDir . '/app/Models/Transaction/Wallet.php',
     'App\\Models\\Transaction\\WalletHistory' => $baseDir . '/app/Models/Transaction/WalletHistory.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
@@ -214,7 +217,6 @@ return array(
     'Complex\\Exception' => $vendorDir . '/markbaker/complex/classes/src/Exception.php',
     'Complex\\Functions' => $vendorDir . '/markbaker/complex/classes/src/Functions.php',
     'Complex\\Operations' => $vendorDir . '/markbaker/complex/classes/src/Operations.php',
-    'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Compro' => $baseDir . '/database/seeds/Compro/VisiSeeder.php',
     'Cron\\AbstractField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
     'Cron\\CronExpression' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
