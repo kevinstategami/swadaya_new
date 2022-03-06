@@ -631,6 +631,7 @@ class ComposerStaticInitdd605f1b9e27370a130005fd2df81350
         'App\\Models\\MasterData\\ReferralBonus' => __DIR__ . '/../..' . '/app/Models/MasterData/ReferralBonus.php',
         'App\\Models\\MasterData\\Shu' => __DIR__ . '/../..' . '/app/Models/MasterData/Shu.php',
         'App\\Models\\MasterData\\SimpananType' => __DIR__ . '/../..' . '/app/Models/MasterData/SimpananType.php',
+        'App\\Models\\MasterData\\StaticBank' => __DIR__ . '/../..' . '/app/Models/MasterData/StaticBank.php',
         'App\\Models\\Membership\\DokumenRepo' => __DIR__ . '/../..' . '/app/Models/Membership/DokumenRepo.php',
         'App\\Models\\Membership\\Downline' => __DIR__ . '/../..' . '/app/Models/Membership/Downline.php',
         'App\\Models\\Membership\\Member' => __DIR__ . '/../..' . '/app/Models/Membership/Member.php',

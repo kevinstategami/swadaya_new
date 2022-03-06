@@ -89,6 +89,7 @@ return array(
     'App\\Models\\MasterData\\ReferralBonus' => $baseDir . '/app/Models/MasterData/ReferralBonus.php',
     'App\\Models\\MasterData\\Shu' => $baseDir . '/app/Models/MasterData/Shu.php',
     'App\\Models\\MasterData\\SimpananType' => $baseDir . '/app/Models/MasterData/SimpananType.php',
+    'App\\Models\\MasterData\\StaticBank' => $baseDir . '/app/Models/MasterData/StaticBank.php',
     'App\\Models\\Membership\\DokumenRepo' => $baseDir . '/app/Models/Membership/DokumenRepo.php',
     'App\\Models\\Membership\\Downline' => $baseDir . '/app/Models/Membership/Downline.php',
     'App\\Models\\Membership\\Member' => $baseDir . '/app/Models/Membership/Member.php',

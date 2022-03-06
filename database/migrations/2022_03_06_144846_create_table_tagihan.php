@@ -13,8 +13,13 @@ class CreateTableTagihan extends Migration
      */
     public function up()
     {
-        Schema::create('table_tagihan', function (Blueprint $table) {
+        Schema::create('tagihan', function (Blueprint $table) {
             $table->id();
+            $table->string('nomor_tagihan');
+            $table->integer('simpanan_id');
+            $table->date('tanggal_terbit');
+            $table->double('amount');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

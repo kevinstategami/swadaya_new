@@ -89,7 +89,7 @@
                         <div class="invalid-feedback">Telepon tidak boleh kosong!</div>
                      </div>
                      <div class="form-custom form-label form-icon mb-3">
-                        <i class="bi bi-person-badge font-13"></i>
+                        <i class="bi bi-people font-13"></i>
                         <select class="form-select rounded-xs" id="jenisKelamin" name="jenisKelamin" autocomplete="off" aria-label="Jenis Kelamin" placeholder="Kota Tinggal">
                            <option value="" selected disabled>Jenis Kelamin</option>
                            <option value="L">Laki - Laki</option>
@@ -135,6 +135,28 @@
                         <div class="valid-feedback">Alamat tidak boleh kosong!</div>
                      </div>
 
+                     <div class="form-custom form-label form-icon mb-3">
+                        <i class="bi bi-person-badge font-12"></i>
+                        <input type="text" class="form-control rounded-xs" id="accountName" name="accountName" placeholder="Nama Akun Bank" />
+                        <label for="c5" class="color-theme">Nama Akun Bank</label>
+                        <div class="valid-feedback">Kode Pos tidak boleh kosong!</div>
+                     </div>
+                     <div class="form-custom form-label form-icon mb-3">
+                        <i class="bi bi-building font-12"></i>
+                        <select type="text" class="form-control rounded-xs" id="bankName" name="bankName" placeholder="Bank">
+                          @foreach($bank as $banks)
+                          <option value="{{$banks->id}}">{{$banks->bank_name}}</option>
+                          @endforeach
+                        </select>
+                        <label for="c5" class="color-theme">Bank</label>
+                        <div class="valid-feedback">Bank tidak boleh kosong!</div>
+                     </div>
+                     <div class="form-custom form-label form-icon mb-3">
+                        <i class="bi bi-person-bounding-box font-12"></i>
+                        <input type="text" class="form-control rounded-xs" id="norek" name="norek" onkeypress="return justnumber(event, false)" placeholder="Nomor Rekening" />
+                        <label for="c5" class="color-theme">Nomor Rekening</label>
+                        <div class="valid-feedback">Nomor Rekenings tidak boleh kosong!</div>
+                     </div>
                      <div class="divider mb-0"></div>
                      <br>
                      <div class="form-custom form-label form-icon">
@@ -290,13 +312,33 @@
                   title: 'Informasi!',
                   content: 'Kode Pos tidak boleh kosong!',
               });
-            }else if($('#alamat').val() == ""){
+            }
+            else if($('#alamat').val() == ""){
               $.alert({
                   title: 'Informasi!',
                   content: 'Alamat tidak boleh kosong!',
               });
+            }
 
-          }
+            else if($('#accountName').val() == ""){
+              $.alert({
+                  title: 'Informasi!',
+                  content: 'Nama Akun Bank tidak boleh kosong!',
+              });
+            }
+            else if($('#bankName').val() == ""){
+              $.alert({
+                  title: 'Informasi!',
+                  content: 'Bank tidak boleh kosong!',
+              });
+            }
+            else if($('#norek').val() == ""){
+              $.alert({
+                  title: 'Informasi!',
+                  content: 'Nomor Rekening tidak boleh kosong!',
+              });
+            }
+          
           else if($('#jenisSimpanan').val() == ""){
               $.alert({
                   title: 'Informasi!',

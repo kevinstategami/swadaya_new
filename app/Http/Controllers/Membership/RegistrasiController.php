@@ -10,11 +10,13 @@ use App\Models\Membership\Member;
 use Auth;
 use App\User;
 use App\Models\MasterData\SimpananType;
+use App\Models\MasterData\StaticBank;
 use App\Models\MasterData\Bank;
 use App\Models\Membership\ReferalCode;
 use App\Models\Membership\Simpanan;
 use App\Models\Membership\DokumenRepo;
 use App\Models\Membership\Downline;
+use App\Models\Membership\MembershipBank;
 use App\Models\Transaction\Invoice;
 use App\Models\Transaction\InvoiceHistory;
 use App\Models\Transaction\Wallet;
@@ -226,10 +228,12 @@ public function formAktivasi($userId){
     $simpananPokok = Query::ObjectResponse('simpanan_types', 'type_code', 'SP');
     $simpananWajib = Query::ObjectResponse('simpanan_types', 'type_code', 'SW');
     $kota = City::all();
+    $bank = StaticBank::all();
     // dd($simpananType);
   return view('registrasi.home.aktivasi.form_aktivasi')
   ->with('user', $user['object'])
   ->with('city', $kota)
+  ->with('bank', $bank)
   ->with('simpananPokok', $simpananPokok['object'])
   ->with('simpananWajib', $simpananWajib['object']);
 }
@@ -284,6 +288,22 @@ public function formAktivasi($userId){
     $member->member_since = date('Y-m-d');
     $member->description = "Pendaftaran Akun Member a/n ".$user->name." pada tanggal ".date('Y-m-d')." dengan status masih dalam peninjauan verifikasi";
     $member->save();
+
+    $staticBank = StaticBank::find($req->bankName);
+
+    $membershipBank = new MembershipBank();
+    $membershipBank->user_id = Auth::user()->id;
+    $membershipBank->member_no = $member->member_no;
+    $membershipBank->email = $user->email;
+    $membershipBank->branch = "";
+    $membershipBank->swift_code = $staticBank->swift_code;
+    $membershipBank->account_number = $req->norek;
+    $membershipBank->account_name = $req->accountName;
+    $membershipBank->account_bank = $staticBank->bank_name;
+    $membershipBank->bank_id = $staticBank->id;
+    $membershipBank->status ="1";
+    $membershipBank->save();
+
 
     // $referalCode = new ReferalCode();
     // $referalCode->member_no = $member->member_no;
@@ -585,5 +605,110 @@ public function formAktivasi($userId){
     $pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     return substr(str_shuffle(str_repeat($pool, 5)), 0, $length);
+  }
+
+  public function storeTagihan(Request $req){
+
+
+        date_default_timezone_set('Asia/Jakarta');
+
+        // dd(date('Y-').sprintf("%'02d", '1').date('-d').date(' h:i:s'));
+        // dd($req->all());
+        $user = User::find($req->userId);
+        $countMember = Member::where('member_type', '1')->count() + 1;
+        $kota = City::find($req->kota);
+        $sp = SimpananType::where('type_code','SP')->first();
+        $sw = SimpananType::where('type_code','SW')->first();
+        $ss = SimpananType::where('type_code','SS')->first();
+        $invCount = Invoice::count() + 1;
+        // dd('AB'.sprintf("%'03d", $countMember).$this->quickRandom(4));
+
+        $checkMember = Member::where('user_id', $req->userId)->count();
+
+        if($checkMember > 0){
+
+          $info = "Informasi";
+          $colors = "red";
+          $icons = "fas fa-ban";
+          $alert = "Akun anda sudah aktif!";
+
+          Session::flash('info', $info);
+          Session::flash('alert', $alert);
+          Session::flash('colors', $colors);
+          Session::flash('icons', $icons);
+
+          return redirect(url('membership/index/home'));
+        }
+
+        $member = new Member();
+        $member->member_type = 1; //1 AB anggota biasa, 2 ALB anggota luar biasa
+        $member->member_no = 'AB'.sprintf("%'04d", $countMember).$this->quickRandom(4);
+        $member->fullname = $user->name;
+        $member->user_id = $req->userId;
+        $member->email = $user->email;
+        $member->identity_no = $req->noKtp;
+        $member->phone_no = $req->telepon;
+        $member->gender = $req->jenisKelamin;
+        $member->birth_place = $req->tempatLahir;
+        $member->birth_date = $req->ttl;
+        $member->city_id = $req->kota;
+        $member->province_id = $kota->idProv;
+        $member->postal_code = $req->kodePos;
+        $member->address = $req->alamat;
+        $member->member_since = date('Y-m-d');
+        $member->description = "Pendaftaran Akun Member a/n ".$user->name." pada tanggal ".date('Y-m-d')." dengan status masih dalam peninjauan verifikasi";
+        $member->save();
+
+        $staticBank = StaticBank::find($req->bankName);
+
+        $membershipBank = new MembershipBank();
+        $membershipBank->user_id = Auth::user()->id;
+        $membershipBank->member_no = $member->member_no;
+        $membershipBank->email = $user->email;
+        $membershipBank->branch = "";
+        $membershipBank->swift_code = $staticBank->swift_code;
+        $membershipBank->account_number = $req->norek;
+        $membershipBank->account_name = $req->accountName;
+        $membershipBank->account_bank = $staticBank->bank_name;
+        $membershipBank->bank_id = $staticBank->id;
+        $membershipBank->status ="1";
+        $membershipBank->save();
+
+
+        // $referalCode = new ReferalCode();
+        // $referalCode->member_no = $member->member_no;
+        // $referalCode->user_id = $req->userId;
+        // $referalCode->email = $member->email;
+        // $referalCode->code = 'SW'.$this->quickRandom(4);
+        // $referalCode->status = 1;
+        // $referalCode->save();
+
+        $userDataReferal = ReferalCode::where('user_id', $user->id)->first();
+        if($userDataReferal){
+          $memberReferal = Member::where('member_no', $userDataReferal->member_no)->first();
+          if($memberReferal){
+            $downline = new Downline();
+            $downline->user_id = $memberReferal->user_id;
+            $downline->user_id_downline = $user->id;
+            $downline->member_no = $memberReferal->member_no;
+            $downline->member_no_downline = $member->member_no;
+            $downline->email = $memberReferal->email;
+            $downline->email_downline = $user->email;
+            $downline->referal_code_id = $userDataReferal->id;
+            $downline->referal_code = $userDataReferal->code;
+            $downline->save();
+          }
+        }
+
+
+        $wallet = new Wallet();
+        $wallet->user_id = $member->user_id;
+        $wallet->member_no = $member->member_no ;
+        $wallet->email = $member->email;
+        $wallet->amount = 0;
+        $wallet->status_wallet = 0;
+        $wallet->save();
+
+        
   }
 }

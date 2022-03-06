@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFieldAccountNameTableBank extends Migration
+class AddBankIdToMembershipBank extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class AddFieldAccountNameTableBank extends Migration
      */
     public function up()
     {
-        // Schema::table('banks', function (Blueprint $table) {
-        //     $table->string('account_name')->nullable();
-        // });
+        Schema::table('membership_banks', function (Blueprint $table) {
+            $table->integer('bank_id');
+            $table->char('status',1);
+        });
     }
 
     /**
@@ -25,5 +26,8 @@ class AddFieldAccountNameTableBank extends Migration
      */
     public function down()
     {
+        Schema::table('membership_bank', function (Blueprint $table) {
+            //
+        });
     }
 }
