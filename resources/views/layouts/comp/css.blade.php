@@ -1,5 +1,5 @@
-<link rel="shortcut icon" href="{{ !$cmsLogo['llg'] || !$cmsLogo['llg']['dokumen']  ? asset('img/logo.png') : url('images/'.$cmsLogo['llg']->dokumen->path) }}">
-<link rel="icon" href="{{ !$cmsLogo['llg'] || !$cmsLogo['llg']['dokumen']  ? asset('img/logo.png') : url('images/'.$cmsLogo['llg']->dokumen->path) }}">
+<link rel="shortcut icon" type="image/x-icon" href="{{asset('img/logo.png')}}">
+<link rel="icon" type="image/x-icon" href="{{asset('img/logo.png')}}">
 <link rel="apple-touch-icon" href="{{asset('template/pasific/assets/img/apple-touch-icon.png')}}">
 <link rel="apple-touch-icon" sizes="72x72" href="{{asset('template/pasific/assets/img/apple-touch-icon-72x72.png')}}">
 <link rel="apple-touch-icon" sizes="114x114" href="{{asset('template/pasific/assets/img/apple-touch-icon-114x114.png')}}">

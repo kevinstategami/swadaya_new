@@ -25,7 +25,7 @@
       </div>
       <div class="header">
         <div class="subhead">
-          <img src="{{asset('registrasi/mobView/images/logo-white.png')}}" class="logo-left" alt="">
+          <a href="https://songgomas.id"><img src="{{asset('registrasi/mobView/images/logo-white.png')}}" class="logo-left" alt=""></a>
         </div>
       </div>
       <div id="page">

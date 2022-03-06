@@ -8,9 +8,9 @@
             </button>
             <a class="navbar-brand navbar-brand-img page-scroll p-0" href="{{url('/')}}" style="position: relative">
                 <img src="{{ !$cmsLogo['lg'] || !$cmsLogo['lg']['dokumen']  ? asset('img/Logo-KJMSU-Rev-02.png') : url('images/'.$cmsLogo['lg']->dokumen->path) }}" class="img-logo-navbar" width="200px" alt="logo">
-                @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
+                <!-- @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
                     <i class="fa fa-edit edit-logo-icon" onclick="editLogo()"></i>
-                @endif
+                @endif -->
             </a>
         </div>
 

@@ -379,7 +379,7 @@
         </h3>
         
         <p class="deskripsi-jenis-koperasi">
-            {{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : '' }}
+            {!! isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : '' !!}
             @if(explode('||', $value->path)[$i] != null)
             <img src="{{isset(explode('||', $value->path)[$i]) ? url('get-block-image/'.explode('||', $value->path)[$i]) : ''}}" width="100%" class="img-responsive" />
             @endif
@@ -397,21 +397,23 @@
                 <a href="javascript:void(0)" onclick="editCmsBlock('{{$value->id}}')" class="button button-pasific button-lg hover-ripple-out animated">Ubah <span class="fa fa-cog"></span></a>
             </div>
         @endif
-        <div class="col-md-12">
-            <h3 class="color-primary mb0 fw-600">{{$value->title}}</h3>
-            <h4 class="mt0 mb0">{{$value->title2}}</h4>
-        </div>
         <div class="col-md-6">
-            <hr style="border-top: 1px solid #337ab7 !important" />
+            @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
+            <h3 class="font-size-normal">
+                <small class="color-primary fw-600">{{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}</small>
+            </h3>
+            
+            <p class="deskripsi-jenis-koperasi">
+                {!! isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : '' !!}
+                @if(explode('||', $value->path)[$i] != null)
+                <img src="{{isset(explode('||', $value->path)[$i]) ? url('get-block-image/'.explode('||', $value->path)[$i]) : ''}}" width="100%" class="img-responsive" />
+                @endif
+            </p>
+            @endfor
         </div>
-        <div class="col-md-12">
-            {!! $value->description !!}
+        <div class="col-md-6 align-items-center justify-content-center text-center">
+            <img src="{{$value->background_path ? url('get-block-image/'.$value->background_path) : asset('template\pasific\assets\img\shop\img-shop-1.png')}}" width="100%" />
         </div>
-        @if($value->path)
-        <div class="col-md-12">
-            <img src="{{url('get-block-image/'.$value->path)}}" alt="image" class="img-responsive">
-        </div>
-        @endif
     </div>
 </div>
 @endif
