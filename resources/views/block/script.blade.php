@@ -111,8 +111,8 @@
         var description = ""
 
         for(let i = 0; i < $('#cmsBlockCcIndexValue').val(); i++){
-            title2 += ','+$('#cmsBlockCcTitle2_'+i).val()
-            description += ','+$('#cmsBlockCcDescription_'+i).val()
+            title2 += '||'+$('#cmsBlockCcTitle2_'+i).val()
+            description += '||'+$('#cmsBlockCcDescription_'+i).val()
         }
 
 
@@ -122,8 +122,8 @@
             data: {
                 "id" : $('#cmsBlockCcId').val(),
                 "title" : $('#cmsBlockCcTitle').val(),
-                "title2" : title2.substring(1),
-                "description" : description.substring(1),
+                "title2" : title2.substring(2),
+                "description" : description.substring(2),
                 "path" : "",
                 "background_path" : $('#cmsBlockCcPathBg').val(),
                 "indexValue" : parseInt($('#cmsBlockCcIndexValue').val()) + addIndex,
@@ -139,9 +139,9 @@
         var description = ""
         var path = ""
         for(let i = 0; i < $('#cmsBlockLcIndexValue').val(); i++){
-            title2 += ','+$('#cmsBlockLcTitle2_'+i).val()
-            description += ','+$('#cmsBlockLcDescription_'+i).val()
-            path += ','+$('#cmsBlockLcPath_'+i).val()
+            title2 += '||'+$('#cmsBlockLcTitle2_'+i).val()
+            description += '||'+$('#cmsBlockLcDescription_'+i).val()
+            path += '||'+$('#cmsBlockLcPath_'+i).val()
         }
 
         $.ajax({
@@ -150,9 +150,9 @@
             data: {
                 "id" : $('#cmsBlockLcId').val(),
                 "title" : $('#cmsBlockLcTitle').val(),
-                "title2" : title2.substring(1),
-                "description" : description.substring(1),
-                "path" : path.substring(1),
+                "title2" : title2.substring(2),
+                "description" : description.substring(2),
+                "path" : path.substring(2),
                 "background_path" : $('#cmsBlockLcPathBg').val(),
                 "indexValue" : parseInt($('#cmsBlockLcIndexValue').val()) + addIndex,
                 "order": $('#cmsBlockLcOrder').val()

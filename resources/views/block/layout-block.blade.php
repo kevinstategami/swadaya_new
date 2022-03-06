@@ -2,15 +2,15 @@
 
 <!-- SS -->
 @if($value->block_type == 'SSC')
-<div id="block-carousel" class="carousel slide" data-ride="carousel">
+<div id="block-carousel-{{$key}}" class="carousel slide" data-ride="carousel" style="margin-top: 57px;">
     <ol class="carousel-indicators">
-        <li data-target="#block-carousel" data-slide-to="0" class="active"></li>
-        <li data-target="#block-carousel" data-slide-to="1"></li>
-        <li data-target="#block-carousel" data-slide-to="2"></li>
+        <li data-target="#block-carousel-{{$key}}" data-slide-to="0" class="active"></li>
+        <li data-target="#block-carousel-{{$key}}" data-slide-to="1"></li>
+        <li data-target="#block-carousel-{{$key}}" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
         @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
-        <div class="item carousel-img {{$i == 0 ? 'active' : ''}}" style="background-image: url({{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'. rawurlencode(explode(',', $value->path)[$i])) : '' }})">
+        <div class="item carousel-img {{$i == 0 ? 'active' : ''}}" style="background-image: url({{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'. rawurlencode(explode(',', $value->path)[$i])) : '' }});">
             <div class="container">
                 <div class="carousel-caption animated" data-animation="bounceInDown" data-animation-delay="100">
                     <h1 class="font-pacifico text-capitalize color-light">{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</h1>
@@ -24,14 +24,14 @@
         </div>
         @endfor
     </div>
-    <a class="left carousel-control" href="#block-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-    <a class="right carousel-control" href="#block-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    <a class="left carousel-control" href="#block-carousel-{{$key}}" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <a class="right carousel-control" href="#block-carousel-{{$key}}" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 </div>
 @endif
 
 <!-- MC  -->
 @if($value->block_type == 'MC')
-<header class="pt100 pb100 bg-grad-stellar" style="background-image: url({{$value->background_path ? url('get-block-image/'. $value->background_path) : ''}}); background-repeat: no-repeat; background-color: #fff; background-size: cover;">
+<header class="pt100 pb100 bg-grad-stellar" style="background-image: url({{$value->background_path ? url('get-block-image/'. $value->background_path) : ''}}); background-repeat: no-repeat; background-color: #fff; background-size: cover;" id="mc-{{$key}}">
         <div class="container mt100 mb70">
             <div class="row">
                 <div class="col-md-12 text-center">
@@ -63,7 +63,7 @@
 
 @if($value->block_type == 'CC')
 <!-- New Block Area -->
-<div style="background-image: url({{$value->background_path ? url('get-block-image/'. $value->background_path) : ''}}); background-repeat: no-repeat; background-color: #fff; background-size: cover;">
+<div style="background-image: url({{$value->background_path ? url('get-block-image/'. $value->background_path) : ''}}); background-repeat: no-repeat; background-color: #fff; background-size: cover;" id="cc-{{$key}}">
     <div class="container">
          <!-- title and short description start -->
          <div class="row mt50 mb25">
@@ -106,10 +106,10 @@
 
 @if($value->block_type == 'LC')
 <!-- Content Box Align Left -->
-<div class="container-fluid bg-gray">
+<div class="container-fluid bg-gray" id="LC-{{$key}}">
     <div class="container">
-        <div class="row pt50 pb40">                        
-            <h3 class="text-center color-primary">{{$value->title}}</h3>
+        <div class="row pt50 pb40">
+            <h3 class="text-center color-primary" style="margin-bottom: 2rem;">{{$value->title}}</h3>
             
             @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS') 
                 <div class="col-md-12 mb35">
@@ -119,18 +119,23 @@
 
             <!-- Content Box Align Left -->
             @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
-            <div class="col-md-4 col-sm-6 col-xs-12 mheight-150 m-3">
-                <div class="content-box content-box-icon content-box-left-icon">
-                    @if(explode(',', $value->path)[$i] != "")
-                        <img class="img-lc" src="{{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'.explode(',', $value->path)[$i]) : ''}}" width="50%"/>
+            <div class="col-md-6 col-sm-6 col-xs-12 mheight-150 m-3">
+                <div class="content-box content-box-icon content-box-left-icon d-flex flex-row align-items-center">
+                    @if(explode('||', $value->path)[$i] != "")
+                        <img class="img-lc" src="{{isset(explode('||', $value->path)[$i]) ? url('get-block-image/'.explode('||', $value->path)[$i]) : ''}}" width="50%"/>
                     @else
-                        <span class="icon-desktop color-orange"></span>
+                        <img class="img-lc" src="{{asset('img/songgomas/big-check-mark.png')}}" />
                     @endif
-                    <h5>{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</h5>     
-                    <p>
-                        {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : ''}}
-                    </p>
-              
+                    <div>
+                        @if(isset(explode('||', $value->description)[$i]))
+                        <h5 style="margin-top: 5%">{{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}</h5>     
+                        @else
+                        <h5>{{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}</h5>     
+                        @endif
+                        <p>
+                            {{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : ''}}
+                        </p>
+                    </div>
                 </div>
             </div>
             @endfor
@@ -144,7 +149,7 @@
 @if($value->block_type == 'ZC')
  <!-- Service Area
 ===================================== -->
-<div id="service" class="pt75 pb25">
+<div id="ZC-{{$key}}" class="pt75 pb25">
     <div class="container">
         
         <!-- title and short description start -->
@@ -176,17 +181,17 @@
                 <!-- service one start -->
                 <div class="row mt75 jenis-koperasi">
                     <div class="col-md-6 animated" data-animation="fadeInLeft" data-animation-delay="100">
-                        <img src="{{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'.explode(',', $value->path)[$i]) : ''}}" alt="website service" class="img-responsive">
+                        <img src="{{isset(explode('||', $value->path)[$i]) ? url('get-block-image/'.explode('||', $value->path)[$i]) : ''}}" alt="website service" class="img-responsive">
                     </div>
                     <div class="col-md-5 animated" data-animation="fadeIn" data-animation-delay="100">
                         
                         <h3 class="font-size-normal">
-                            <small class="color-primary">Title</small>
-                            {{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}
+                            <!-- <small class="color-primary">Title</small> -->
+                            {{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}
                         </h3>
                         
                         <p class="mt20 deskripsi-jenis-koperasi">
-                            {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : ''}}
+                            {{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : ''}}
                         </p>
                     </div>
                 </div>
@@ -195,17 +200,17 @@
                 <!-- service two start -->
                 <div class="row mt100 jenis-koperasi">
                     <div class="col-md-6 col-md-push-6 animated" data-animation="fadeInRight" data-animation-delay="100">
-                        <img src="{{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'.explode(',', $value->path)[$i]) : ''}}" alt="website service" class="img-responsive">
+                        <img src="{{isset(explode('||', $value->path)[$i]) ? url('get-block-image/'.explode('||', $value->path)[$i]) : ''}}" alt="website service" class="img-responsive">
                     </div>
                     <div class="col-md-5 col-md-pull-5">
                         
                         <h3 class="font-size-normal">
-                            <small class="color-success">Title</small>
-                            {{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}
+                            <!-- <small class="color-success">Title</small> -->
+                            {{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}
                         </h3>
                         
                         <p class="mt20 animated deskripsi-jenis-koperasi" data-animation="fadeIn" data-animation-delay="100">
-                            {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : ''}}
+                            {{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : ''}}
                         </p>
                     </div>
                 </div>
@@ -218,7 +223,7 @@
 @if($value->block_type == 'MMC')
 <!-- New Block Area
 ===================================== -->
-<div id="service" class="mb35">
+<div id="mmc-{{$key}}" class="mb35">
     <div class="container">
         
         @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
@@ -246,7 +251,7 @@
     @if($value->path)
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1 text-center">
+            <div class="col-md-12 text-center">
                 <img src="{{url('get-block-image/'.$value->path)}}" alt="image" class="" width="100%">
             </div>
         </div>
@@ -256,7 +261,7 @@
 @endif
 
 @if($value->block_type == 'ACC')
-<div class="pt100 pb100 bg-grad-mojito">
+<div class="pt100 pb100 bg-grad-mojito" id="acc-{{$key}}">
     <div class="container">
         <div class="row">
             @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
@@ -287,12 +292,12 @@
                             <div class="panel">
                                 <div class="panel-heading">
                                     <a href="#collapse{{$i}}" class="collapsed accordian-toggle-chevron-left" data-toggle="collapse" data-parent="#accordion5">
-                                        {{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}
+                                        {{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}
                                     </a>
                                 </div>
                                 <div id="collapse{{$i}}" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : '' }}
+                                        {{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : '' }}
                                     </div>
                                 </div>
                             </div>
@@ -308,12 +313,12 @@
                             <div class="panel">
                                 <div class="panel-heading">
                                     <a href="#collapse{{$i}}" class="collapsed accordian-toggle-chevron-left" data-toggle="collapse" data-parent="#accordion5">
-                                        {{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}
+                                        {{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}
                                     </a>
                                 </div>
                                 <div id="collapse{{$i}}" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : '' }}
+                                        {{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : '' }}
                                     </div>
                                 </div>                                
                             </div>
@@ -328,7 +333,7 @@
 @endif
 
 @if($value->block_type == 'CMC')
-<div class="container">
+<div class="container" id="cmc-{{$key}}">
     <div class="row">
         @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
             <div class="col-md-12 mb35">
@@ -337,9 +342,9 @@
         @endif
         <!-- team member one start -->
         @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
-            <div class="col-md-4 col-sm-4 col-xs-6 mt30">
+            <div class="col-md-3 col-sm-3 col-xs-6 mt30">
                 <div class="team team-two">
-                    <img src="{{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'.explode(',', $value->path)[$i]) : ''}}" alt=""
+                    <img src="{{isset(explode('||', $value->path)[$i]) ? url('get-block-image/'.explode('||', $value->path)[$i]) : ''}}" alt=""
                         class="img-responsive">
                     <!-- <div class="team-social">
                         <a href="#"><i class="fa fa-twitter"></i></a>
@@ -347,8 +352,8 @@
                         <a href="#"><i class="fa fa-github"></i></a>
                     </div> -->
                     <h5>
-                        {{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}
-                        <small class="color-pasific">{{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : '' }}</small>
+                        {{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}
+                        <small class="color-pasific">{{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : '' }}</small>
                     </h5>
                 </div>
             </div>
@@ -358,7 +363,7 @@
 </div><!-- container end -->
 @endif
 @if($value->block_type == 'RSC')
-<div class="container mt35 mb35">
+<div class="container mt35 mb35" id="rsc-{{$key}}">
     @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
         <div class="col-md-12 mb35">
             <a href="{{url('cms/block/edit-lc/'.$value->id)}}" class="button button-md button-pasific hover-ripple-out mt25">Ubah <span class="fa fa-cog"></span></a>
@@ -370,13 +375,13 @@
     <div class="col-md-6">
         @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
         <h3 class="font-size-normal">
-            <small class="color-primary fw-600">{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</small>
+            <small class="color-primary fw-600">{{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}</small>
         </h3>
         
         <p class="deskripsi-jenis-koperasi">
-            {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : '' }}
-            @if(explode(',', $value->path)[$i] != null)
-            <img src="{{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'.explode(',', $value->path)[$i]) : ''}}" width="100%" class="img-responsive" />
+            {{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : '' }}
+            @if(explode('||', $value->path)[$i] != null)
+            <img src="{{isset(explode('||', $value->path)[$i]) ? url('get-block-image/'.explode('||', $value->path)[$i]) : ''}}" width="100%" class="img-responsive" />
             @endif
         </p>
         @endfor
@@ -385,7 +390,7 @@
 @endif
 
 @if($value->block_type == 'LFC')
-<div class="container mt35 mb35">
+<div class="container mt35 mb35" id="lfc-{{$key}}">
     <div class="row">
         @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
             <div class="col-md-12">

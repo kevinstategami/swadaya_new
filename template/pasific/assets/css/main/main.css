@@ -1102,7 +1102,7 @@ ul.no-icon-list li {
 .content-box-left-icon.content-box-icon-circle h4,
 .content-box-left-icon.content-box-icon-o-circle h4
 {
-    margin: 0 0 0 90px;
+    margin: 0 0 0 0;
     float: left;
 }
 .content-box-left-icon.content-box-icon p,
@@ -1976,8 +1976,8 @@ table th.bg-pasific {
     background-color: #777;
 }
 .carousel .carousel-inner .carousel-img {
-    background-repeat:no-repeat;
-    background-size:cover;
+    /*background-repeat:no-repeat;*/
+    /*background-size:cover;*/
 }
 .carousel .carousel-inner .carousel-img1 {
     background-image:url(../../img/bg/img-bg-17.jpg);
@@ -2128,7 +2128,7 @@ table th.bg-pasific {
 -------------------------------------------------------- */
 .navbar-pasific {
     background-color: transparent;
-    padding: 20px 0;
+    padding: 10px 0;
     -webkit-border-radius: 0;
        -moz-border-radius: 0;
             border-radius: 0;
@@ -2370,7 +2370,8 @@ table th.bg-pasific {
         margin-left: 10px;
     }
     .navbar-mp .navbar-brand.navbar-brand-img img {
-        visibility: hidden;
+        /*visibility: hidden;*/
+        width: 100%;
     }
     .navbar-mp .dropdown-submenu > ul.dropdown-menu {
         display: block;
@@ -2392,6 +2393,12 @@ table th.bg-pasific {
         -webkit-border-radius: 4px;
            -moz-border-radius: 4px;
                 border-radius: 4px;
+    }
+    .navbar-pasific .navbar-nav > li > a {
+        color: rgba(255,255,255,.7);
+    }
+    .navbar-pasific .navbar-nav > li > a:hover {
+        color: rgba(255,255,255,1);
     }
 }
 

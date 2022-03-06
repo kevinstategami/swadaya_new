@@ -34,8 +34,8 @@ class BlockController extends Controller
 
 	public function deleteIndexValue($index,$id){
 		$cms = CMS::find($id);
-		$split_title2 = explode(",", $cms->title2);
-		$split_description = explode(",", $cms->title2);
+		$split_title2 = explode("||", $cms->title2);
+		$split_description = explode("||", $cms->title2);
 
 		unset($split_title2[$index]);
 		unset($split_description[$index]);
@@ -44,10 +44,10 @@ class BlockController extends Controller
 		$cms->description = "";
 
 		foreach ($split_title2 as $key => $title2) {
-			$cms->title2 .= $title2.",";
+			$cms->title2 .= $title2."||";
 		}
 		foreach ($split_description as $key => $description) {
-			$cms->description .= $description.",";
+			$cms->description .= $description."||";
 		}
 
 		$cms->title2 = substr($cms->title2, 0 , -1);

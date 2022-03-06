@@ -6,7 +6,8 @@
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
       <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
       <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-      <title>Songgo Mas</title>
+      <title>Songgomas</title>
+      <link rel="shortcut icon" href="{{asset('img/logo.png')}}">
       <link rel="stylesheet" type="text/css" href="{{asset('registrasi/styles/bootstrap.css')}}">
       <link rel="stylesheet" type="text/css" href="{{asset('registrasi/fonts/bootstrap-icons.css')}}">
       <link rel="stylesheet" type="text/css" href="{{asset('registrasi/styles/jquery-confirm.min.css')}}">

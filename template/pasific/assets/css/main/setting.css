@@ -181,10 +181,10 @@ BACKGROUND SETTING
 }
 .bg-grad-animation-1 {
 	color: #fff;
-	background: -webkit-linear-gradient(-45deg, #5a27f9, #7c0eed, #2aaafb, #5bcb80);
-	background: -moz-linear-gradient(-45deg, #5a27f9, #7c0eed, #2aaafb, #5bcb80);
-	background: -o-linear-gradient(-45deg, #5a27f9, #7c0eed, #2aaafb, #5bcb80);
-	background: linear-gradient(-45deg, #5a27f9, #7c0eed, #2aaafb, #5bcb80);
+	background: -webkit-linear-gradient(-45deg, #1863a2, #006ab5, #2aaafb, #fff);
+	background: -moz-linear-gradient(-45deg, #1863a2, #006ab5, #2aaafb, #fff);
+	background: -o-linear-gradient(-45deg, #1863a2, #006ab5, #2aaafb, #fff);
+	background: linear-gradient(-45deg, #1863a2, #006ab5, #2aaafb, #fff);
 	background-size: 400% 400%;
 	-webkit-animation: animation1 15s ease infinite;
 	-moz-animation: animation1 15s ease infinite;

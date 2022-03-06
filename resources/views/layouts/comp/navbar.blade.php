@@ -1,7 +1,7 @@
 <!-- Navigation Area
 ===================================== -->
-<nav class="navbar navbar-pasific navbar-mp megamenu navbar-fixed-top">
-    <div class="container">
+<nav class="navbar navbar-pasific navbar-mp megamenu navbar-fixed-top bg-white">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                 <i class="fa fa-bars"></i>
@@ -20,16 +20,19 @@
                     <a href="{{url('/')}}">Beranda </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="{{url('/about-us')}}">Tentang Kami </a>
+                    <a href="#mmc-1">Apa Itu Songgomas? </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="#service">Jenis Koperasi </a>
+                    <a href="#mc-2">Songgomas Spirit </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="#visimisi">Visi &amp; Misi </a>
+                    <a href="#ZC-7">Layanan Songgomas </a>
                 </li>
                 <li class="megamenu-fw">
-                    <a href="#team">Struktur Organisasi </a>
+                    <a href="#mmc-5">Apa Kata Mereka? </a>
+                </li>
+                <li class="megamenu-fw">
+                    <a href="#rsc-8">Our Contact </a>
                 </li>
                 @if(Auth::guest())
                 <li class="megamenu-fw">

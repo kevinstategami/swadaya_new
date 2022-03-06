@@ -24,22 +24,22 @@
                     <div class="form-group">
                       <label class="form-label">Gambar</label>
                       <input type="file" name="file" class="form-control" id="cmsBlockLcFile_{{$i}}" onchange="uploadFile(this, 'previewImageBlockLc_{{$i}}', 'cmsBlockLcPath_{{$i}}')"/>
-                      <input type="hidden" name="path" class="form-control" id="cmsBlockLcPath_{{$i}}" value="{{isset(explode(',', $value->path)[$i]) ? explode(',', $value->path)[$i] : '' }}"/>
+                      <input type="hidden" name="path" class="form-control" id="cmsBlockLcPath_{{$i}}" value="{{isset(explode('||', $value->path)[$i]) ? explode('||', $value->path)[$i] : '' }}"/>
                       <div class="previewImageBlockLc_{{$i}}">
-                        <img src="{{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'.explode(',', $value->path)[$i]) : ''}}" style="margin-top: 2rem;" width="50%"/>
+                        <img src="{{isset(explode('||', $value->path)[$i]) ? url('get-block-image/'.explode('||', $value->path)[$i]) : ''}}" style="margin-top: 2rem;" width="50%"/>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
                       <label class="form-label">Judul</label>
-                      <input type="text" class="form-control" name="title" id="cmsBlockLcTitle2_{{$i}}" value="{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}"/>
+                      <input type="text" class="form-control" name="title" id="cmsBlockLcTitle2_{{$i}}" value="{{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}"/>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
                       <label class="form-label">Deskripsi</label>
-                      <textarea id="cmsBlockLcDescription_{{$i}}" class="form-control" name="description" rows="1" cols="1">{{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : ''}}</textarea>
+                      <textarea id="cmsBlockLcDescription_{{$i}}" class="form-control" name="description" rows="1" cols="1">{{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : ''}}</textarea>
                     </div>
                   </div>
                   <div class="col-md-1 d-flex align-items-center">

@@ -1,3 +1,6 @@
+.bg-white {
+	background-color: white !important;
+}
 .mheight-150{
 	min-height: 150px !important;
 }
@@ -104,7 +107,7 @@
 .btn-add-block{
     position: absolute;
     right: 50px;
-    top: 70px;
+    top: 85px;
 }
 
 
@@ -134,6 +137,12 @@
 	float: left;
     margin: 0 15px 0 0;
 }
+
+.carousel .carousel-inner .carousel-img {
+    background-size: 90% !important;
+    background-position: center;
+    background-color: white;
+}
 @media only screen and (max-width: 991px) {
 	.jenis-koperasi {
 		display: block;
@@ -141,6 +150,13 @@
 
 	.deskripsi-jenis-koperasi {
 		width: 100%;
-}	
+	}	
 
+	.carousel {
+		height: 40vh;
+	}
+
+	.carousel .carousel-inner .carousel-img {
+	    background-repeat: repeat-x;
+	}
 }

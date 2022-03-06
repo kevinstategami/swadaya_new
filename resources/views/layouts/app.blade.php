@@ -18,6 +18,7 @@
     </a>
     @include('layouts.comp.navbar')
     @include('comp.modal-search')
+        <div id="page-top"></div>
         @yield('content')
     @include('layouts.comp.footer')
     @include('layouts.comp.modal.logo')
