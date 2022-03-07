@@ -153,6 +153,7 @@ class RegistrasiController extends Controller
      $doc->filename = $fileName;
      $doc->mime_type = $fileExt;
      $doc->path = $img;
+     $doc->status = "UPLOADBUKTI";
      $doc->save();
 
      $alert = "Bukti telah tersimpan, harap menunggu untuk pengecekan dari kami";
@@ -709,6 +710,6 @@ public function formAktivasi($userId){
         $wallet->status_wallet = 0;
         $wallet->save();
 
-        
+
   }
 }
