@@ -65,8 +65,8 @@
 }
 
 .deskripsi-jenis-koperasi {
-	width: 70%;
-	text-align: justify;
+	width: 100%;
+	/*text-align: justify;*/
 }
 
 .content-box-o {
