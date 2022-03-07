@@ -81,7 +81,7 @@ class InvoiceController extends Controller
 	}
 
 	public function getImage($id){
-		$dokumen = DokumenRepo::where('reff_id', $id)->first();
+		$dokumen = DokumenRepo::where('reff_id', $id)->where('status','UPLOADBUKTI')->first();
 		return response()->json($dokumen, 200);
 	}
 }
