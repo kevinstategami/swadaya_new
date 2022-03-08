@@ -10,11 +10,11 @@
     </ol>
     <div class="carousel-inner">
         @for($i = 0; $i < ($value->index_value ? $value->index_value : 1); $i++)
-        <div class="item carousel-img {{$i == 0 ? 'active' : ''}}" style="background-image: url({{isset(explode(',', $value->path)[$i]) ? url('get-block-image/'. rawurlencode(explode(',', $value->path)[$i])) : '' }});">
+        <div class="item carousel-img {{$i == 0 ? 'active' : ''}}" style="background-image: url({{isset(explode('||', $value->path)[$i]) ? url('get-block-image/'. rawurlencode(explode('||', $value->path)[$i])) : '' }});">
             <div class="container">
                 <div class="carousel-caption animated" data-animation="bounceInDown" data-animation-delay="100">
-                    <h1 class="font-pacifico text-capitalize color-light">{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</h1>
-                    <p class="color-light mt25">{{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : '' }}<br>
+                    <h1 class="font-pacifico text-capitalize color-light">{{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}</h1>
+                    <p class="color-light mt25">{{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : '' }}<br>
                         @if(!Auth::guest() && Auth::user()->edit_mode && Auth::user()->type == 'CMS')
                             <a href="{{url('cms/block/edit-lc/'.$value->id)}}" class="button button-md button-pasific hover-ripple-out mt25">Ubah <span class="fa fa-cog"></span></a>
                         @endif
@@ -89,9 +89,9 @@
                  <div class="col-md-4 col-sm-6 col-xs-12 mb35 hover-wobble-vertical">
                      <div class="content-box content-box-o content-box-center content-box-icon">
                          <span class="icon basic-lightbulb bg-grad-blood-mary"></span>
-                         <h4>{{isset(explode(',', $value->title2)[$i]) ? explode(',', $value->title2)[$i] : '' }}</h4>
+                         <h4>{{isset(explode('||', $value->title2)[$i]) ? explode('||', $value->title2)[$i] : '' }}</h4>
                          <p class="pr10 pl10">
-                             {{isset(explode(',', $value->description)[$i]) ? explode(',', $value->description)[$i] : ''}}
+                             {{isset(explode('||', $value->description)[$i]) ? explode('||', $value->description)[$i] : ''}}
                          </p>
                      </div>
                  </div>
