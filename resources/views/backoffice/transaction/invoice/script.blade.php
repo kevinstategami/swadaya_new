@@ -23,6 +23,7 @@
       }
     },
     {data: 'invoice_code'},
+
     {data: 'member_no'},
     {data: 'email'},
     {
@@ -30,7 +31,19 @@
       render : function (data, type, row, meta) {
         return 'Rp. ' + addCommas(data)
       }},
-      {data: 'invoice_type'},
+      {
+        data: 'invoice_type',
+      "render": function( data, type, row, meta)
+      {
+        if(row.invoice_type == 'SMT'){
+          return 'Akhir Buku Tahun';
+        }else if(row.invoice_type == 'PB'){
+          return 'Perbulan'; 
+        }else{
+          return data;
+        }
+      }
+      },
       {
         data: 'created_at',
         render : function (data, type, row, meta) {
@@ -53,6 +66,18 @@
           }
         }
       },
+
+    {
+      data: 'approved_by',
+      "render": function( data, type, row, meta)
+      {
+        if(row.approved_by != null){
+          return data;
+        }else{
+          return '-'; 
+        }
+      }
+    },
 
       {
         data: "id",

@@ -31,6 +31,7 @@ class CreateInvoicesTable extends Migration
             $table->string('invoice_type');
             $table->string('invoice_type_id');
             $table->integer('status')->default(0);
+            $table->integer('approved_by')->nullable();
             $table->timestamps();
         });
     }

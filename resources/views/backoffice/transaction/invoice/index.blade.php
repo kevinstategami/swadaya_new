@@ -25,6 +25,7 @@
                   <th>Tipe Invoice</th>
                   <th>Tanggal Terbit</th>
                   <th>Status</th>
+                  <th>Approve By</th>
                   <th>Tindakan</th>
                 </tr>
               </thead>

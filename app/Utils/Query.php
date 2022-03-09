@@ -5,6 +5,7 @@ use App\Helper\Constant;
 use DB;
 use Session;
 Use Redirect;
+use App\User;
 
 class Query {
 	public static function PagingResponse($request, $table, $viewReturn, $table_name = ''){
@@ -60,6 +61,9 @@ class Query {
 				$table = $table->offset($request->start)->limit($request->length);
 			}
 			$data = $table->where('status', '<>', 9999)->orderBy('status','ASC')->get();
+			foreach($data as $inv){
+				$inv->approved_by = User::where('id',$inv->approved_by)->value('name');
+			}
 			$response = [
 				'draw' => $request->draw,
 				'recordsTotal' => $count,

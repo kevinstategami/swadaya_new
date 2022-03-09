@@ -13,6 +13,7 @@ use App\User;
 use App\Utils\Query;
 use Session;
 use DB;
+use Auth;
 
 class InvoiceController extends Controller
 {
@@ -26,6 +27,7 @@ class InvoiceController extends Controller
 		if($data->status != 2){
 			$data->status = 2;
 		}
+		$data->approved_by = Auth::user()->id;
 		$wallet = Wallet::where('user_id', $data->user_id)->first();
 		$walletHistory = new WalletHistory;
 		$walletHistory->user_id = $data->user_id;
