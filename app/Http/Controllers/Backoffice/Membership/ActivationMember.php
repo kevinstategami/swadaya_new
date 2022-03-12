@@ -75,7 +75,7 @@ class ActivationMember extends Controller
 			$walletHistory->email = $referal->email;
 			$walletHistory->wallet_id = $wallet->id;
 			$walletHistory->amount = $bonusReferal->value;
-			$walletHistory->description = 'Saldo Bonus Referal '.$referal->member_no_downline;
+			$walletHistory->description = 'Saldo Insentif Referal '.$referal->member_no_downline;
 			$walletHistory->mutation_type = 'DBRFBNS';
 			$walletHistory->invoice_id = $referal->id;
 			$wallet->amount = $wallet->amount + $walletHistory->amount;
