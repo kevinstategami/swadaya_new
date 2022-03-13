@@ -91,7 +91,7 @@ class ActivationMember extends Controller
 		$user->status_aktivasi = 0;
 		$user->save();
 		$simpanan = Simpanan::where('user_id',$member)->delete();
-		$downline = Downline::where('user_id_downline',$member)->delete();
+		// $downline = Downline::where('user_id_downline',$member)->delete();
 		$wallet = Wallet::where('user_id',$member)->delete();
 		$invoice = Invoice::where('user_id',$member)->delete();
 		$referalcode = ReferalCode::where('user_id',$member)->delete();

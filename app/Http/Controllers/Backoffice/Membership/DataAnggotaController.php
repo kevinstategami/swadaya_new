@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backoffice\Membership;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Utils\QueryUser;
 use App\Utils\Query;
 use App\Utils\QueryMembership;
 use App\Models\Membership\Member;
@@ -11,6 +12,13 @@ use App\Models\Membership\Downline;
 use App\Models\Membership\DokumenRepo;
 use App\Models\MasterData\City;
 use App\Models\MasterData\Province;
+Use App\Models\Transaction\Invoice;
+Use App\Models\Transaction\Wallet;
+Use App\Models\Transaction\WalletHistory;
+use App\Models\MasterData\SimpananType;
+use App\Models\MasterData\ReferralBonus;
+use App\Models\Membership\Simpanan;
+use App\Models\Membership\ReferalCode;
 use App\User;
 use DB;
 
@@ -139,6 +147,15 @@ class DataAnggotaController extends Controller
 	}
 
 	public function deleteAnggota($id){
+		$user = User::find($id);
+		$user->status_aktivasi = 0;
+		$user->save();
+		$simpanan = Simpanan::where('user_id',$id)->delete();
+		// $downline = Downline::where('user_id_downline',$id)->delete();
+		$wallet = Wallet::where('user_id',$id)->delete();
+		$invoice = Invoice::where('user_id',$id)->delete();
+		$referalcode = ReferalCode::where('user_id',$id)->delete();
+		$data = QueryUser::DeleteMembership('membership_account', $id);
 		$data = QueryMembership::DeleteMembership('membership_account', $id);
 		return $data;
 	}
