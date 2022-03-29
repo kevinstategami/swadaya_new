@@ -22,7 +22,7 @@
             </p>
           </a>
         </li>
-        <li class="nav-item {{Request::segment(2) == 'konfigurasi' ? 'menu-open' : ''}}">
+        {{-- <li class="nav-item {{Request::segment(2) == 'konfigurasi' ? 'menu-open' : ''}}">
           <a href="#" class="nav-link {{Request::segment(2) == 'konfigurasi' ? 'active' : ''}}">
             <i class="nav-icon fas fas fa-globe"></i>
             <p>
@@ -80,7 +80,8 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> --}}
+        @if(Auth::user()->type == 'ADMIN')
         <li class="nav-item {{Request::segment(2) == 'keanggotaan' ? 'menu-open' : ''}}">
           <a href="#" class="nav-link {{Request::segment(2) == 'keanggotaan' ? 'active' : ''}}">
             <i class="nav-icon fas fas fa-users-cog"></i>
@@ -148,6 +149,7 @@
             </li>
           </ul>
         </li>
+        @endif
         <li class="nav-item {{Request::segment(2) == 'referensi' ? 'menu-open' : ''}}">
           <a href="#" class="nav-link {{Request::segment(2) == 'referensi' ? 'active' : ''}}">
             <i class="nav-icon fas fas fa-server"></i>
@@ -157,6 +159,7 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
+            @if(Auth::user()->type == 'ADMIN')
             <li class="nav-item">
               <a href="{{route('jenisSimpanan')}}" class="nav-link {{Request::segment(3) == 'jenis-simpanan' ? 'active' : ''}}">
                 <i class="fas fas fa-newspaper nav-icon"></i>
@@ -211,6 +214,7 @@
                 <p>Referral Bonus</p>
               </a>
             </li>
+            @endif
             <li class="nav-item">
               <a href="{{route('advertisement')}}" class="nav-link {{Request::segment(3) == 'advertisement' ? 'active' : ''}}">
                 <i class="fas fa-ad nav-icon"></i>
@@ -219,6 +223,7 @@
             </li>
           </ul>
         </li>
+        @if(Auth::user()->type == 'ADMIN')
         <li class="nav-item">
           <a href="{{route('userPengguna')}}" class="nav-link {{Request::segment(2) == 'user-pengguna' ? 'active' : ''}}">
             <i class="nav-icon fas fas fa-users"></i>
@@ -227,6 +232,7 @@
             </p>
           </a>
         </li>
+        @endif
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

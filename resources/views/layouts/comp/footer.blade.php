@@ -20,7 +20,7 @@
                         <a href="https://www.linkedin.com/in/songgomas-indonesia-2173b3233"><i class="fab fa-linkedin color-blue"></i></a>
                         <a href="https://www.facebook.com/songgomasindonesia"><i class="fab fa-facebook color-primary"></i></a>
                         <a href="https://twitter.com/SonggoMas"><i class="fab fa-twitter color-blue"></i></a><br><br>
-                        <a href="https://www.tiktok.com/@songgomasindonesia"><i class="fab fa-tiktok color-dark"></i></a>
+                        <a href="https://www.tiktok.com/@songgomas"><i class="fab fa-tiktok color-dark"></i></a>
                         <a href="https://www.youtube.com/channel/UCcMEZ6XqsMU-LzLi5WImfVw"><i class="fab fa-youtube color-red"></i></a>
                         <a href="https://www.instagram.com/songgomasindonesia"><i class="fab fa-instagram color-red"></i></a>
                     </div>

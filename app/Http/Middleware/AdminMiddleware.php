@@ -21,7 +21,9 @@ class AdminMiddleware
           return $next($request);
           return redirect(route('backoffice'));
       }else if(Auth::check() && Auth::user()->type == 'CMS'){
-        return redirect(url('/'));
+          return $next($request);
+        //   return redirect(route('backoffice'));
+          return redirect(url('/'));
       }else{
         Session::flash('info', 'Gagal');
         Session::flash('colors', 'red');
