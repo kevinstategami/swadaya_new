@@ -254,18 +254,20 @@ class HomeController extends Controller
       if ($unverif) {
         if ($verifInvoiceCheck < 1) {
           $getMember = Member::where('user_id', Auth::user()->id)->first();
-          $now = date('Y-m-d H:m:s');
-          $expired = Carbon::parse($getMember->created_at)->addDays(1);
-          if ($now > $expired) {
-            $member = Member::where('id',$getMember->id)->value('user_id');
-            $user = User::find($member);
-            $user->status_aktivasi = 0;
-            $user->save();
-            $simpanan = Simpanan::where('user_id',$member)->delete();
-            $wallet = Wallet::where('user_id',$member)->delete();
-            $invoice = Invoice::where('user_id',$member)->delete();
-            $referalcode = ReferalCode::where('user_id',$member)->delete();
-            $data = QueryUser::DeleteMembership('membership_account', $getMember->id);
+          if ($getMember) {
+            $now = date('Y-m-d H:m:s');
+            $expired = Carbon::parse($getMember->created_at)->addDays(1);
+            if ($now > $expired) {
+              $member = Member::where('id',$getMember->id)->value('user_id');
+              $user = User::find($member);
+              $user->status_aktivasi = 0;
+              $user->save();
+              $simpanan = Simpanan::where('user_id',$member)->delete();
+              $wallet = Wallet::where('user_id',$member)->delete();
+              $invoice = Invoice::where('user_id',$member)->delete();
+              $referalcode = ReferalCode::where('user_id',$member)->delete();
+              $data = QueryUser::DeleteMembership('membership_account', $getMember->id);
+            }
           }
         }
       }
