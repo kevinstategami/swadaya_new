@@ -63,11 +63,19 @@
     <div class="content py-2">
         <div class="d-flex text-center">
             <div class="m-auto">
-                <a href="#" data-bs-toggle="offcanvas" id="krimsaldo" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-green-dark fas fa-arrow-circle-up"></i></a>
+                @if($disabled)
+                <button data-bs-toggle="offcanvas" class="icon icon-xxl rounded-m bg-theme shadow-m border-0" disabled><i class="font-28 color-green-dark fas fa-arrow-circle-up"></i></button>
+                @else
+                <a href="{{url('membership/index/kirim-saldo')}}" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-green-dark fas fa-arrow-circle-up"></i></a>
+                @endif
                 <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Kirim Saldo</h6>
             </div>
             <div class="m-auto">
+                @if($disabled)
+                <button data-bs-toggle="offcanvas" class="icon icon-xxl rounded-m bg-theme shadow-m border-0" disabled><i class="font-28 color-red-dark fas fa-arrow-circle-down"></i></button>
+                @else
                 <a href="{{url('membership/index/tarik-saldo')}}" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-red-dark fas fa-arrow-circle-down"></i></a>
+                @endif
                 <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Tarik Saldo</h6>
             </div>
             <!-- <div data-bs-toggle="offcanvas" data-bs-target="#menu-exchange" class="m-auto">
@@ -131,8 +139,37 @@
                 </div>
                 <div class="align-self-center">
                     <h5 class="color-white font-700 mb-0 mt-0 pt-1">
-                        Selangkah lagi kamu akan menjadi anggota premium. <br />
+                        Selangkah lagi kamu akan menjadi anggota Songgomas. <br />
                         Upload bukti transaksi kamu dan mohon menunggu dalam proses verifikasi.
+                    </h5>
+                </div>
+                <div class="align-self-center ms-auto">
+                    <i class="bi bi-arrow-right-short color-white d-block pt-1 font-20 opacity-50"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+    @endif
+    @else
+    @if($disabled)
+    <div class="content my-0 mt-n2 px-1">
+        <div class="d-flex">
+            <div class="align-self-center">
+                <h3 class="font-16 mb-2"></h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-style bg-danger shadow-bg shadow-bg-s">
+        <div class="content">
+            <a href="{{url('membership/index/activity')}}" class="d-flex">
+                <div class="align-self-center">
+                    <h1 class="mb-0 font-40"><i class="bi bi-emoji-frown-fill color-white pe-3"></i></h1>
+                </div>
+                <div class="align-self-center">
+                    <h5 class="color-white font-700 mb-0 mt-0 pt-1">
+                        Saat ini status keanggotaan anda telah dinonaktifkan.<br />
+                        Mohon segera melakukan pembayaran tagihan yang tertunggak!
                     </h5>
                 </div>
                 <div class="align-self-center ms-auto">

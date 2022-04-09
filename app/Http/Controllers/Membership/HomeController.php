@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Membership;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Utils\Query;
+use App\Utils\QueryUser;
 use App\Models\MasterData\City;
 use App\Models\Membership\Member;
 use Auth;
@@ -13,6 +14,7 @@ use App\Models\MasterData\SimpananType;
 use App\Models\Membership\ReferalCode;
 use App\Models\Membership\Simpanan;
 use App\Models\Membership\DocumenRepo;
+use App\Models\Membership\MembershipBank;
 use App\Models\Transaction\Invoice;
 use App\Models\Transaction\InvoiceHistory;
 use Session;
@@ -20,6 +22,7 @@ use App\Models\Transaction\Wallet;
 use App\Models\Transaction\WalletHistory;
 use File;
 use DB;
+use \Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -243,7 +246,32 @@ class HomeController extends Controller
 
       $bnsTersedia = $walletBnsTersedia - $walletBnsSudahDitarik;
 
+      $disabled = Invoice::where('user_id', Auth::user()->id)->where('status', 0)->count() >= 3;
+
+      // Reactivation Member
+      $unverif = (boolean)Auth::user()->status_aktivasi == 2;
+      $verifInvoiceCheck = Invoice::whereIn('invoice_type',['PB','SMT'])->where('user_id', Auth::user()->id)->whereIn('status', [1, 2])->sum('total_amount');
+      if ($unverif) {
+        if ($verifInvoiceCheck < 1) {
+          $getMember = Member::where('user_id', Auth::user()->id)->first();
+          $now = date('Y-m-d H:m:s');
+          $expired = Carbon::parse($getMember->created_at)->addDays(1);
+          if ($now > $expired) {
+            $member = Member::where('id',$getMember->id)->value('user_id');
+            $user = User::find($member);
+            $user->status_aktivasi = 0;
+            $user->save();
+            $simpanan = Simpanan::where('user_id',$member)->delete();
+            $wallet = Wallet::where('user_id',$member)->delete();
+            $invoice = Invoice::where('user_id',$member)->delete();
+            $referalcode = ReferalCode::where('user_id',$member)->delete();
+            $data = QueryUser::DeleteMembership('membership_account', $getMember->id);
+          }
+        }
+      }
+      // End Reactivation Member
       return view('registrasi.home.index')
+      ->with('disabled', $disabled)
       ->with('invoiceUpdated', $invoiceUpdated)
       ->with('invoiceCheck', $invoiceCheck)
       ->with('wallet', $walletBnsSudahDitarik)
@@ -261,11 +289,23 @@ class HomeController extends Controller
       $walletBnsSudahDitarik = WalletHistory::where('mutation_type','CRRFBNS')->where('user_id', Auth::user()->id)->sum('amount');
 
       $bnsTersedia = $walletBnsTersedia - $walletBnsSudahDitarik;
+      $disabled = Invoice::where('user_id', Auth::user()->id)->where('status', 0)->count() >= 3;
 
+      if ($disabled) {
+        $alert = "Status keanggotaan anda sedang dinonaktifkan!";
+        $info = "Peringatan";
+        $colors = "red";
+        $icons = "fas fa-ban";
+        return redirect(url('membership/index/home'))
+        ->with('info', $info)
+        ->with('alert', $alert)
+        ->with('colors', $colors)
+        ->with('icons', $icons);
+      }
       if($bnsTersedia == 0){
 
-        $alert = "Saldo Bonus tidak tersedia";
-        $info = "error";
+        $alert = "Saldo Insentif tidak tersedia";
+        $info = "Peringatan";
         $colors = "red";
         $icons = "fas fa-ban";
         return redirect(url('membership/index/home'))
@@ -291,7 +331,61 @@ class HomeController extends Controller
         return redirect(url('membership/index/home'));
 
       }else{
-        return view('registrasi.home.wallet.tarik');
+        return view('registrasi.home.wallet.tarik', compact('bnsTersedia'));
+      }
+
+    }
+    public function callSendForm(){
+
+      $walletBnsTersedia = WalletHistory::where('mutation_type','DBRFBNS')->where('user_id', Auth::user()->id)->sum('amount');
+      $walletBnsSudahDitarik = WalletHistory::where('mutation_type','CRRFBNS')->where('user_id', Auth::user()->id)->sum('amount');
+
+      $bnsTersedia = $walletBnsTersedia - $walletBnsSudahDitarik;
+      $disabled = Invoice::where('user_id', Auth::user()->id)->where('status', 0)->count() >= 3;
+
+      $member = MembershipBank::where('user_id', Auth::user()->id)->first();
+
+      if ($disabled) {
+        $alert = "Status keanggotaan anda sedang dinonaktifkan!";
+        $info = "Peringatan";
+        $colors = "red";
+        $icons = "fas fa-ban";
+        return redirect(url('membership/index/home'))
+        ->with('info', $info)
+        ->with('alert', $alert)
+        ->with('colors', $colors)
+        ->with('icons', $icons);
+      }
+      if($bnsTersedia == 0){
+
+        $alert = "Saldo Insentif tidak tersedia";
+        $info = "Peringatan";
+        $colors = "red";
+        $icons = "fas fa-ban";
+        return redirect(url('membership/index/home'))
+        ->with('info', $info)
+        ->with('alert', $alert)
+        ->with('colors', $colors)
+        ->with('icons', $icons);
+
+      }
+
+      if(Auth::user()->status_aktivasi != 4){
+
+        $info = "Informasi";
+        $colors = "red";
+        $icons = "fas fa-ban";
+        $alert = "Silakan aktivasi akun anda!";
+
+        Session::flash('info', $info);
+        Session::flash('alert', $alert);
+        Session::flash('colors', $colors);
+        Session::flash('icons', $icons);
+
+        return redirect(url('membership/index/home'));
+
+      }else{
+        return view('registrasi.home.wallet.kirim', compact('bnsTersedia', 'member'));
       }
 
     }

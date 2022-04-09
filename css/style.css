@@ -143,6 +143,21 @@
     background-position: center;
     background-color: white;
 }
+
+input[type='time']:after {
+    color: #7a7a7a;
+    content: attr(placeholder);
+}
+input[type='date']:after {
+    color: #7a7a7a;
+    content: attr(placeholder);
+}
+
+a.link-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
 @media only screen and (max-width: 991px) {
 	.jenis-koperasi {
 		display: block;

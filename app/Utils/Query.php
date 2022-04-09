@@ -75,6 +75,41 @@ class Query {
 		return view($viewReturn);
 	}
 
+	public static function PagingResponsePenarikan($request, $table, $viewReturn, $table_name = ''){
+		if ($request->filled('type') && $request->type == true) {
+			$columns = DB::getSchemaBuilder()->getColumnListing($table_name);
+			if ($request->filled('search')) {
+				if (!is_null($request->search['value'])) {
+					foreach ($columns as $key => $value) {
+						if ($key == 0) {
+							$table = $table->where($value, 'ilike', '%'.strtolower($request->search['value']).'%');
+						}
+						else {
+							$table = $table->orWhere($value, 'ilike', '%'.strtolower($request->search['value']).'%');
+						}
+					}
+				}
+			}
+			$count = $table->count();
+			if($request->filled('start') || $request->filled('length'))
+			{
+				$table = $table->offset($request->start)->limit($request->length);
+			}
+			$data = $table->where('status', '<>', 9999)->orderBy('status','ASC')->get();
+			foreach($data as $inv){
+				$inv->approved_by = User::where('id',$inv->approved_by)->value('name');
+			}
+			$response = [
+				'draw' => $request->draw,
+				'recordsTotal' => $count,
+				'recordsFiltered' => $count,
+				'data' => $data,
+			];
+			return response()->json($response, 200);
+		}
+		return view($viewReturn);
+	}
+
 	public static function GetResponse($table, $query = ""){
 		if($query){
 			$where = 'WHERE description = '.$query.'';

@@ -119,6 +119,9 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
         ->namespace($this->namespace_backoffice_transaction)
         ->group(base_path('routes/backoffice/transaction/wallet.php'));
+        Route::middleware('web')
+        ->namespace($this->namespace_backoffice_transaction)
+        ->group(base_path('routes/backoffice/transaction/penarikan.php'));
     }
 
     protected function mapBackofficeComproRoutes()

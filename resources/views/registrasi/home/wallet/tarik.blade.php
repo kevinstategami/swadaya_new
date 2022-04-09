@@ -49,8 +49,15 @@
             <div class="card card-style">
               <div class="content">
               <!-- <h3>Tarik Saldo</h3> -->
-              <p>
+              <p class="m-0">
                 Pastikan anda tidak meminta semua saldo untuk di masukan ke dalam dompet, anda harus memperhatikan bahwa ada saldo mengendap yang sudah ditetapkan di awal.
+              </p>
+              <p class="text-bold text-danger fw-bold">
+                Jumlah Penarikan Saldo Minimum Rp. 100.000 + Rp. 5000(Admin)
+              </p>
+              <input type="hidden" value="{{$bnsTersedia}}" id="bnsTersedia" name="bnsTersedia">
+              <p class="text-bold text-primary fw-bold">
+                Saldo Intensif Anda Sekarang Adalah : Rp. {{number_format($bnsTersedia,0,",",".")}}
               </p>
               <!-- <ul class="ps-3">
                 <li>Gambar tidak boleh burem/blur.</li>
@@ -63,7 +70,7 @@
                       <div class="form-custom form-label form-icon">
                          <i class="bi bi-code-square font-14"></i>
                          <input type="number" class="form-control rounded-xs" name="jmlPenarikan" id="jmlPenarikan" placeholder="150.000" style=""/>
-                         <label for="c43" class="form-label-always-active color-highlight font-11">Jumlah Penarikn</label>
+                         <label for="c43" class="form-label-always-active color-highlight font-11">Jumlah Penarikan</label>
                          <span class="font-10">( IDR )</span>
                       </div>
 
@@ -73,7 +80,7 @@
                   </form>
                     <div class="content">
                        <div class="col-md-12">
-                          <a id="btnSimpan" href="#" class="btn btn-full bg-blue-dark shadow-bg-m text-center">Kirim</a>
+                          <button id="btnSimpan" class="btn btn-full w-100 btn-disabled bg-blue-dark shadow-bg-m text-center" disabled>Kirim</button>
                        </div>
                     </div>
                   </div>
@@ -86,8 +93,12 @@
       <script src="{{asset('registrasi/scripts/jquery-confirm.min.js')}}"></script>
       <script src="{{asset('registrasi/scripts/custom.js')}}"></script>
       <script>
-
-
+        $( document ).ready(function() {
+          var bnsTersedia = $('#bnsTersedia').val();
+        })
+        function numberWithCommas(x) {
+          return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
         @if(count($errors) > 0 || Session::has('success') || Session::has('info') || Session::has('warning'))
           $.confirm({
             title: '{{Session::get('info')}}',
@@ -101,11 +112,17 @@
               }
             });
         @endif
+        $('#jmlPenarikan').on('keyup', function() {
+          var val = $(this).val();
+          if (val < 100000) {
+            $('#btnSimpan').attr('disabled', true)
+          } else {
+            $('#btnSimpan').attr('disabled', false)
+          }
+        })
 
         $('#btnSimpan').on('click', function(){
-
           if($('#jmlPenarikan').val() == "") {
-
             $.confirm({
               title: 'Informasi',
               content: 'Harap memasukan nominalp penarikan',
@@ -114,6 +131,39 @@
               }
             });
           }else{
+            var jumlah = parseFloat($('#jmlPenarikan').val());
+            var bns = parseFloat($('#bnsTersedia').val());
+            if (jumlah > bns) {
+              $.confirm({
+                title: 'Informasi',
+                content: 'Saldo Intensif anda tidak mencukupi!',
+                buttons: {
+                  ok: function() {},
+                }
+              });
+            } else {
+              $.confirm({
+                title: 'Informasi',
+                content: 
+                  '<span class="fw-bold">Konfirmasi Penarikan Saldo anda?</span><br>' +
+                  '<table>'+
+                    '<tr><td><span>Jumlah Penarikan </span></td><td><span class="text-success">: Rp. '+numberWithCommas(jumlah)+'</span></td></tr>'+
+                    '<tr><td><span>Biaya Admin </span></td><td><span class="text-primary">: Rp. '+numberWithCommas(5000)+'</span></td></tr>'+
+                  '</table>',
+                buttons: {
+                  ok: {
+                    btnClass: 'btn-success',
+                    action: function(){
+                      $('#fUpload').submit();
+                    }
+                  },
+                  close: {
+                    btnClass: 'btn-danger',
+                    action: function(){}
+                  }
+                }
+              });
+            }
             // var ktp = $('#imgBukti').val();
             // var FileSize = ktp.files[0].size / 1024 / 1024;
             //
@@ -129,7 +179,7 @@
             //
             // }
 
-            $('#fUpload').submit();
+            
           }
 
 

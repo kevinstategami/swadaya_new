@@ -15,6 +15,7 @@ use App\Models\MasterData\Bank;
 use App\Models\Membership\ReferalCode;
 use App\Models\Membership\Simpanan;
 use App\Models\Membership\DokumenRepo;
+use App\Models\Membership\Penarikan;
 use App\Models\Membership\Downline;
 use App\Models\Membership\MembershipBank;
 use App\Models\Transaction\Invoice;
@@ -33,7 +34,7 @@ class RegistrasiController extends Controller
 
     $bnsTersedia = $walletBnsTersedia - $walletBnsSudahDitarik;
 
-    if($request->jmlPenarikan > $bnsTersedia){
+    if(($request->jmlPenarikan + 5000) > $bnsTersedia){
 
       $alert = "Jumlah penarikan tidak boleh lebih dari ".number_format($bnsTersedia, 0, '.', '.');
       $info = "error";
@@ -57,9 +58,9 @@ class RegistrasiController extends Controller
     $invoice->email = $member->email;
     $invoice->invoice_code = "SWD-INVCRRFBNS-".date('Ymd').sprintf("%'04d", $invCount);
     $invoice->amount = $request->jmlPenarikan;
-    $invoice->admin_fee = 0;
+    $invoice->admin_fee = 5000;
     $invoice->additional_amount = 0;
-    $invoice->total_amount = $request->jmlPenarikan;
+    $invoice->total_amount = ($request->jmlPenarikan + 5000);
     $invoice->payment_method_id = null;
     $invoice->invoice_type = "CRRFBNS";
     $invoice->invoice_type_id = $sw->id;
@@ -74,9 +75,9 @@ class RegistrasiController extends Controller
     $invoiceHistory->email = $member->email;
     $invoiceHistory->invoice_code = $invoice->invoice_code;
     $invoiceHistory->amount = $request->jmlPenarikan;
-    $invoiceHistory->admin_fee = 0;
+    $invoiceHistory->admin_fee = 5000;
     $invoiceHistory->additional_amount = 0;
-    $invoiceHistory->total_amount = $request->jmlPenarikan;
+    $invoiceHistory->total_amount = ($request->jmlPenarikan + 5000);
     $invoiceHistory->payment_method_id = '1';
     $invoiceHistory->invoice_type = "CRRFBNS";
     $invoiceHistory->invoice_type_id = $sw->id;
@@ -84,6 +85,56 @@ class RegistrasiController extends Controller
     $invoiceHistory->created_at = date('Y-m-d').date(' h:i:s');
     $invoiceHistory->save();
 
+    $alert = "Tim kami akan memproses pengajuan anda";
+    $info = "Pengajuan Berhasil";
+    $colors = "green";
+    $icons = "fas fa-check-circle";
+    return redirect(url('membership/index/home'))
+    ->with('info', $info)
+    ->with('alert', $alert)
+    ->with('colors', $colors)
+    ->with('icons', $icons);
+
+  }
+
+  public function kirimSaldo(Request $request){
+
+    $walletBnsTersedia = WalletHistory::where('mutation_type','DBRFBNS')->where('user_id', Auth::user()->id)->sum('amount');
+    $walletBnsSudahDitarik = WalletHistory::where('mutation_type','CRRFBNS')->where('user_id', Auth::user()->id)->sum('amount');
+
+    $bnsTersedia = $walletBnsTersedia - $walletBnsSudahDitarik;
+
+    if(($request->jmlPenarikan + 5000) > $bnsTersedia){
+
+      $alert = "Jumlah penarikan tidak boleh lebih dari ".number_format($bnsTersedia, 0, '.', '.');
+      $info = "error";
+      $colors = "red";
+      $icons = "fas fa-ban";
+      return redirect(url('membership/index/tarik-saldo'))
+      ->with('info', $info)
+      ->with('alert', $alert)
+      ->with('colors', $colors)
+      ->with('icons', $icons);
+
+    }
+
+    $member = Member::where('user_id', Auth::user()->id)->first();
+    $bank = MembershipBank::where('user_id', Auth::user()->id)->first();
+
+    $penarikan = new Penarikan();
+    $penarikan->user_id = $member->user_id;
+    $penarikan->member_no = $member->member_no;
+    $penarikan->email = $member->email;
+    $penarikan->amount = $request->jmlPenarikan;
+    $penarikan->admin_fee = 5000;
+    $penarikan->additional_amount = 0;
+    $penarikan->total_amount = ($request->jmlPenarikan + 5000);
+    $penarikan->target_bank_name = $bank->account_bank;
+    $penarikan->target_bank_account_name = $bank->account_name;
+    $penarikan->target_bank_account_no = $bank->account_number;
+    $penarikan->status = 0;
+    $penarikan->created_at = date('Y-m-d').date(' h:i:s');
+    $penarikan->save();
     $alert = "Tim kami akan memproses pengajuan anda";
     $info = "Pengajuan Berhasil";
     $colors = "green";
@@ -107,6 +158,17 @@ class RegistrasiController extends Controller
     ->with('simpananType', $simpananType['object'])
     ->with('bank', $bank);
   }
+  public function uploadBuktiMulti(Request $request){
+    $user = Query::ObjectResponse('users', 'id', Auth::user()->id);
+    $simpananType = Query::ObjectResponse('simpanan_types', 'type_code', 'SW');
+    $bank = Bank::all();
+    //dd($bank);
+    return view('registrasi.home.aktivasi.uploadBuktiMultiple')
+    ->with('user', $user['object'])
+    ->with('tagihanId', implode(",", $request->invoice_id))
+    ->with('simpananType', $simpananType['object'])
+    ->with('bank', $bank);
+  }
   public function storeBukti(Request $request){
     // dd($request->all());
     if($request->file('imgBukti')){
@@ -123,72 +185,155 @@ class RegistrasiController extends Controller
        File::makeDirectory(public_path()
         .
         '/'.$destinationPath, 0777, true);
-     }
-     $fileName = $file->getClientOriginalName();
-     $fileExt = $file->getClientOriginalExtension();
-     $file->move(public_path($destinationPath), $file->getClientOriginalName());
+      }
+       $fileName = $file->getClientOriginalName();
+       $fileExt = $file->getClientOriginalExtension();
+       $file->move(public_path($destinationPath), $file->getClientOriginalName());
 
-     $img = $destinationPath."/".$fileName;
+       $img = $destinationPath."/".$fileName;
 
-     // $user = User::find($member->user_id);
-     // $user->status_aktivasi = 3;
-     // $user->save();
-              //
+       // $user = User::find($member->user_id);
+       // $user->status_aktivasi = 3;
+       // $user->save();
+                //
 
-     $bank = Bank::find($request->bankPenerima);
+       $bank = Bank::find($request->bankPenerima);
 
-     $invoice = Invoice::where('id', $request->tagihanId)->first();
-     $invoice->target_bank_id = $bank->id;
-     $invoice->target_bank_name = $bank->bank_code;
-     $invoice->target_bank_account_name = $bank->account_name;
-     $invoice->target_bank_account_no = $bank->account_number;
-     $invoice->status = 1;
+       $invoice = Invoice::where('id', $request->tagihanId)->first();
+       $invoice->target_bank_id = $bank->id;
+       $invoice->target_bank_name = $bank->bank_code;
+       $invoice->target_bank_account_name = $bank->account_name;
+       $invoice->target_bank_account_no = $bank->account_number;
+       $invoice->status = 1;
 
-     $invoice->save();
+       $invoice->save();
 
 
-     $doc = new DokumenRepo();
-     $doc->reff_id = $invoice->id;
-     $doc->reff_type = $invoice->invoice_type;
-     $doc->filename = $fileName;
-     $doc->mime_type = $fileExt;
-     $doc->path = $img;
-     $doc->status = "UPLOADBUKTI";
-     $doc->save();
+       $doc = new DokumenRepo();
+       $doc->reff_id = $invoice->id;
+       $doc->reff_type = $invoice->invoice_type;
+       $doc->filename = $fileName;
+       $doc->mime_type = $fileExt;
+       $doc->path = $img;
+       $doc->status = "UPLOADBUKTI";
+       $doc->save();
 
-     $alert = "Bukti telah tersimpan, harap menunggu untuk pengecekan dari kami";
-     $info = "Informasi";
-     $colors = "green";
-     $icons = "fas fa-check-circle";
-     return redirect(url('membership/index/home'))
-     ->with('info', $info)
-     ->with('alert', $alert)
-     ->with('colors', $colors)
-     ->with('icons', $icons);
+       $alert = "Bukti telah tersimpan, harap menunggu untuk pengecekan dari kami";
+       $info = "Informasi";
+       $colors = "green";
+       $icons = "fas fa-check-circle";
+       return redirect(url('membership/index/home'))
+       ->with('info', $info)
+       ->with('alert', $alert)
+       ->with('colors', $colors)
+       ->with('icons', $icons);
 
-   }else{
-    $alert = "Harap memasukan jenis file yang sesuai";
-    $info = "error";
-    $colors = "red";
-    $icons = "fas fa-ban";
-    return redirect(url('membership/index/uploadBukti/'.Auth::user()->id))
-    ->with('info', $info)
-    ->with('alert', $alert)
-    ->with('colors', $colors)
-    ->with('icons', $icons);
+       }else{
+        $alert = "Harap memasukan jenis file yang sesuai";
+        $info = "error";
+        $colors = "red";
+        $icons = "fas fa-ban";
+        return redirect(url('membership/index/uploadBukti/'.Auth::user()->id))
+        ->with('info', $info)
+        ->with('alert', $alert)
+        ->with('colors', $colors)
+        ->with('icons', $icons);
+      }
+    }else{
+      $alert = "Koneksi tidak stabil, harap memasukan file kembali";
+      $info = "error";
+      $colors = "red";
+      $icons = "fas fa-ban";
+      return redirect(url('membership/index/uploadBukti/'.Auth::user()->id))
+      ->with('info', $info)
+      ->with('alert', $alert)
+      ->with('colors', $colors)
+      ->with('icons', $icons);
+    }
   }
-}else{
-  $alert = "Koneksi tidak stabil, harap memasukan file kembali";
-  $info = "error";
-  $colors = "red";
-  $icons = "fas fa-ban";
-  return redirect(url('membership/index/uploadBukti/'.Auth::user()->id))
-  ->with('info', $info)
-  ->with('alert', $alert)
-  ->with('colors', $colors)
-  ->with('icons', $icons);
-}
-}
+  public function storeBuktiMulti(Request $request){
+    $invoice_id = explode(",", $request->tagihanId);
+    if($request->file('imgBukti')){
+      $file = $request->file('imgBukti');
+      if($file->getClientOriginalExtension()=="png"
+        || $file->getClientOriginalExtension()=="jpg"
+        || $file->getClientOriginalExtension()=="PNG"
+        || $file->getClientOriginalExtension()=="JPG"
+      ) {
+
+      $member = Member::where('user_id', $request->userId)->first();
+      $destinationPath = "simpanan-wajib/".$member->member_no.'-'.$this->quickRandom(4).'-'.date('Y-m-d');
+      if (!is_dir($destinationPath)) {
+       File::makeDirectory(public_path()
+        .
+        '/'.$destinationPath, 0777, true);
+      }
+       $fileName = $file->getClientOriginalName();
+       $fileExt = $file->getClientOriginalExtension();
+       $file->move(public_path($destinationPath), $file->getClientOriginalName());
+
+       $img = $destinationPath."/".$fileName;
+
+       // $user = User::find($member->user_id);
+       // $user->status_aktivasi = 3;
+       // $user->save();
+                //
+
+       $bank = Bank::find($request->bankPenerima);
+       for ($i=0; $i < count($invoice_id); $i++) { 
+         $invoice = Invoice::where('id', $invoice_id[$i])->first();
+         $invoice->target_bank_id = $bank->id;
+         $invoice->target_bank_name = $bank->bank_code;
+         $invoice->target_bank_account_name = $bank->account_name;
+         $invoice->target_bank_account_no = $bank->account_number;
+         $invoice->status = 1;
+
+         $invoice->save();
+
+
+         $doc = new DokumenRepo();
+         $doc->reff_id = $invoice->id;
+         $doc->reff_type = $invoice->invoice_type;
+         $doc->filename = $fileName;
+         $doc->mime_type = $fileExt;
+         $doc->path = $img;
+         $doc->status = "UPLOADBUKTI";
+         $doc->save();
+       }
+
+       $alert = "Bukti telah tersimpan, harap menunggu untuk pengecekan dari kami";
+       $info = "Informasi";
+       $colors = "green";
+       $icons = "fas fa-check-circle";
+       return redirect(url('membership/index/home'))
+       ->with('info', $info)
+       ->with('alert', $alert)
+       ->with('colors', $colors)
+       ->with('icons', $icons);
+
+       }else{
+        $alert = "Harap memasukan jenis file yang sesuai";
+        $info = "error";
+        $colors = "red";
+        $icons = "fas fa-ban";
+        return redirect(url('membership/index/uploadBukti/'.Auth::user()->id))
+        ->with('info', $info)
+        ->with('alert', $alert)
+        ->with('colors', $colors)
+        ->with('icons', $icons);
+      }
+    }else{
+      $alert = "Koneksi tidak stabil, harap memasukan file kembali";
+      $info = "error";
+      $colors = "red";
+      $icons = "fas fa-ban";
+      return redirect(url('membership/index/uploadBukti/'.Auth::user()->id))
+      ->with('info', $info)
+      ->with('alert', $alert)
+      ->with('colors', $colors)
+      ->with('icons', $icons);
+    }
+  }
 public function formAktivasi($userId){
 
     $cekUser = Auth::user()->status_aktivasi;

@@ -9,7 +9,9 @@ Route::group(['middleware' => ['auth'] ], function () {
 		Route::get('home', 'HomeController@index')->name('index');
 		Route::get('aktivasi/{userId}', 'RegistrasiController@formAktivasi')->name('formAktivasi');
 		Route::get('uploadBukti/{tagihanId}', 'RegistrasiController@uploadBukti')->name('uploadBukti');
+		Route::get('uploadBuktiMulti', 'RegistrasiController@uploadBuktiMulti')->name('uploadBuktiMulti');
 		Route::post('storeBukti', 'RegistrasiController@storeBukti')->name('storeBukti');
+		Route::post('storeBuktiMulti', 'RegistrasiController@storeBuktiMulti')->name('storeBuktiMulti');
 		Route::post('storeAktivasi', 'RegistrasiController@storeAktivasi')->name('storeAktivasi');
 
 		Route::get('activity', 'HomeController@activity')->name('activity');
@@ -21,6 +23,9 @@ Route::group(['middleware' => ['auth'] ], function () {
 
 		Route::get('tarik-saldo', 'HomeController@callRequestForm')->name('requestFund');
 		Route::post('tarik-saldo-store', 'RegistrasiController@tarikSaldo')->name('tarikSaldo');
+
+		Route::get('kirim-saldo', 'HomeController@callSendForm')->name('requestChange');
+		Route::post('kirim-saldo-store', 'RegistrasiController@kirimSaldo')->name('kirimSaldo');
 
 		Route::get('transfer-saldo', 'HomeController@callTransferForm')->name('transferFund');
 

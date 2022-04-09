@@ -31,14 +31,19 @@
                </div>
                <div class="align-self-center ps-1">
                  @if($historys->invoice !=null)
-                 <h6 class="pt-3 mb-n1 font-13">{{$historys->mutation_type == "PB" ? "Simpanan Bulanan transaksi " : $historys->mutation_type == "SMT" ? "Transaksi simpanan akhir tahun buku " : "Peranikan Referal Bonus "}}
-                   &nbsp;&nbsp;{{$historys->mutation_type == "PB" ? $historys->created_at->format('F') : $historys->mutation_type == "SMT" ? $historys->created_at->format('y') : ""}}
+                 <h6 class="pt-3 mb-n1 font-13">
+                  @if($historys->mutation_type == "PB")
+                    Simpanan Bulanan transaksi &nbsp;&nbsp;{{$historys->created_at->format('F')}}
+                  @elseif($historys->mutation_type == "SMT")
+                    Transaksi simpanan akhir tahun buku &nbsp;&nbsp;{{$historys->created_at->format('Y')}}
+                  @else
+                    Peranikan Referal Bonus
+                  @endif
                  </h6>
                  @else
                  <h6 class="pt-3 mb-n1 font-13">{{$historys->description}}
                  </h6>
                  @endif
-
                      <p class="mb-1 font-13 opacity-70">Nominal : Rp. {{number_format($historys->amount, 0, '.', '.')}}</p>
                         <p>Tanggal : {{ $historys->created_at->format('d/F/Y H:s') }}</p>
                      </div>
