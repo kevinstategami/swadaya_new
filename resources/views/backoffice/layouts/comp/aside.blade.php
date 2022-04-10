@@ -130,6 +130,12 @@
                 <p>Dompet Anggota</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('penarikanMaster') }}" class="nav-link {{Request::segment(3) == 'penarikan' ? 'active' : ''}}" class="nav-link">
+                <i class="fas fas fa-paper-plane nav-icon"></i>
+                <p>Penarikan</p>
+              </a>
+            </li>
           </ul>
         </li>
         <li class="nav-item">
